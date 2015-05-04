@@ -1,4 +1,5 @@
-package Model;
+import Model.Map;
+import Model.Player;
 
 import java.util.ArrayList;
 
