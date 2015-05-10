@@ -88,21 +88,15 @@ public class Player {
 		return null;
 	}
 	public ArrayList<Fan> getFans(){
-		return null;
+		return aliveFans;
 	}
 	public HashMap<String,Integer> getInfo(){
-		return null;
+		return information;
 	}
 	public void updateInfo(String infoKey,Integer infoValue){
-		
+		information.put(infoKey,infoValue);
 	}
     public Integer getInfo(String infoKey){
         return information.get(infoKey);
     }
-/*	public int getX(){
-		return X;
-	}
-	public int getY(){
-		return Y;
-	}*/
 }
