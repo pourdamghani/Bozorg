@@ -94,4 +94,5 @@ public class GameObjectID implements java.io.Serializable {
     public String toString() {
         return new StringBuilder("[@id/").append(type.getCanonicalName()).append(',').append(number).append(']').toString();
     }
+
 }
