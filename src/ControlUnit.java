@@ -13,6 +13,7 @@ import java.util.HashMap;
 public class ControlUnit {
     private Map map;
     private ArrayList<Player> players;
+    private int time = 0;
 
     public ArrayList<Player> loadMap(int[][] cellsType,int[][] wallsType, int[] players){
 
@@ -42,24 +43,20 @@ public class ControlUnit {
         return this.players;
     }
     public int getMapWidth(){
-        return 0;
-        //TODO
+        return map.getWidth();
     }
     public int getMapHeight(){
-        return 0;
-        //TODO
+        return map.getHeight();
     }
     public int getMapCellType(int row, int col){
-        return 0;
-        //TODO
+        return map.getCellType(row, col);
     }
     public int getMapCellType(int row, int col, Player player){
         return 0;
         //TODO
     }
     public int getMapWallType(int row, int col){
-        return 0;
-        //TODO
+        return map.getWallType(row, col);
     }
     public int getMapWallType(int row, int col,Player player){
         return 0;
@@ -129,8 +126,7 @@ public class ControlUnit {
         //TODO
     }
     public float getTime(){
-        return 0;
-        //TODO
+        return (float)time / 1000;
     }
 
     //Power Setups
