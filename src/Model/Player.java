@@ -41,7 +41,10 @@ public class Player {
 		
 	}
 	public Fan throwFan() {
-		return null;
+		Fan fan = new Fan(information.get(JudgeAbstract.ROW),information.get(JudgeAbstract.COL),information.get(JudgeAbstract.NAME),JudgeAbstract.ALIVE);
+        aliveFans.add(fan);
+        information.put(JudgeAbstract.FANS,information.get(JudgeAbstract.FANS));
+        return fan;
 	}
 
     public void removeFan(Fan fan) {
