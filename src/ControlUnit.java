@@ -8,7 +8,7 @@ import java.util.HashMap;
  * Created by IMAN on 5/10/2015.
  */
 public class ControlUnit {
-    public <ArrayList>loadMap(int[][] cellsType,int[][] wallsType, int[]players){
+    public ArrayList<Player>loadMap(int[][] cellsType,int[][] wallsType, int[]players){
         return null;
         //TODO
     }
