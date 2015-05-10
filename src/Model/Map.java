@@ -1,12 +1,11 @@
 package Model;
 
-import java.util.ArrayList;
 
 public class Map {
 	private int width,height;
 	private Cell[][] map;
 
-    public Map(int height, int width) {
+    public Map(int width, int height) {
         map = new Cell[width][height];
         this.height = height;
         this.width = width;
@@ -15,14 +14,9 @@ public class Map {
     public int getWidth() {
 		return width;
 	}
-	public void setWidth(int width) {
-		this.width = width;
-	}
+
 	public int getHeight() {
 		return height;
-	}
-	public void setHeight(int height) {
-		this.height = height;
 	}
 
 	public void loadMap(int[][] cellsType,int[][] wallsType){
@@ -45,8 +39,5 @@ public class Map {
 	public Cell getCell(int row, int col){
 		return map[row][col];
 	}
-/*
-	public ArrayList<Player> getPlayer(int row,int col){
-		return null;
-	}*/
+
 }
