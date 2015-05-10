@@ -1,7 +1,9 @@
 package Model;
 
+import Judge.Judge;
 import Judge.JudgeAbstract;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,8 +12,10 @@ public class Player {
 	private HashMap<String,Integer> information = new HashMap<String,Integer>();
     private ArrayList<Fan> aliveFans = new ArrayList<Fan>();
 
-	private float pendingAction, pendingPrize;
-    private int prizeType;
+	private Integer pendingAction, pendingPrize;
+    private Integer prizeType;
+
+    //check pendingAction
 
 	public void setInfo(String key, Integer value) {
 		information.put(key, value);
@@ -37,7 +41,7 @@ public class Player {
         information.put(JudgeAbstract.COL,col);
 
 	}
-	public void getAttack(Integer power){
+	public void getAttacked(Integer power){
 		Integer newHealth = information.get(JudgeAbstract.HEALTH)-power;
         information.put(JudgeAbstract.HEALTH,newHealth);
         if(newHealth < 0){
@@ -57,42 +61,38 @@ public class Player {
     }
 
 	public void getGift(Integer giftType){
-        switch (giftType){
-            //todo
+        switch (giftType) {
+            case 0:
+                prizeType = 0;
+                break;
+            case 4:
+                prizeType = 4;
+                information.put(JudgeAbstract.SPEED,information.get(JudgeAbstract.SPEED)*2);
+                pendingPrize = 5*Judge.TIMEINTERVAL;
+                break;
+
         }
-	}
-
-    public float getPendingAction() {
-        return pendingAction;
+        //TODO
+    }
+    public ArrayList<String> getVision(Integer width,Integer height){
+        ArrayList<String> canSee = new ArrayList<String>();
+        if (prizeType != JudgeAbstract.RADAR_CELL) {
+            Integer vision = information.get(JudgeAbstract.VISION);
+            Integer x = information.get(JudgeAbstract.ROW);
+            Integer y = information.get(JudgeAbstract.COL);
+            for (int i = x - vision; i <= x + vision; i++)
+                for (int j = y - vision; j <= y + vision; j++)
+                    if( i >= 0 && j >= 0 && i<height && j<width)
+                    canSee.add(i + "," + j);
+        }
+        else {
+            for(int i = 0; i < height; i++)
+                for(int j=0; j< width; j++)
+                    canSee.add(i + ","+ j);
+        }
+        return canSee;
     }
 
-    public void setPendingAction(float pendingAction) {
-        this.pendingAction = pendingAction;
-    }
-
-    public float getPendingPrize() {
-        return pendingPrize;
-    }
-
-    public void setPendingPrize(float pendingPrize) {
-        this.pendingPrize = pendingPrize;
-    }
-
-    public int getPrizeType() {
-        return prizeType;
-    }
-
-    public void setPrizeType(int prizeType) {
-        this.prizeType = prizeType;
-    }
-
-
-
-    public ArrayList<String> getVision(){
-        Integer vision = information.get(JudgeAbstract.VISION);
-
-		return null;
-	}
 	public ArrayList<Fan> getFans(){
 		return aliveFans;
 	}
@@ -104,5 +104,32 @@ public class Player {
 	}
     public Integer getInfo(String infoKey){
         return information.get(infoKey);
+    }
+    public  void reduce(){
+
+    }
+
+    public Integer getPendingAction() {
+        return pendingAction;
+    }
+
+    public Integer getPendingPrize() {
+        return pendingPrize;
+    }
+
+    public Integer getPrizeType() {
+        return prizeType;
+    }
+
+    public void setPendingAction(Integer pendingAction) {
+        this.pendingAction = pendingAction;
+    }
+
+    public void setPendingPrize(Integer pendingPrize) {
+        this.pendingPrize = pendingPrize;
+    }
+
+    public void setPrizeType(Integer prizeType) {
+        this.prizeType = prizeType;
     }
 }
