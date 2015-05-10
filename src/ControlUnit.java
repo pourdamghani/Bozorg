@@ -1,4 +1,6 @@
+import Judge.JudgeAbstract;
 import Model.Fan;
+import Model.Map;
 import Model.Player;
 
 import java.util.ArrayList;
@@ -8,9 +10,34 @@ import java.util.HashMap;
  * Created by IMAN on 5/10/2015.
  */
 public class ControlUnit {
-    public ArrayList<Player>loadMap(int[][] cellsType,int[][] wallsType, int[]players){
-        return null;
-        //TODO
+    private Map map;
+    private ArrayList<Player> players;
+
+    public ArrayList<Player> loadMap(int[][] cellsType,int[][] wallsType, int[] players){
+
+        int width = cellsType.length;
+        int height = cellsType[0].length;
+
+        //Initializing map
+        map = new Map(width, height);
+        map.loadMap(cellsType, wallsType);
+
+        //Placing players in the map
+        int iter = 0;
+        this.players = new ArrayList<Player>();
+        for (int i = 0; i <width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (map.getCellType(i, j) == JudgeAbstract.START_CELL) {
+                    this.players.add(new Player() );
+                    Player player = this.players.get(iter);
+                    player.updateInfo(JudgeAbstract.ROW, i); //Setting Row
+                    player.updateInfo(JudgeAbstract.COL, i); //Setting Col
+                    iter++;
+                }
+            }
+        }
+
+        return this.players;
     }
     public int getMapWidth(){
         return 0;
