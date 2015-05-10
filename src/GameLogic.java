@@ -77,7 +77,8 @@ public class GameLogic {
 	}
 	//check shavad :D
 	public boolean canAttack (Player player, int direction, Map map, ArrayList<Player> players, int width, int height){
-
+		if(player.getPrizeType() == JudgeAbstract.STONE_CELL)
+			return false;
 		if(player.getInfo(JudgeAbstract.IS_ALIVE) != JudgeAbstract.ALIVE)
 			return false;
 		if(player.getPendingAction() != 0)//havnt got any action
