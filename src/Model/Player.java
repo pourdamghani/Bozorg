@@ -4,6 +4,7 @@ import Judge.JudgeAbstract;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Player {
 	private HashMap<String,Integer> information = new HashMap<String,Integer>();
@@ -91,6 +92,9 @@ public class Player {
 	public void upadeInfo(String infoKey,Integer infoValue){
 		
 	}
+    public Integer getInfo(String infoKey){
+        return information.get(infoKey);
+    }
 /*	public int getX(){
 		return X;
 	}
