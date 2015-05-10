@@ -61,18 +61,28 @@ public class Player {
     }
 
 	public void getGift(Integer giftType){
+        prizeType = giftType;
         switch (giftType) {
-            case 0:
-                prizeType = 0;
-                break;
-            case 4:
-                prizeType = 4;
+            case JudgeAbstract.SPEEDUP_CELL:
                 information.put(JudgeAbstract.SPEED,information.get(JudgeAbstract.SPEED)*2);
-                pendingPrize = 5*Judge.TIMEINTERVAL;
+                pendingPrize = Judge.SPEEDUP_TIME*Judge.TIMEINTERVAL;
                 break;
-
+            case JudgeAbstract.RADAR_CELL:
+                pendingPrize = Judge.RADAR_TIME*Judge.TIMEINTERVAL;
+                break;
+            case JudgeAbstract.STONE_CELL:
+                pendingPrize = Judge.STONE_TIME*Judge.TIMEINTERVAL;
+                break;
+            case JudgeAbstract.JUMP_CELL:
+                pendingPrize = Judge.JUMP_TIME*Judge.TIMEINTERVAL;
+                break;
+            case JudgeAbstract.HOSPITAL_CELL:
+                information.put(JudgeAbstract.HEALTH,Math.min(Judge.MAX_Health, information.get(JudgeAbstract.HEALTH)+Judge.HEALTH_INCREASE_VALUE ));
+                break;
+            case JudgeAbstract.FAN_CELL:
+                information.put(JudgeAbstract.FANS,information.get(JudgeAbstract.FANS)+Judge.FAN_INCREASE_VALUE);
+                break;
         }
-        //TODO
     }
     public ArrayList<String> getVision(Integer width,Integer height){
         ArrayList<String> canSee = new ArrayList<String>();
@@ -105,7 +115,9 @@ public class Player {
     public Integer getInfo(String infoKey){
         return information.get(infoKey);
     }
+
     public  void reduce(){
+        //todo
 
     }
 
