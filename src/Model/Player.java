@@ -35,6 +35,7 @@ public class Player {
         }
         information.put(JudgeAbstract.ROW,row);
         information.put(JudgeAbstract.COL,col);
+
 	}
 	public void attack(int direction){
 		
