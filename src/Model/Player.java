@@ -89,6 +89,8 @@ public class Player {
 
 
     public ArrayList<String> getVision(){
+        Integer vision = information.get(JudgeAbstract.VISION);
+
 		return null;
 	}
 	public ArrayList<Fan> getFans(){

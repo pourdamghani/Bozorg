@@ -2,7 +2,6 @@ import Judge.JudgeAbstract;
 import Model.Fan;
 import Model.Map;
 import Model.Player;
-import sun.java2d.jules.JulesShapePipe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,12 +40,6 @@ public class ControlUnit {
         }
 
         return this.players;
-    }
-    public int getMapWidth(){
-        return map.getWidth();
-    }
-    public int getMapHeight(){
-        return map.getHeight();
     }
     public int getMapCellType(int row, int col){
         return map.getCellType(row, col);
