@@ -2,6 +2,7 @@ import Judge.JudgeAbstract;
 import Model.Fan;
 import Model.Map;
 import Model.Player;
+import sun.java2d.jules.JulesShapePipe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,10 +29,11 @@ public class ControlUnit {
         for (int i = 0; i <width; i++) {
             for (int j = 0; j < height; j++) {
                 if (map.getCellType(i, j) == JudgeAbstract.START_CELL) {
-                    this.players.add(new Player() );
+                    this.players.add(new Player());
                     Player player = this.players.get(iter);
                     player.updateInfo(JudgeAbstract.ROW, i); //Setting Row
                     player.updateInfo(JudgeAbstract.COL, i); //Setting Col
+                    player.updateInfo(JudgeAbstract.NAME, players[iter]);
                     iter++;
                 }
             }
@@ -63,8 +65,32 @@ public class ControlUnit {
         return 0;
         //TODO
     }
-    public void setup(){
 
+    /**
+     * Setting up players default abilities
+     */
+    public void setup() {
+
+        for (int i = 0; i < players.size(); i++) {
+            Player player = players.get(i);
+            switch (player.getInfo(JudgeAbstract.NAME) ) {
+                case JudgeAbstract.SAMAN :
+                    setupSaman(player);
+                    break;
+
+                case JudgeAbstract.JAFAR :
+                    setupJafar(player);
+                    break;
+
+                case JudgeAbstract.HASIN :
+                    setupHasin(player);
+                    break;
+
+                case JudgeAbstract.REZA :
+                    setupReza(player);
+                    break;
+            }
+        }
     }
     public void movePlayer(Player player, int direction){
         //TODO
@@ -105,5 +131,50 @@ public class ControlUnit {
     public float getTime(){
         return 0;
         //TODO
+    }
+
+    //Power Setups
+    private void setupSaman(Player player) {
+        player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
+        player.updateInfo(JudgeAbstract.SPEED, 2);
+        player.updateInfo(JudgeAbstract.HEALTH, 100);
+        player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
+        player.updateInfo(JudgeAbstract.FANS, 100);
+        player.updateInfo(JudgeAbstract.VISION, 3);
+        player.updateInfo(JudgeAbstract.POWER, 5);
+        player.updateInfo(JudgeAbstract.IS_WINNER, 2);
+    }
+
+    private void setupJafar(Player player) {
+        player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.JAFAR);
+        player.updateInfo(JudgeAbstract.SPEED, 5);
+        player.updateInfo(JudgeAbstract.HEALTH, 100);
+        player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
+        player.updateInfo(JudgeAbstract.FANS, 5);
+        player.updateInfo(JudgeAbstract.VISION, 3);
+        player.updateInfo(JudgeAbstract.POWER, 1);
+        player.updateInfo(JudgeAbstract.IS_WINNER, 2);
+    }
+
+    private void setupReza(Player player) {
+        player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
+        player.updateInfo(JudgeAbstract.SPEED, 2);
+        player.updateInfo(JudgeAbstract.HEALTH, 100);
+        player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
+        player.updateInfo(JudgeAbstract.FANS, 0);
+        player.updateInfo(JudgeAbstract.VISION, 6);
+        player.updateInfo(JudgeAbstract.POWER, 4);
+        player.updateInfo(JudgeAbstract.IS_WINNER, 2);
+    }
+
+    private void setupHasin(Player player) {
+        player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
+        player.updateInfo(JudgeAbstract.SPEED, 2);
+        player.updateInfo(JudgeAbstract.HEALTH, 100);
+        player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
+        player.updateInfo(JudgeAbstract.FANS, 10);
+        player.updateInfo(JudgeAbstract.VISION, 3);
+        player.updateInfo(JudgeAbstract.POWER, 5);
+        player.updateInfo(JudgeAbstract.IS_WINNER, 2);
     }
 }
