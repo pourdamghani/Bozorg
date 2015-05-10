@@ -1,11 +1,9 @@
 package Model;
 
-import java.util.ArrayList;
 
 public class Cell {
 	private int cellType;
 	private boolean rightWall, leftWall, upWall, downWall;
-//	private ArrayList<Player> players;
 	private Fan fan;
     private int wallType;
 
@@ -18,16 +16,11 @@ public class Cell {
     public Fan getFan(){
 		return fan;
 	}
-/*	public ArrayList<Player> getPlayer(){
-		return players;
-	}*/
 
 	public void setFan(Fan fan){
         this.fan = fan;
 	}
-/*	public void addPlayer(Player player){
-        players.add(player);
-	}*/
+
 	public int getCellType() {
 		return cellType;
 	}
@@ -53,27 +46,19 @@ public class Cell {
 	}
 
     private void setWalls(int wallType) {
-        if (wallType % 2 == 1)
-            upWall = true;
-        else upWall = false;
+        upWall = wallType % 2 == 1;
 
         wallType /= 2;
 
-        if (wallType % 2 == 1)
-            rightWall = true;
-        else rightWall = false;
+        rightWall = wallType % 2 == 1;
 
         wallType /= 2;
 
-        if (wallType % 2 == 1)
-            downWall = true;
-        else downWall = false;
+        downWall = wallType % 2 == 1;
 
         wallType /= 2;
 
-        if (wallType % 2 == 1)
-            leftWall = true;
-        else leftWall = false;
+        leftWall = wallType % 2 == 1;
     }
 
     public int getWallType() {
