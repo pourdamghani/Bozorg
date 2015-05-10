@@ -68,7 +68,7 @@ public class Player {
 	public HashMap<String,Integer> getInfo(){
 		return null;
 	}
-	public void upadeInfo(String infoKey,Integer infoValue){
+	public void updateInfo(String infoKey,Integer infoValue){
 		
 	}
 /*	public int getX(){
