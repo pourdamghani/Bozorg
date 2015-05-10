@@ -37,13 +37,15 @@ public class Map {
         return map[row][col].getCellType();
 	}
 
-	public int getWallType(int col,int row){
+	public int getWallType(int row,int col){
 		return map[row][col].getWallType();
 	}
 
-/*	public Cell getCell(int col, int row){
-		return null;
+
+	public Cell getCell(int row, int col){
+		return map[row][col];
 	}
+/*
 	public ArrayList<Player> getPlayer(int row,int col){
 		return null;
 	}*/
