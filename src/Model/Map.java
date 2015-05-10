@@ -2,20 +2,20 @@ package Model;
 
 
 public class Map {
-	private static int width,height;
+	private int width,height;
 	private Cell[][] map;
 
     public Map(int width, int height) {
         map = new Cell[width][height];
-        Map.height = height;
-        Map.width = width;
+        this.height = height;
+        this.width = width;
     }
 
-    public static int getWidth() {
+    public int getWidth() {
 		return width;
 	}
 
-	public static int getHeight() {
+	public int getHeight() {
 		return height;
 	}
 

@@ -41,6 +41,16 @@ public class ControlUnit {
 
         return this.players;
     }
+
+    public int getWidth() {
+        return map.getWidth();
+    }
+
+    public int getHeight() {
+        return map.getHeight();
+    }
+
+
     public int getMapCellType(int row, int col){
         return map.getCellType(row, col);
     }
@@ -158,7 +168,7 @@ public class ControlUnit {
 
     private void setupHasin(Player player) {
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
-        player.updateInfo(JudgeAbstract.SPEED, 2);
+        player.updateInfo(JudgeAbstract.SPEED, 2);\
         player.updateInfo(JudgeAbstract.HEALTH, 100);
         player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
         player.updateInfo(JudgeAbstract.FANS, 10);
