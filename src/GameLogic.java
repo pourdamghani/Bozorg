@@ -41,7 +41,7 @@ public class GameLogic {
 		return counter;
 	}
 	//if there are on player to attack return true else return false
-	private boolean isPlayerToAttack(int direction, int X, int Y, ArrayList<Player> players,int width,int height){
+	private boolean playerexist(int direction, int X, int Y, ArrayList<Player> players,int width,int height){
 		switch (direction){
 			case JudgeAbstract.UP:
 				if(numberofPlayer(X, Y + 1, players, width, height) == 0)
@@ -60,7 +60,7 @@ public class GameLogic {
 					return false;
 				break;
 			case JudgeAbstract.NONE:
-				if(numberofPlayer(X, Y, width, height) <= 1)
+				if(numberofPlayer(X, Y,players, width, height) <= 1)
 					return false;
 				break;
 		}
@@ -77,6 +77,7 @@ public class GameLogic {
 	}
 	//check shavad :D
 	public boolean canAttack (Player player, int direction, Map map, ArrayList<Player> players, int width, int height){
+
 		if(player.getInfo(JudgeAbstract.IS_ALIVE) != JudgeAbstract.ALIVE)
 			return false;
 		if(player.getPendingAction() != 0)//havnt got any action
@@ -84,7 +85,8 @@ public class GameLogic {
 		if(!isNoWall(player, direction, map))
 			return false;
 		int X = player.getInfo(JudgeAbstract.ROW), Y = player.getInfo(JudgeAbstract.COL);
-
+		if(!playerexist(direction,X,Y,players,width,height))
+			return false;
 		return true;
 	}
 }
