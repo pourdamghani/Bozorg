@@ -67,6 +67,10 @@ public class GameLogic {
 		return true;
 	}
 	public boolean canMove(Player player, int direction, Map map){
+		if(player.getPrizeType() == JudgeAbstract.STONE_CELL)
+			return false;
+		if(player.getPrizeType() == JudgeAbstract.JUMP_CELL)
+			return true;
 		if(player.getInfo(JudgeAbstract.IS_ALIVE) != JudgeAbstract.ALIVE)
 			return false;
 		if(player.getPendingAction() != 0)//havnt got any action
@@ -86,8 +90,15 @@ public class GameLogic {
 		if(!isNoWall(player, direction, map))
 			return false;
 		int X = player.getInfo(JudgeAbstract.ROW), Y = player.getInfo(JudgeAbstract.COL);
-		if(!playerexist(direction,X,Y,players,width,height))
+		if(!playerexist(direction, X, Y, players, width, height))
 			return false;
 		return true;
+	}
+	public boolean canSee(Player player, int X, int Y){
+		int playerX = player.getInfo(JudgeAbstract.ROW), playerY = player.getInfo(JudgeAbstract.COL);
+		if(X - playerX < player.getInfo(JudgeAbstract.VISION) && X - playerX > -1 * player.getInfo(JudgeAbstract.VISION))
+			if(Y - playerY < player.getInfo(JudgeAbstract.VISION) && Y - playerY > -1 * player.getInfo(JudgeAbstract.VISION))
+				return true;
+		return false;
 	}
 }
