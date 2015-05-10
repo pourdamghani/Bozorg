@@ -1,5 +1,7 @@
 package Model;
 
+import Judge.JudgeAbstract;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,6 +16,24 @@ public class Player {
 		information.put(key, value);
 	}
 	public void move(int direction){
+        Integer row = information.get(JudgeAbstract.ROW);
+        Integer col = information.get(JudgeAbstract.COL);
+        switch (direction){
+            case JudgeAbstract.UP:
+                row--;
+                break;
+            case JudgeAbstract.DOWN:
+                row++;
+                break;
+            case JudgeAbstract.LEFT:
+                col--;
+                break;
+            case JudgeAbstract.RIGHT:
+                col++;
+                break;
+        }
+        information.put(JudgeAbstract.ROW,row);
+        information.put(JudgeAbstract.COL,col);
 	}
 	public void attack(int direction){
 		
