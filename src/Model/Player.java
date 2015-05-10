@@ -37,13 +37,18 @@ public class Player {
         information.put(JudgeAbstract.COL,col);
 
 	}
-	public void attack(int direction){
-		
+	public void getAttack(Integer power){
+		Integer newHealth = information.get(JudgeAbstract.HEALTH)-power;
+        information.put(JudgeAbstract.HEALTH,newHealth);
+        if(newHealth < 0){
+            information.put(JudgeAbstract.IS_ALIVE, JudgeAbstract.DEAD);
+            information.put(JudgeAbstract.IS_WINNER,JudgeAbstract.LOST);
+        }
 	}
 	public Fan throwFan() {
 		Fan fan = new Fan(information.get(JudgeAbstract.ROW),information.get(JudgeAbstract.COL),information.get(JudgeAbstract.NAME),JudgeAbstract.ALIVE);
         aliveFans.add(fan);
-        information.put(JudgeAbstract.FANS,information.get(JudgeAbstract.FANS));
+        information.put(JudgeAbstract.FANS, information.get(JudgeAbstract.FANS));
         return fan;
 	}
 
@@ -51,8 +56,10 @@ public class Player {
         aliveFans.remove(fan);
     }
 
-	public void getGift(){
-		
+	public void getGift(Integer giftType){
+        switch (giftType){
+            //todo
+        }
 	}
 
     public float getPendingAction() {
@@ -82,9 +89,6 @@ public class Player {
 
 
     public ArrayList<String> getVision(){
-		return null;
-	}
-	public ArrayList<Player> getPlayersInVision(){
 		return null;
 	}
 	public ArrayList<Fan> getFans(){
