@@ -59,8 +59,11 @@ public class ControlUnit {
     }
 
     public int getMapCellType(int row, int col, Player player) {
-        return 0;
-        //TODO
+        if(!logic.canSee(player,row,col))
+            return JudgeAbstract.DARK_CELL;
+        if(getMapCellType(row,col) > JudgeAbstract.START_CELL)
+            return JudgeAbstract.BONUS_CELL;
+        return getMapCellType(row,col);
     }
 
     public int getMapWallType(int row, int col) {
