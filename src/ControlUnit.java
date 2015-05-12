@@ -2,6 +2,7 @@ import Common.exceptions.BozorgExceptionBase;
 import Judge.JudgeAbstract;
 import Model.Fan;
 import Model.Map;
+import Model.Person;
 import Model.Player;
 
 import java.util.ArrayList;
@@ -132,15 +133,13 @@ public class ControlUnit {
         //TODO
     }
 
-    public HashMap<String, Integer> getInfo(Player player) {
-        return null;
-        //TODO
+    public HashMap<String, Integer> getInfo(Person person) {
+        return person.getInfo();
     }
 
-    public HashMap<String, Integer> getInfo(Fan fan) {
-        return null;
-        //TODO
-    }
+//    public HashMap<String, Integer> getInfo(Fan fan) {
+
+//    }
 
     public void next50milies() {
         //TODO
