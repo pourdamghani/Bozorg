@@ -138,8 +138,7 @@ public class ControlUnit {
     }
 
     public ArrayList<Fan> getFans(Player player) {
-        return null;
-        //TODO
+        return player.getFans();
     }
 
     public HashMap<String, Integer> getInfo(Person person) {
