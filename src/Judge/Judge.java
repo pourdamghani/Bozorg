@@ -11,5 +11,5 @@ abstract public class Judge extends JudgeAbstract {
     public static int HEALTH_INCREASE_VALUE = 20;
     public static int FAN_INCREASE_VALUE = 3;
     public static int MAX_Health = 100;
-    public static int TIMEINTERVAL = 200;
+    public static int TIMEINTERVAL = 20;
 }
