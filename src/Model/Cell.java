@@ -21,6 +21,10 @@ public class Cell {
         this.fan = fan;
     }
 
+    public void removeFan(){
+        this.fan = null;
+    }
+
     public int getCellType() {
         return cellType;
     }
