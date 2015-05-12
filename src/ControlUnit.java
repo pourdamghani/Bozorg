@@ -59,7 +59,7 @@ public class ControlUnit {
     }
 
     public int getMapCellType(int row, int col, Player player) {
-        if(!logic.canSee(player,row,col))
+        if(!logic.canSee(player, map, row, col))
             return JudgeAbstract.DARK_CELL;
         if(getMapCellType(row,col) > JudgeAbstract.START_CELL)
             return JudgeAbstract.BONUS_CELL;
@@ -71,8 +71,9 @@ public class ControlUnit {
     }
 
     public int getMapWallType(int row, int col, Player player) {
-        return 0;
-        //TODO
+        if(!logic.canSee(player, map, row, col))
+            return JudgeAbstract.XXXX_WALL;
+        return getMapWallType(row, col);
     }
 
     /**
