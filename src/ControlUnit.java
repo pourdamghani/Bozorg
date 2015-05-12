@@ -6,15 +6,13 @@ import Model.Player;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by IMAN on 5/10/2015.
- */
+
 public class ControlUnit {
     private Map map;
     private ArrayList<Player> players;
     private int time = 0;
 
-    public ArrayList<Player> loadMap(int[][] cellsType,int[][] wallsType, int[] players){
+    public ArrayList<Player> loadMap(int[][] cellsType, int[][] wallsType, int[] players) {
 
         int width = cellsType.length;
         int height = cellsType[0].length;
@@ -26,7 +24,7 @@ public class ControlUnit {
         //Placing players in the map
         int iter = 0;
         this.players = new ArrayList<Player>();
-        for (int i = 0; i <width; i++) {
+        for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 if (map.getCellType(i, j) == JudgeAbstract.START_CELL) {
                     this.players.add(new Player());
@@ -51,17 +49,20 @@ public class ControlUnit {
     }
 
 
-    public int getMapCellType(int row, int col){
+    public int getMapCellType(int row, int col) {
         return map.getCellType(row, col);
     }
-    public int getMapCellType(int row, int col, Player player){
+
+    public int getMapCellType(int row, int col, Player player) {
         return 0;
         //TODO
     }
-    public int getMapWallType(int row, int col){
+
+    public int getMapWallType(int row, int col) {
         return map.getWallType(row, col);
     }
-    public int getMapWallType(int row, int col,Player player){
+
+    public int getMapWallType(int row, int col, Player player) {
         return 0;
         //TODO
     }
@@ -71,65 +72,75 @@ public class ControlUnit {
      */
     public void setup() {
 
-        for (int i = 0; i < players.size(); i++) {
-            Player player = players.get(i);
-            switch (player.getInfo(JudgeAbstract.NAME) ) {
-                case JudgeAbstract.SAMAN :
+        for (Player player : players) {
+            switch (player.getInfo(JudgeAbstract.NAME)) {
+                case JudgeAbstract.SAMAN:
                     setupSaman(player);
                     break;
 
-                case JudgeAbstract.JAFAR :
+                case JudgeAbstract.JAFAR:
                     setupJafar(player);
                     break;
 
-                case JudgeAbstract.HASIN :
+                case JudgeAbstract.HASIN:
                     setupHasin(player);
                     break;
 
-                case JudgeAbstract.REZA :
+                case JudgeAbstract.REZA:
                     setupReza(player);
                     break;
             }
         }
     }
-    public void movePlayer(Player player, int direction){
+
+    public void movePlayer(Player player, int direction) {
         //TODO
     }
-    public void attack(Player player, int direction){
+
+    public void attack(Player player, int direction) {
         //TODO
     }
-    public Fan throwfan(Player player){
+
+    public Fan throwfan(Player player) {
         return null;
         //TODO
     }
-    public void getGift(Player player){
+
+    public void getGift(Player player) {
         //TODO
     }
-    public ArrayList<String> getVision(Player player){
+
+    public ArrayList<String> getVision(Player player) {
+        //TODO
+        return null;
+    }
+
+    public ArrayList<Player> getPlayersInVision(Player player) {
         return null;
         //TODO
     }
-    public ArrayList<Player> getPlayersInVision (Player player){
+
+    public ArrayList<Fan> getFans(Player player) {
         return null;
         //TODO
     }
-    public ArrayList<Fan> getFans(Player player){
+
+    public HashMap<String, Integer> getInfo(Player player) {
         return null;
         //TODO
     }
-    public HashMap<String, Integer> getInfo(Player player){
+
+    public HashMap<String, Integer> getInfo(Fan fan) {
         return null;
         //TODO
     }
-    public HashMap<String, Integer> getInfo(Fan fan){
-        return null;
+
+    public void next50milies() {
         //TODO
     }
-    public void next50milies(){
-        //TODO
-    }
-    public float getTime(){
-        return (float)time / 1000;
+
+    public float getTime() {
+        return (float) time / 1000;
     }
 
     //Power Setups
@@ -168,7 +179,7 @@ public class ControlUnit {
 
     private void setupHasin(Player player) {
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
-        player.updateInfo(JudgeAbstract.SPEED, 2);\
+        player.updateInfo(JudgeAbstract.SPEED, 2);
         player.updateInfo(JudgeAbstract.HEALTH, 100);
         player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
         player.updateInfo(JudgeAbstract.FANS, 10);

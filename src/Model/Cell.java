@@ -2,9 +2,9 @@ package Model;
 
 
 public class Cell {
-	private int cellType;
-	private boolean rightWall, leftWall, upWall, downWall;
-	private Fan fan;
+    private int cellType;
+    private boolean rightWall, leftWall, upWall, downWall;
+    private Fan fan;
     private int wallType;
 
     public Cell(int cellType, int wallType) {
@@ -13,37 +13,37 @@ public class Cell {
         setWalls(wallType);
     }
 
-    public Fan getFan(){
-		return fan;
-	}
+    public Fan getFan() {
+        return fan;
+    }
 
-	public void setFan(Fan fan){
+    public void setFan(Fan fan) {
         this.fan = fan;
-	}
+    }
 
-	public int getCellType() {
-		return cellType;
-	}
+    public int getCellType() {
+        return cellType;
+    }
 
-	public void setCellType(int cellType) {
-		this.cellType = cellType;
-	}
+    public void setCellType(int cellType) {
+        this.cellType = cellType;
+    }
 
-	public boolean isRightWall() {
-		return rightWall;
-	}
+    public boolean isRightWall() {
+        return rightWall;
+    }
 
-	public boolean isLeftWall() {
-		return leftWall;
-	}
+    public boolean isLeftWall() {
+        return leftWall;
+    }
 
-	public boolean isUpWall() {
-		return upWall;
-	}
+    public boolean isUpWall() {
+        return upWall;
+    }
 
-	public boolean isDownWall() {
-		return downWall;
-	}
+    public boolean isDownWall() {
+        return downWall;
+    }
 
     private void setWalls(int wallType) {
         upWall = wallType % 2 == 1;
