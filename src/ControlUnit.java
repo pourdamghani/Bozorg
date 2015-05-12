@@ -6,6 +6,7 @@ import Model.Map;
 import Model.Person;
 import Model.Player;
 
+import javax.print.attribute.standard.MediaSize;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -156,45 +157,45 @@ public class ControlUnit {
     //Power Setups
     private void setupSaman(Player player) {
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
-        player.updateInfo(JudgeAbstract.SPEED, 2);
-        player.updateInfo(JudgeAbstract.HEALTH, 100);
+        player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
+        player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
         player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
-        player.updateInfo(JudgeAbstract.FANS, 100);
-        player.updateInfo(JudgeAbstract.VISION, 3);
-        player.updateInfo(JudgeAbstract.POWER, 5);
-        player.updateInfo(JudgeAbstract.IS_WINNER, 2);
+        player.updateInfo(JudgeAbstract.FANS, Judge.Saman_Fans);
+        player.updateInfo(JudgeAbstract.VISION, Judge.Other_Player_Vision);
+        player.updateInfo(JudgeAbstract.POWER, Judge.Saman_Power);
+        player.updateInfo(JudgeAbstract.IS_WINNER, JudgeAbstract.NOT_FINISHED);
     }
 
     private void setupJafar(Player player) {
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.JAFAR);
-        player.updateInfo(JudgeAbstract.SPEED, 5);
-        player.updateInfo(JudgeAbstract.HEALTH, 100);
+        player.updateInfo(JudgeAbstract.SPEED, Judge.Jafar_Speed);
+        player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
         player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
-        player.updateInfo(JudgeAbstract.FANS, 5);
-        player.updateInfo(JudgeAbstract.VISION, 3);
-        player.updateInfo(JudgeAbstract.POWER, 1);
-        player.updateInfo(JudgeAbstract.IS_WINNER, 2);
+        player.updateInfo(JudgeAbstract.FANS, Judge.Jafar_Fans);
+        player.updateInfo(JudgeAbstract.VISION, Judge.Other_Player_Vision);
+        player.updateInfo(JudgeAbstract.POWER, Judge.Jafar_Power);
+        player.updateInfo(JudgeAbstract.IS_WINNER, JudgeAbstract.NOT_FINISHED);
     }
 
     private void setupReza(Player player) {
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
-        player.updateInfo(JudgeAbstract.SPEED, 2);
-        player.updateInfo(JudgeAbstract.HEALTH, 100);
+        player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
+        player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
         player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
-        player.updateInfo(JudgeAbstract.FANS, 0);
-        player.updateInfo(JudgeAbstract.VISION, 6);
-        player.updateInfo(JudgeAbstract.POWER, 4);
-        player.updateInfo(JudgeAbstract.IS_WINNER, 2);
+        player.updateInfo(JudgeAbstract.FANS, Judge.Reza_Fans);
+        player.updateInfo(JudgeAbstract.VISION, Judge.Reza_Vision);
+        player.updateInfo(JudgeAbstract.POWER, Judge.Reza_Power);
+        player.updateInfo(JudgeAbstract.IS_WINNER, JudgeAbstract.NOT_FINISHED);
     }
 
     private void setupHasin(Player player) {
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
-        player.updateInfo(JudgeAbstract.SPEED, 2);
-        player.updateInfo(JudgeAbstract.HEALTH, 100);
+        player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
+        player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
         player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
-        player.updateInfo(JudgeAbstract.FANS, 10);
-        player.updateInfo(JudgeAbstract.VISION, 3);
-        player.updateInfo(JudgeAbstract.POWER, 5);
-        player.updateInfo(JudgeAbstract.IS_WINNER, 2);
+        player.updateInfo(JudgeAbstract.FANS, Judge.Hasin_Fans);
+        player.updateInfo(JudgeAbstract.VISION, Judge.Other_Player_Vision);
+        player.updateInfo(JudgeAbstract.POWER, Judge.Hasin_Power);
+        player.updateInfo(JudgeAbstract.IS_WINNER, JudgeAbstract.NOT_FINISHED);
     }
 }
