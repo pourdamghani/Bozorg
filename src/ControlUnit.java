@@ -129,8 +129,7 @@ public class ControlUnit {
     }
 
     public ArrayList<String> getVision(Player player) {
-        //TODO
-        return null;
+        return player.getVision(map.getWidth(), map.getHeight());
     }
 
     public ArrayList<Player> getPlayersInVision(Player player) {
