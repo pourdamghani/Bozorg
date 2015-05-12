@@ -3,22 +3,20 @@ package Model;
 import Judge.Judge;
 import Judge.JudgeAbstract;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class Player extends Person{
+public class Player extends Person {
     private ArrayList<Fan> aliveFans = new ArrayList<Fan>();
 
     private Integer pendingAction, pendingPrize;
     private Integer prizeType;
 
-    //check pendingAction
-
     public void setInfo(String key, Integer value) {
         information.put(key, value);
     }
+
     public void move(int direction) {
         Integer row = information.get(JudgeAbstract.ROW);
         Integer col = information.get(JudgeAbstract.COL);
@@ -39,7 +37,7 @@ public class Player extends Person{
         information.put(JudgeAbstract.ROW, row);
         information.put(JudgeAbstract.COL, col);
 
-    }
+        }
 
     public void getAttacked(Integer power) {
         Integer newHealth = information.get(JudgeAbstract.HEALTH) - power;
@@ -55,7 +53,7 @@ public class Player extends Person{
         aliveFans.add(fan);
         information.put(JudgeAbstract.FANS, information.get(JudgeAbstract.FANS));
         return fan;
-    }
+        }
 
     public void removeFan(Fan fan) {
         aliveFans.remove(fan);
@@ -84,7 +82,7 @@ public class Player extends Person{
                 information.put(JudgeAbstract.FANS, information.get(JudgeAbstract.FANS) + Judge.FAN_INCREASE_VALUE);
                 break;
         }
-    }
+        }
 
     public ArrayList<String> getVision(Integer width, Integer height) {
         ArrayList<String> canSee = new ArrayList<String>();
@@ -99,18 +97,22 @@ public class Player extends Person{
         } else {
             for (int i = 0; i < height; i++)
                 for (int j = 0; j < width; j++)
-                    canSee.add(i + "," + j);
+                        canSee.add(i + "," + j);
         }
         return canSee;
-    }
+        }
 
     public ArrayList<Fan> getFans() {
         return aliveFans;
     }
 
-    public void reduce() {
-        //todo
-
+    public void next50milies() {
+        if (pendingPrize > 0)
+            pendingPrize--;
+        if (pendingPrize == 0)
+            prizeType = JudgeAbstract.NONE_CELL;
+        if (pendingAction > 0)
+            pendingAction--;
     }
 
     public Integer getPendingAction() {
@@ -136,4 +138,4 @@ public class Player extends Person{
     public void setPrizeType(Integer prizeType) {
         this.prizeType = prizeType;
     }
-}
+    }
