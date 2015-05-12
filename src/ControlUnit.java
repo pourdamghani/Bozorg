@@ -109,8 +109,8 @@ public class ControlUnit {
     }
 
     public Fan throwfan(Player player) {
-        return null;
-        //TODO
+        Fan fan = player.throwFan();
+        return fan;
     }
 
     public void getGift(Player player) {
