@@ -1,3 +1,4 @@
+import Common.exceptions.BozorgExceptionBase;
 import Judge.JudgeAbstract;
 import Model.Fan;
 import Model.Map;
@@ -11,6 +12,7 @@ public class ControlUnit {
     private Map map;
     private ArrayList<Player> players;
     private int time = 0;
+    private GameLogic logic = new GameLogic();
 
     public ArrayList<Player> loadMap(int[][] cellsType, int[][] wallsType, int[] players) {
 
@@ -93,8 +95,13 @@ public class ControlUnit {
         }
     }
 
-    public void movePlayer(Player player, int direction) {
-        //TODO
+    public void movePlayer(Player player, int direction) throws BozorgExceptionBase{
+        if(logic.canMove(player, direction, map)){
+            player.move(direction);
+            player.setPendingAction(1000/50/ player.getInfo(JudgeAbstract.SPEED));//check it please :D
+        }
+        else
+            throw BozorgExceptionBase;
     }
 
     public void attack(Player player, int direction) {
