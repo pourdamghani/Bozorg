@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
-public class Player {
-    private HashMap<String, Integer> information = new HashMap<String, Integer>();
+public class Player extends Person{
     private ArrayList<Fan> aliveFans = new ArrayList<Fan>();
 
     private Integer pendingAction, pendingPrize;
@@ -20,7 +19,6 @@ public class Player {
     public void setInfo(String key, Integer value) {
         information.put(key, value);
     }
-
     public void move(int direction) {
         Integer row = information.get(JudgeAbstract.ROW);
         Integer col = information.get(JudgeAbstract.COL);
@@ -108,18 +106,6 @@ public class Player {
 
     public ArrayList<Fan> getFans() {
         return aliveFans;
-    }
-
-    public HashMap<String, Integer> getInfo() {
-        return information;
-    }
-
-    public void updateInfo(String infoKey, Integer infoValue) {
-        information.put(infoKey, infoValue);
-    }
-
-    public Integer getInfo(String infoKey) {
-        return information.get(infoKey);
     }
 
     public void reduce() {
