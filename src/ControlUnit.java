@@ -101,6 +101,9 @@ public class ControlUnit {
         if(logic.canMove(player, direction, map)){
             player.move(direction);
             player.setPendingAction(Judge.TIMEINTERVAL/player.getInfo(JudgeAbstract.SPEED));//check it please :D
+            int row = player.getInfo(JudgeAbstract.ROW), col = player.getInfo(JudgeAbstract.COL);
+            if(map.getCell(row,col).getFan() != null)
+                map.getCell(row,col).removeFan();
         }
         else
             throw BozorgExceptionBase;
