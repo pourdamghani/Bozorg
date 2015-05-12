@@ -106,6 +106,7 @@ public class ControlUnit {
             if(map.getCell(row,col).getFan() != null)
                 map.getCell(row,col).removeFan();
         }
+
         else
             throw BozorgExceptionBase;
     }
