@@ -1,3 +1,5 @@
+package Controller;
+
 import Judge.JudgeAbstract;
 import Model.Cell;
 import Model.Fan;

@@ -1,3 +1,5 @@
+package Controller;
+
 import Common.exceptions.BozorgExceptionBase;
 import Judge.Judge;
 import Judge.JudgeAbstract;
