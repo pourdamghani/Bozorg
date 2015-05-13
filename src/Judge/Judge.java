@@ -15,8 +15,8 @@ import java.util.HashMap;
  * Created by yashardabiran on 5/10/15.
  */
 public class Judge extends JudgeAbstract {
-    private HashMap<GameObjectID, Person> IDtoPerson = new HashMap<>();
-    private HashMap<Person, GameObjectID> PersontoID = new HashMap<>();
+    private HashMap<GameObjectID, Person> IDtoPerson = new HashMap<GameObjectID, Person>();
+    private HashMap<Person, GameObjectID> PersontoID = new HashMap<Person, GameObjectID>();
     private ControlUnit cu = new ControlUnit();
 
     public static int SPEEDUP_TIME = 5;
@@ -41,7 +41,7 @@ public class Judge extends JudgeAbstract {
     public static int Reza_Fans = 0;
     public ArrayList<GameObjectID> loadMap(int[][] cellsType, int[][] wallsType, int[] players) {
         ArrayList<Player> player = cu.loadMap(cellsType, wallsType, players);
-        ArrayList<GameObjectID> ids = new ArrayList<>();
+        ArrayList<GameObjectID> ids = new ArrayList<GameObjectID>();
         for (Player i : player) {
             GameObjectID ID = GameObjectID.create(Player.class);
             IDtoPerson.put(ID, i);
@@ -103,14 +103,14 @@ public class Judge extends JudgeAbstract {
     }
     public ArrayList<GameObjectID> getPlayersInVision ( GameObjectID player){
         ArrayList<Player> players = cu.getPlayersInVision((Player) IDtoPerson.get(player));
-        ArrayList<GameObjectID> IDs = new ArrayList<>();
+        ArrayList<GameObjectID> IDs = new ArrayList<GameObjectID>();
         for(Player i: players)
             IDs.add(PersontoID.get(i));
         return IDs;
     }
     public ArrayList<GameObjectID> getFans(GameObjectID player) throws BozorgExceptionBase{
         ArrayList<Fan> fans = cu.getFans((Player) IDtoPerson.get(player));
-        ArrayList<GameObjectID> IDs = new ArrayList<>();
+        ArrayList<GameObjectID> IDs = new ArrayList<GameObjectID>();
         for(Fan i: fans)
             IDs.add(PersontoID.get(i));
         return IDs;
