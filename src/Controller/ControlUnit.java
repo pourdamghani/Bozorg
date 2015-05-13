@@ -159,6 +159,10 @@ public class ControlUnit {
         return time ;
     }
 
+    public void UpdateInfo(Person person, String infoKey,Integer infoValue) throws BozorgExceptionBase{
+        person.updateInfo(infoKey, infoValue);
+    }
+
     //Power Setups
     private void setupSaman(Player player) {
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
