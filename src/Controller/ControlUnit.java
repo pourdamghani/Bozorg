@@ -107,14 +107,14 @@ public class ControlUnit {
     public void movePlayer(Player player, int direction) throws BozorgExceptionBase {
         if (logic.canMove(player, direction, map)) {
             player.move(direction);
-            player.setPendingAction(Judge.TIMEINTERVAL * 1); //Check it again if it's correct!! :D
+            player.setPendingAction(Judge.TIMEINTERVAL / player.getInfo(JudgeAbstract.SPEED));
             int row = player.getInfo(JudgeAbstract.ROW), col = player.getInfo(JudgeAbstract.COL);
 
             if (map.getCell(row, col).getFan() != null) {
                 Fan fan = map.getCell(row, col).getFan();
 
                 for (Player owner : players) {
-                    if (owner.getInfo(JudgeAbstract.NAME).equals(fan.getInfo(JudgeAbstract.OWNER) ) ) {
+                    if (owner.getInfo(JudgeAbstract.NAME).equals(fan.getInfo(JudgeAbstract.OWNER)) ) {
                         owner.removeFan(fan);
                         break;
                     }
