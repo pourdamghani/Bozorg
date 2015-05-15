@@ -10,7 +10,7 @@ public class Player extends Person {
     private ArrayList<Fan> aliveFans = new ArrayList<Fan>();
 
     private Integer pendingAction, pendingPrize;
-    private Integer prizeType;
+    private int prizeType;
 
     public void setInfo(String key, Integer value) {
         information.put(key, value);
@@ -58,21 +58,23 @@ public class Player extends Person {
         aliveFans.remove(fan);
     }
 
-    public void getGift(Integer giftType) {
+    public void getGift(int giftType) {
+        if (prizeType != pendingPrize)
+            pendingPrize = 0;
         prizeType = giftType;
         switch (giftType) {
             case JudgeAbstract.SPEEDUP_CELL:
                 information.put(JudgeAbstract.SPEED, information.get(JudgeAbstract.SPEED) * 2);
-                pendingPrize = Judge.SPEEDUP_TIME * Judge.TIMEINTERVAL;
+                pendingPrize += Judge.SPEEDUP_TIME * Judge.TIMEINTERVAL;
                 break;
             case JudgeAbstract.RADAR_CELL:
-                pendingPrize = Judge.RADAR_TIME * Judge.TIMEINTERVAL;
+                pendingPrize += Judge.RADAR_TIME * Judge.TIMEINTERVAL;
                 break;
             case JudgeAbstract.STONE_CELL:
-                pendingPrize = Judge.STONE_TIME * Judge.TIMEINTERVAL;
+                pendingPrize += Judge.STONE_TIME * Judge.TIMEINTERVAL;
                 break;
             case JudgeAbstract.JUMP_CELL:
-                pendingPrize = Judge.JUMP_TIME * Judge.TIMEINTERVAL;
+                pendingPrize += Judge.JUMP_TIME * Judge.TIMEINTERVAL;
                 break;
             case JudgeAbstract.HOSPITAL_CELL:
                 information.put(JudgeAbstract.HEALTH, Math.min(Judge.MAX_Health, information.get(JudgeAbstract.HEALTH) + Judge.HEALTH_INCREASE_VALUE));
