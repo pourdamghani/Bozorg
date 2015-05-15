@@ -39,6 +39,8 @@ public class Judge extends JudgeAbstract {
     public static int Saman_Fans = 100;
     public static int Jafar_Fans = 5;
     public static int Reza_Fans = 0;
+
+
     public ArrayList<GameObjectID> loadMap(int[][] cellsType, int[][] wallsType, int[] players) {
         ArrayList<Player> player = cu.loadMap(cellsType, wallsType, players);
         ArrayList<GameObjectID> ids = new ArrayList<GameObjectID>();

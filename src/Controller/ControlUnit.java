@@ -61,11 +61,11 @@ public class ControlUnit {
     }
 
     public int getMapCellType(int row, int col, Player player) {
-        if(!logic.canSee(player, map, row, col))
+        if (!logic.canSee(player, map, row, col))
             return JudgeAbstract.DARK_CELL;
-        if(getMapCellType(row,col) > JudgeAbstract.START_CELL)
+        if (getMapCellType(row, col) > JudgeAbstract.START_CELL)
             return JudgeAbstract.BONUS_CELL;
-        return getMapCellType(row,col);
+        return getMapCellType(row, col);
     }
 
     public int getMapWallType(int row, int col) {
@@ -73,7 +73,7 @@ public class ControlUnit {
     }
 
     public int getMapWallType(int row, int col, Player player) {
-        if(!logic.canSee(player, map, row, col))
+        if (!logic.canSee(player, map, row, col))
             return JudgeAbstract.XXXX_WALL;
         return getMapWallType(row, col);
     }
@@ -104,17 +104,15 @@ public class ControlUnit {
         }
     }
 
-    public void movePlayer(Player player, int direction) throws BozorgExceptionBase{
-        if(logic.canMove(player, direction, map)){
+    public void movePlayer(Player player, int direction) throws BozorgExceptionBase {
+        if (logic.canMove(player, direction, map)) {
             player.move(direction);
-            player.setPendingAction(Judge.TIMEINTERVAL/player.getInfo(JudgeAbstract.SPEED));//check it please :D
+            player.setPendingAction(Judge.TIMEINTERVAL / player.getInfo(JudgeAbstract.SPEED));//check it please :D
             int row = player.getInfo(JudgeAbstract.ROW), col = player.getInfo(JudgeAbstract.COL);
-            if(map.getCell(row,col).getFan() != null)
-                map.getCell(row,col).removeFan();
-        }
-
-        else
-            throw BozorgExceptionBase;
+            if (map.getCell(row, col).getFan() != null)
+                map.getCell(row, col).removeFan();
+        } else
+            throw new BozorgExceptionBase();
     }
 
     public void attack(Player player, int direction) {
@@ -156,10 +154,10 @@ public class ControlUnit {
     }
 
     public Integer getTime() {
-        return time ;
+        return time;
     }
 
-    public void UpdateInfo(Person person, String infoKey,Integer infoValue) throws BozorgExceptionBase{
+    public void UpdateInfo(Person person, String infoKey, Integer infoValue) throws BozorgExceptionBase {
         person.updateInfo(infoKey, infoValue);
     }
 
