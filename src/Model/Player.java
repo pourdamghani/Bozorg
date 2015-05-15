@@ -4,8 +4,7 @@ import Judge.Judge;
 import Judge.JudgeAbstract;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+
 
 public class Player extends Person {
     private ArrayList<Fan> aliveFans = new ArrayList<Fan>();
