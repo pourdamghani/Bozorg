@@ -109,8 +109,21 @@ public class ControlUnit {
             player.move(direction);
             player.setPendingAction(Judge.TIMEINTERVAL * 1); //Check it again if it's correct!! :D
             int row = player.getInfo(JudgeAbstract.ROW), col = player.getInfo(JudgeAbstract.COL);
-            if (map.getCell(row, col).getFan() != null)
+
+            if (map.getCell(row, col).getFan() != null) {
+                Fan fan = map.getCell(row, col).getFan();
+
+                for (Player owner : players) {
+                    if (owner.getInfo(JudgeAbstract.NAME).equals(fan.getInfo(JudgeAbstract.OWNER) ) ) {
+                        owner.removeFan(fan);
+                        break;
+                    }
+                }
+
                 map.getCell(row, col).removeFan();
+
+
+            }
         } else
             throw new BozorgExceptionBase();
     }
