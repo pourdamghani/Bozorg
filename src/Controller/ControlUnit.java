@@ -18,6 +18,47 @@ public class ControlUnit {
     private Integer time = 0;
     private GameLogic logic = new GameLogic();
 
+
+    public int getWidth() {
+        return map.getWidth();
+    }
+
+    public int getHeight() {
+        return map.getHeight();
+    }
+
+    public Integer getTime() {
+        return time;
+    }
+
+    public HashMap<String, Integer> getInfo(Person person) {
+        return person.getInfo();
+    }
+
+    public int getMapCellType(int row, int col) {
+        return map.getCellType(row, col);
+    }
+
+    public int getMapCellType(int row, int col, Player player) {
+        if (!logic.canSee(player, map, row, col))
+            return JudgeAbstract.DARK_CELL;
+        if (getMapCellType(row, col) > JudgeAbstract.START_CELL)
+            return JudgeAbstract.BONUS_CELL;
+        return getMapCellType(row, col);
+    }
+
+    public int getMapWallType(int row, int col) {
+        return map.getWallType(row, col);
+    }
+
+    public int getMapWallType(int row, int col, Player player) {
+        if (!logic.canSee(player, map, row, col))
+            return JudgeAbstract.XXXX_WALL;
+        return getMapWallType(row, col);
+    }
+
+
+
     public ArrayList<Player> loadMap(int[][] cellsType, int[][] wallsType, int[] players) {
 
         int width = cellsType.length;
@@ -46,36 +87,7 @@ public class ControlUnit {
         return this.players;
     }
 
-    public int getWidth() {
-        return map.getWidth();
-    }
 
-    public int getHeight() {
-        return map.getHeight();
-    }
-
-
-    public int getMapCellType(int row, int col) {
-        return map.getCellType(row, col);
-    }
-
-    public int getMapCellType(int row, int col, Player player) {
-        if (!logic.canSee(player, map, row, col))
-            return JudgeAbstract.DARK_CELL;
-        if (getMapCellType(row, col) > JudgeAbstract.START_CELL)
-            return JudgeAbstract.BONUS_CELL;
-        return getMapCellType(row, col);
-    }
-
-    public int getMapWallType(int row, int col) {
-        return map.getWallType(row, col);
-    }
-
-    public int getMapWallType(int row, int col, Player player) {
-        if (!logic.canSee(player, map, row, col))
-            return JudgeAbstract.XXXX_WALL;
-        return getMapWallType(row, col);
-    }
 
     /**
      * Setting up players default abilities
@@ -103,6 +115,10 @@ public class ControlUnit {
         }
     }
 
+
+
+
+
     public void movePlayer(Player player, int direction) throws BozorgExceptionBase {
         if (logic.canMove(player, direction, map)) {
             player.move(direction);
@@ -126,6 +142,10 @@ public class ControlUnit {
         } else
             throw new BozorgExceptionBase();
     }
+
+
+
+
     private Player WhichPlayer(int X, int Y) {
         for (Player player : players)
             if (player.getInfo(JudgeAbstract.ROW) == X && player.getInfo(JudgeAbstract.COL) == Y)
@@ -158,10 +178,21 @@ public class ControlUnit {
             throw new BozorgExceptionBase();
     }
 
+
+
+
     public Fan throwfan(Player player) {
         Fan fan = player.throwFan();
         return fan;
     }
+
+    public ArrayList<Fan> getFans(Player player) {
+        return player.getFans();
+    }
+
+
+
+
 
     public void getGift(Player player) throws BozorgExceptionBase {
         if(logic.canGetGift(player,map,players)){
@@ -174,6 +205,9 @@ public class ControlUnit {
             throw new BozorgExceptionBase();
 
     }
+
+
+
 
     public ArrayList<String> getVision(Player player) {
         return player.getVision(map.getWidth(), map.getHeight());
@@ -188,21 +222,15 @@ public class ControlUnit {
         return canSee;
     }
 
-    public ArrayList<Fan> getFans(Player player) {
-        return player.getFans();
-    }
 
-    public HashMap<String, Integer> getInfo(Person person) {
-        return person.getInfo();
-    }
+
+
 
     public void next50milies() {
         for(Player i: players)
-            i.next50milies();
-    }
+            i.next50milis();
 
-    public Integer getTime() {
-        return time;
+        time += 50;
     }
 
     public void UpdateInfo(Person person, String infoKey, Integer infoValue) throws BozorgExceptionBase {
