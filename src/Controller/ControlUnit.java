@@ -126,9 +126,36 @@ public class ControlUnit {
         } else
             throw new BozorgExceptionBase();
     }
+    private Player WhichPlayer(int X, int Y) {
+        for (Player player : players)
+            if (player.getInfo(JudgeAbstract.ROW) == X && player.getInfo(JudgeAbstract.COL) == Y)
+                return player;
+        return null;
+    }
 
-    public void attack(Player player, int direction) {
-        //TODO
+    private Player WhichPlayer(int direction, Player player) {
+        int X = player.getInfo(JudgeAbstract.ROW), Y = player.getInfo(JudgeAbstract.COL);
+        switch (direction) {
+            case JudgeAbstract.UP:
+                return WhichPlayer(X, Y + 1);
+            case JudgeAbstract.DOWN:
+                return WhichPlayer(X, Y - 1);
+            case JudgeAbstract.LEFT:
+                return WhichPlayer(X - 1, Y);
+            case JudgeAbstract.RIGHT:
+                return WhichPlayer(X + 1, Y);
+            case JudgeAbstract.NONE:
+                return WhichPlayer(X, Y);
+        }
+        return null;
+    }
+
+    public void attack(Player player, int direction) throws BozorgExceptionBase{
+        if(logic.canAttack(player,direction,map,players)){
+            WhichPlayer(direction,player).getAttacked(player.getInfo(JudgeAbstract.POWER));
+        }
+        else
+            throw new BozorgExceptionBase();
     }
 
     public Fan throwfan(Player player) {
@@ -157,12 +184,9 @@ public class ControlUnit {
         return person.getInfo();
     }
 
-//    public HashMap<String, Integer> getInfo(Fan fan) {
-
-//    }
-
     public void next50milies() {
-        //TODO
+        for(Player i: players)
+            i.next50milies();
     }
 
     public Integer getTime() {
