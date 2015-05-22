@@ -7,14 +7,13 @@ import java.util.ArrayList;
 
 
 public class Player extends Person {
+
     private ArrayList<Fan> aliveFans = new ArrayList<Fan>();
 
     private Integer pendingAction, pendingPrize;
     private int prizeType;
 
-    public void setInfo(String key, Integer value) {
-        information.put(key, value);
-    }
+
 
     public void move(int direction) {
         Integer row = information.get(JudgeAbstract.ROW);
@@ -47,6 +46,10 @@ public class Player extends Person {
         }
     }
 
+
+
+
+
     public Fan throwFan() {
         Fan fan = new Fan(information.get(JudgeAbstract.ROW), information.get(JudgeAbstract.COL), information.get(JudgeAbstract.NAME), JudgeAbstract.ALIVE);
         aliveFans.add(fan);
@@ -57,6 +60,16 @@ public class Player extends Person {
     public void removeFan(Fan fan) {
         aliveFans.remove(fan);
     }
+
+    public ArrayList<Fan> getFans() {
+        return aliveFans;
+    }
+
+
+
+
+
+
 
     public void getGift(int giftType) {
         if (prizeType != giftType)
@@ -103,11 +116,8 @@ public class Player extends Person {
         return canSee;
         }
 
-    public ArrayList<Fan> getFans() {
-        return aliveFans;
-    }
 
-    public void next50milies() {
+    public void next50milis() {
         if (pendingPrize > 0)
             pendingPrize--;
         if (pendingPrize == 0) {
@@ -123,23 +133,15 @@ public class Player extends Person {
         return pendingAction;
     }
 
-    public Integer getPendingPrize() {
-        return pendingPrize;
+    public void setPendingAction(Integer pendingAction) {
+        this.pendingAction = pendingAction;
     }
+
+
 
     public Integer getPrizeType() {
         return prizeType;
     }
 
-    public void setPendingAction(Integer pendingAction) {
-        this.pendingAction = pendingAction;
-    }
 
-    public void setPendingPrize(Integer pendingPrize) {
-        this.pendingPrize = pendingPrize;
-    }
-
-    public void setPrizeType(Integer prizeType) {
-        this.prizeType = prizeType;
-    }
     }
