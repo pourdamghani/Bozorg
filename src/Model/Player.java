@@ -59,7 +59,7 @@ public class Player extends Person {
     }
 
     public void getGift(int giftType) {
-        if (prizeType != pendingPrize)
+        if (prizeType != giftType)
             pendingPrize = 0;
         prizeType = giftType;
         switch (giftType) {
@@ -83,7 +83,7 @@ public class Player extends Person {
                 information.put(JudgeAbstract.FANS, information.get(JudgeAbstract.FANS) + Judge.FAN_INCREASE_VALUE);
                 break;
         }
-        }
+    }
 
     public ArrayList<String> getVision(Integer width, Integer height) {
         ArrayList<String> canSee = new ArrayList<String>();
@@ -110,8 +110,11 @@ public class Player extends Person {
     public void next50milies() {
         if (pendingPrize > 0)
             pendingPrize--;
-        if (pendingPrize == 0)
+        if (pendingPrize == 0) {
+            if (prizeType == JudgeAbstract.SPEEDUP_CELL)
+                information.put(JudgeAbstract.SPEED, information.get(JudgeAbstract.SPEED) / 2);
             prizeType = JudgeAbstract.NONE_CELL;
+        }
         if (pendingAction > 0)
             pendingAction--;
     }

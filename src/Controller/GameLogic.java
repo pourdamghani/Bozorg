@@ -154,4 +154,14 @@ public class GameLogic {
                 return true;
         return false;
     }
+    public boolean canGetGift(Player player, Map map, ArrayList<Player> players){
+        int X = player.getInfo(JudgeAbstract.ROW), Y = player.getInfo(JudgeAbstract.COL);
+        if(map.getCellType(X,Y) < 4)
+            return false;
+        if(player.getPrizeType() != JudgeAbstract.NONE_CELL && player.getPrizeType() != map.getCellType(X,Y))
+            return false;
+        if(numberOfPlayers(X,Y,players,map.getWidth(),map.getHeight()) > 1)
+            return false;
+        return true;
+    }
 }

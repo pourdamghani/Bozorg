@@ -163,8 +163,16 @@ public class ControlUnit {
         return fan;
     }
 
-    public void getGift(Player player) {
-        //TODO
+    public void getGift(Player player) throws BozorgExceptionBase {
+        if(logic.canGetGift(player,map,players)){
+            int row = player.getInfo(JudgeAbstract.ROW) , col = player.getInfo(JudgeAbstract.COL);
+            int giftType = map.getCellType(row,col);
+            player.getGift(giftType);
+            map.getCell(row,col).setCellType(JudgeAbstract.NONE_CELL);
+        }
+        else
+            throw new BozorgExceptionBase();
+
     }
 
     public ArrayList<String> getVision(Player player) {
