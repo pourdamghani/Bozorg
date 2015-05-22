@@ -171,8 +171,8 @@ public class ControlUnit {
     }
 
     public void attack(Player player, int direction) throws BozorgExceptionBase{
-        if(logic.canAttack(player,direction,map,players)){
-            WhichPlayer(direction,player).getAttacked(player.getInfo(JudgeAbstract.POWER));
+        if(logic.canAttack(player, direction, map, players)){
+            WhichPlayer(direction, player).getAttacked(player.getInfo(JudgeAbstract.POWER));
         }
         else
             throw new BozorgExceptionBase();
@@ -183,6 +183,8 @@ public class ControlUnit {
 
     public Fan throwfan(Player player) {
         Fan fan = player.throwFan();
+        int row = player.getInfo(JudgeAbstract.ROW), col = player.getInfo(JudgeAbstract.COL);
+        map.getCell(row,col).setFan(fan);
         return fan;
     }
 
