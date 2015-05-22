@@ -42,55 +42,6 @@ public class GameLogic {
         return true;
     }
 
-    /**
-     *
-     * @param X
-     * @param Y
-     * @param players
-     * @param width of the map
-     * @param height height of the map
-     * @return number of the players existing in cell (X, Y)
-     */
-    private int numberOfPlayers(int X, int Y, ArrayList<Player> players, int width, int height) {
-        int counter = 0;
-        if (X >= width || Y >= height || X < 0 || Y < 0) //Checking if X and Y are valid
-            return counter;
-
-        for (Player player : players)
-            if (player.getInfo(JudgeAbstract.ROW) == X && player.getInfo(JudgeAbstract.COL) == Y)
-                counter++;
-        return counter;
-    }
-
-    //if there are on player to attack return true else return false
-    private boolean playerExists(int direction, Player player, ArrayList<Player> players, Map map) {
-        int X = player.getInfo(JudgeAbstract.ROW), Y = player.getInfo(JudgeAbstract.COL);
-        int width = map.getWidth();
-        int height = map.getHeight();
-        switch (direction) {
-            case JudgeAbstract.UP:
-                if (numberOfPlayers(X, Y + 1, players, width, height) == 0)
-                    return false;
-                break;
-            case JudgeAbstract.DOWN:
-                if (numberOfPlayers(X, Y - 1, players, width, height) == 0)
-                    return false;
-                break;
-            case JudgeAbstract.LEFT:
-                if (numberOfPlayers(X - 1, Y, players, width, height) == 0)
-                    return false;
-                break;
-            case JudgeAbstract.RIGHT:
-                if (numberOfPlayers(X + 1, Y, players, width, height) == 0)
-                    return false;
-                break;
-            case JudgeAbstract.NONE:
-                if (numberOfPlayers(X, Y, players, width, height) < 2)
-                    return false;
-                break;
-        }
-        return true;
-    }
 
     public boolean canMove(Player player, int direction, Map map) {
         if (player.getInfo(JudgeAbstract.IS_ALIVE) != JudgeAbstract.ALIVE)
@@ -143,6 +94,66 @@ public class GameLogic {
         return true;
     }
 
+
+    /**
+     *
+     * @param X
+     * @param Y
+     * @param players
+     * @param width of the map
+     * @param height height of the map
+     * @return number of the players existing in cell (X, Y)
+     */
+    private int numberOfPlayers(int X, int Y, ArrayList<Player> players, int width, int height) {
+        int counter = 0;
+        if (X >= width || Y >= height || X < 0 || Y < 0) //Checking if X and Y are valid
+            return counter;
+
+        for (Player player : players)
+            if (player.getInfo(JudgeAbstract.ROW) == X && player.getInfo(JudgeAbstract.COL) == Y)
+                counter++;
+        return counter;
+    }
+
+    /**
+     *
+     * @param direction
+     * @param player
+     * @return true if there's a player at this player's direction, false otherwise
+     */
+    private boolean playerExists(int direction, Player player, ArrayList<Player> players, Map map) {
+        int X = player.getInfo(JudgeAbstract.ROW), Y = player.getInfo(JudgeAbstract.COL);
+        int width = map.getWidth();
+        int height = map.getHeight();
+        switch (direction) {
+            case JudgeAbstract.UP:
+                if (numberOfPlayers(X, Y + 1, players, width, height) == 0)
+                    return false;
+                break;
+            case JudgeAbstract.DOWN:
+                if (numberOfPlayers(X, Y - 1, players, width, height) == 0)
+                    return false;
+                break;
+            case JudgeAbstract.LEFT:
+                if (numberOfPlayers(X - 1, Y, players, width, height) == 0)
+                    return false;
+                break;
+            case JudgeAbstract.RIGHT:
+                if (numberOfPlayers(X + 1, Y, players, width, height) == 0)
+                    return false;
+                break;
+            case JudgeAbstract.NONE:
+                if (numberOfPlayers(X, Y, players, width, height) < 2)
+                    return false;
+                break;
+        }
+        return true;
+    }
+
+
+
+
+
     public boolean canSee(Player player,Map map,int X, int Y) {
         Fan fan = map.getCell(X,Y).getFan();
         if(fan != null)
@@ -154,6 +165,8 @@ public class GameLogic {
                 return true;
         return false;
     }
+
+
     public boolean canGetGift(Player player, Map map, ArrayList<Player> players){
         int X = player.getInfo(JudgeAbstract.ROW), Y = player.getInfo(JudgeAbstract.COL);
         if(map.getCellType(X,Y) < 4)
