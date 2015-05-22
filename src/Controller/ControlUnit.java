@@ -172,8 +172,12 @@ public class ControlUnit {
     }
 
     public ArrayList<Player> getPlayersInVision(Player player) {
-        return null;
-        //TODO
+        ArrayList<Player> canSee = new ArrayList<Player>();
+        for(Player i:players)
+            if(i != player)
+                if(logic.canSee(player,map,i.getInfo(JudgeAbstract.ROW), i.getInfo(JudgeAbstract.COL)))
+                    canSee.add(i);
+        return canSee;
     }
 
     public ArrayList<Fan> getFans(Player player) {
