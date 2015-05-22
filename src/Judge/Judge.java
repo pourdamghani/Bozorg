@@ -136,7 +136,7 @@ public class Judge extends JudgeAbstract {
         return cu.getTime();
     }
     public void updateInfo(GameObjectID id, String infoKey,Integer infoValue) throws BozorgExceptionBase{
-        //TODO
+        cu.UpdateInfo(IDtoPerson.get(id), infoKey, infoValue);
     }
 
 }
