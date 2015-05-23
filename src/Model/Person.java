@@ -2,9 +2,6 @@ package Model;
 
 import java.util.HashMap;
 
-/**
- * Created by PARDAZESH on 5/12/2015.
- */
 public abstract class Person {
     protected HashMap<String, Integer> information = new HashMap<String, Integer>();
 
