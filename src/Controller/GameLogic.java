@@ -13,8 +13,7 @@ public class GameLogic {
 
     /**
      * Checking if there is a wall in specific direction
-     * @param player player that wants
-     * @param direction
+     * @param player player that wants to move
      * @param map the map player is playing on
      * @return true if there isn't a wall and false otherwise
      */
@@ -42,7 +41,10 @@ public class GameLogic {
         return true;
     }
 
-
+    /**
+     *
+     * @return returns true if specific player can move in specific direction, false otherwise
+     */
     public boolean canMove(Player player, int direction, Map map) {
         if (player.getInfo(JudgeAbstract.IS_ALIVE) != JudgeAbstract.ALIVE)
             return false;
@@ -104,9 +106,6 @@ public class GameLogic {
 
     /**
      *
-     * @param X
-     * @param Y
-     * @param players
      * @param width of the map
      * @param height height of the map
      * @return number of the players existing in cell (X, Y)
@@ -126,8 +125,6 @@ public class GameLogic {
 
     /**
      *
-     * @param direction
-     * @param player
      * @return true if there's a player at this player's direction, false otherwise
      */
     private boolean playerExists(int direction, Player player, ArrayList<Player> players, Map map) {
@@ -160,14 +157,16 @@ public class GameLogic {
     }
 
 
-
-
-
+    /**
+     *
+     * @return returns true if player can see cell (X, Y)
+     */
     public boolean canSee(Player player,Map map,int X, int Y) {
         Fan fan = map.getCell(X,Y).getFan();
         if(fan != null)
             if(player.getFans().contains(fan))
                 return true;
+
         int playerX = player.getInfo(JudgeAbstract.ROW), playerY = player.getInfo(JudgeAbstract.COL);
         if (X - playerX < player.getInfo(JudgeAbstract.VISION) && X - playerX > -1 * player.getInfo(JudgeAbstract.VISION))
             if (Y - playerY < player.getInfo(JudgeAbstract.VISION) && Y - playerY > -1 * player.getInfo(JudgeAbstract.VISION))
