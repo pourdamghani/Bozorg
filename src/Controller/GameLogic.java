@@ -41,7 +41,10 @@ public class GameLogic {
         return true;
     }
 
-
+    /**
+     *
+     * @return returns true if specific player can move in specific direction, false otherwise
+     */
     public boolean canMove(Player player, int direction, Map map) {
         if (player.getInfo(JudgeAbstract.IS_ALIVE) != JudgeAbstract.ALIVE)
             return false;
@@ -103,9 +106,6 @@ public class GameLogic {
 
     /**
      *
-     * @param X
-     * @param Y
-     * @param players
      * @param width of the map
      * @param height height of the map
      * @return number of the players existing in cell (X, Y)
@@ -125,8 +125,6 @@ public class GameLogic {
 
     /**
      *
-     * @param direction
-     * @param player
      * @return true if there's a player at this player's direction, false otherwise
      */
     private boolean playerExists(int direction, Player player, ArrayList<Player> players, Map map) {
