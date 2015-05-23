@@ -11,12 +11,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-
+/**
+ * Created by yashardabiran on 5/10/15.
+ */
 public class Judge extends JudgeAbstract {
     private HashMap<GameObjectID, Person> IDtoPerson = new HashMap<GameObjectID, Person>();
     private ControlUnit cu = new ControlUnit();
 
-    private boolean run;
+
 
     public static int SPEEDUP_TIME = 5;
     public static int RADAR_TIME = 3;
@@ -102,6 +104,7 @@ public class Judge extends JudgeAbstract {
 
         return IDs;
     }
+
     public ArrayList<String> getVision(GameObjectID player) throws BozorgExceptionBase{
         return cu.getVision((Player) IDtoPerson.get(player));
     }
@@ -125,21 +128,16 @@ public class Judge extends JudgeAbstract {
     public void next50milis(){
         cu.next50milies();
     }
-
     public void startTimer(){
-        run = true;
-
-        while(run)
-            next50milis();
+        //TODO
+        //NEVER USE IN JUDGE
     }
-
     public  void pauseTimer(){
-        run = false;
+        //TODO
+        //NEVER USE IN JUDGE
     }
-
-    //check it please
     public float getTime(){
-        return cu.getTime();
+        return cu.getTime() / (float)TIME_INTERVAL;
     }
     public void updateInfo(GameObjectID id, String infoKey,Integer infoValue) throws BozorgExceptionBase{
         cu.UpdateInfo(IDtoPerson.get(id), infoKey, infoValue);

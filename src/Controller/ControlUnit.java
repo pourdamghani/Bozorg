@@ -232,8 +232,7 @@ public class ControlUnit {
     public void next50milies() {
         for(Player i: players)
             i.next50milis();
-
-        time += 50;
+        time += 1;
     }
 
     public void UpdateInfo(Person person, String infoKey, Integer infoValue) throws BozorgExceptionBase {
