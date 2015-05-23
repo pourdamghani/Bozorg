@@ -13,8 +13,7 @@ public class GameLogic {
 
     /**
      * Checking if there is a wall in specific direction
-     * @param player player that wants
-     * @param direction
+     * @param player player that wants to move
      * @param map the map player is playing on
      * @return true if there isn't a wall and false otherwise
      */
