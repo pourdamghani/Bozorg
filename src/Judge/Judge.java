@@ -9,7 +9,7 @@ import Model.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.Random;
 
 /**
  * Created by yashardabiran on 5/10/15.
@@ -89,8 +89,10 @@ public class Judge extends JudgeAbstract {
     public void getGift(GameObjectID player) throws BozorgExceptionBase{
         cu.getGift((Player) IDtoPerson.get(player));
     }
-    public void AIByStudents(GameObjectID player){
-        //TODO
+
+    public void AIByStudents(GameObjectID player) throws BozorgExceptionBase {
+        Random random = new Random();
+        movePlayer(player, random.nextInt(4));
     }
     public void AIByTAs(GameObjectID player){
         //TODO by TA
