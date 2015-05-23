@@ -79,7 +79,14 @@ public class GameLogic {
         return true;
     }
 
-    //check shavad :D
+    /**
+     *
+     * @param player
+     * @param direction
+     * @param map
+     * @param players all the players in the map
+     * @return
+     */
     public boolean canAttack(Player player, int direction, Map map, ArrayList<Player> players) {
         if (player.getPrizeType() == JudgeAbstract.STONE_CELL)
             return false;
@@ -110,7 +117,9 @@ public class GameLogic {
             return counter;
 
         for (Player player : players)
-            if (player.getInfo(JudgeAbstract.ROW) == X && player.getInfo(JudgeAbstract.COL) == Y)
+            if (player.getInfo(JudgeAbstract.IS_ALIVE) == JudgeAbstract.ALIVE
+                    && player.getInfo(JudgeAbstract.ROW) == X
+                    && player.getInfo(JudgeAbstract.COL) == Y)
                 counter++;
         return counter;
     }
