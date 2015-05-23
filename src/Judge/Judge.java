@@ -98,9 +98,7 @@ public class Judge extends JudgeAbstract {
         //TODO by TA
     }
     public ArrayList<GameObjectID> getEveryThing(){
-        //TODO
-        //NOT USE IN JUDGE
-        return null;
+        return new ArrayList<GameObjectID>(PersontoID.values());
     }
     public ArrayList<String> getVision(GameObjectID player) throws BozorgExceptionBase{
         return cu.getVision((Player) IDtoPerson.get(player));
