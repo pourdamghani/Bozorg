@@ -11,14 +11,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-/**
- * Created by yashardabiran on 5/10/15.
- */
 public class Judge extends JudgeAbstract {
     private HashMap<GameObjectID, Person> IDtoPerson = new HashMap<GameObjectID, Person>();
     private ControlUnit cu = new ControlUnit();
 
-
+    private boolean run;
 
     public static int SPEEDUP_TIME = 5;
     public static int RADAR_TIME = 3;
@@ -129,12 +126,12 @@ public class Judge extends JudgeAbstract {
         cu.next50milies();
     }
     public void startTimer(){
-        //TODO
-        //NEVER USE IN JUDGE
+        run = true;
+        while (run)
+            next50milis();
     }
     public  void pauseTimer(){
-        //TODO
-        //NEVER USE IN JUDGE
+        run = false;
     }
     public float getTime(){
         return cu.getTime() / (float)TIME_INTERVAL;
