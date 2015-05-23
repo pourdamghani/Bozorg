@@ -16,7 +16,6 @@ import java.util.Random;
  */
 public class Judge extends JudgeAbstract {
     private HashMap<GameObjectID, Person> IDtoPerson = new HashMap<GameObjectID, Person>();
-    private HashMap<Person, GameObjectID> PersontoID = new HashMap<Person, GameObjectID>();
     private ControlUnit cu = new ControlUnit();
 
     public static int SPEEDUP_TIME = 5;
@@ -47,7 +46,6 @@ public class Judge extends JudgeAbstract {
         for (Player i : player) {
             GameObjectID ID = GameObjectID.create(Player.class);
             IDtoPerson.put(ID, i);
-            PersontoID.put(i, ID);
             ids.add(ID);
         }
         return ids;
@@ -83,7 +81,6 @@ public class Judge extends JudgeAbstract {
         Fan fan = cu.throwfan((Player)IDtoPerson.get(player));
         GameObjectID ID = GameObjectID.create(Fan.class);
         IDtoPerson.put(ID, fan);
-        PersontoID.put(fan, ID);
         return ID;
     }
     public void getGift(GameObjectID player) throws BozorgExceptionBase{
@@ -109,14 +106,14 @@ public class Judge extends JudgeAbstract {
         ArrayList<Player> players = cu.getPlayersInVision((Player) IDtoPerson.get(player));
         ArrayList<GameObjectID> IDs = new ArrayList<GameObjectID>();
         for(Player i: players)
-            IDs.add(PersontoID.get(i));
+            IDs.add(personToID(i));
         return IDs;
     }
     public ArrayList<GameObjectID> getFans(GameObjectID player) throws BozorgExceptionBase{
         ArrayList<Fan> fans = cu.getFans((Player) IDtoPerson.get(player));
         ArrayList<GameObjectID> IDs = new ArrayList<GameObjectID>();
         for(Fan i: fans)
-            IDs.add(PersontoID.get(i));
+            IDs.add(personToID(i));
         return IDs;
     }
     public HashMap<String, Integer> getInfo(GameObjectID id) throws BozorgExceptionBase{
@@ -141,4 +138,13 @@ public class Judge extends JudgeAbstract {
         cu.UpdateInfo(IDtoPerson.get(id), infoKey, infoValue);
     }
 
+
+
+    private GameObjectID personToID(Person person) {
+        for (HashMap.Entry<GameObjectID, Person> entry : IDtoPerson.entrySet()) {
+            if (entry.getValue() == person)
+                return entry.getKey();
+        }
+        return null;
+    }
 }
