@@ -100,7 +100,7 @@ public abstract class JudgeAbstract {
 			throws BozorgExceptionBase;
 
 	// AI functions. these functions will never be used in judge
-	public abstract void AIByStudents(GameObjectID player);
+    public abstract void AIByStudents(GameObjectID player) throws BozorgExceptionBase;
 
 	public void AIByTAs(GameObjectID player) {
 		// TODO
@@ -109,7 +109,6 @@ public abstract class JudgeAbstract {
 	// get info
 	public abstract ArrayList<GameObjectID> getEveryThing(); // will never be
 																// used in judge
-
 	public abstract ArrayList<String> getVision(GameObjectID player)
 			throws BozorgExceptionBase;
 
