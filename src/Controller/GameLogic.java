@@ -157,14 +157,16 @@ public class GameLogic {
     }
 
 
-
-
-
+    /**
+     *
+     * @return returns true if player can see cell (X, Y)
+     */
     public boolean canSee(Player player,Map map,int X, int Y) {
         Fan fan = map.getCell(X,Y).getFan();
         if(fan != null)
             if(player.getFans().contains(fan))
                 return true;
+
         int playerX = player.getInfo(JudgeAbstract.ROW), playerY = player.getInfo(JudgeAbstract.COL);
         if (X - playerX < player.getInfo(JudgeAbstract.VISION) && X - playerX > -1 * player.getInfo(JudgeAbstract.VISION))
             if (Y - playerY < player.getInfo(JudgeAbstract.VISION) && Y - playerY > -1 * player.getInfo(JudgeAbstract.VISION))
