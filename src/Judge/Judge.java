@@ -18,7 +18,7 @@ public class Judge extends JudgeAbstract {
     private HashMap<GameObjectID, Person> IDtoPerson = new HashMap<GameObjectID, Person>();
     private ControlUnit cu = new ControlUnit();
 
-
+    private boolean run;
 
     public static int SPEEDUP_TIME = 5;
     public static int RADAR_TIME = 3;
@@ -127,14 +127,18 @@ public class Judge extends JudgeAbstract {
     public void next50milis(){
         cu.next50milies();
     }
+
     public void startTimer(){
-        //TODO
-        //NEVER USE IN JUDGE
+        run = true;
+
+        while(run)
+            next50milis();
     }
+
     public  void pauseTimer(){
-        //TODO
-        //NEVER USE IN JUDGE
+        run = false;
     }
+
     //check it please
     public float getTime(){
         return cu.getTime();
