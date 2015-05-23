@@ -81,9 +81,9 @@ public class GameLogic {
 
     /**
      *
-     * @param player
-     * @param direction
-     * @param map
+     * @param player player that wants to attack
+     * @param direction direction the player wants to attack to
+     * @param map map of the game
      * @param players all the players in the map
      * @return
      */
