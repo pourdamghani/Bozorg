@@ -1,6 +1,5 @@
 package Controller;
 
-import Judge.Judge;
 import Judge.JudgeAbstract;
 import Model.Cell;
 import Model.Fan;
