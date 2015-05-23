@@ -104,6 +104,7 @@ public class Judge extends JudgeAbstract {
 
         return IDs;
     }
+
     public ArrayList<String> getVision(GameObjectID player) throws BozorgExceptionBase{
         return cu.getVision((Player) IDtoPerson.get(player));
     }
