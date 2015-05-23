@@ -94,8 +94,13 @@ public class Judge extends JudgeAbstract {
     public void AIByTAs(GameObjectID player){
         //TODO by TA
     }
-    public ArrayList<GameObjectID> getEveryThing(){
-        return new ArrayList<GameObjectID>(PersontoID.values());
+    public ArrayList<GameObjectID> getEveryThing() {
+        ArrayList<GameObjectID> IDs = new ArrayList<GameObjectID>();
+        for (HashMap.Entry<GameObjectID, Person> entry : IDtoPerson.entrySet()) {
+            IDs.add(entry.getKey());
+        }
+
+        return IDs;
     }
     public ArrayList<String> getVision(GameObjectID player) throws BozorgExceptionBase{
         return cu.getVision((Player) IDtoPerson.get(player));
@@ -143,6 +148,5 @@ public class Judge extends JudgeAbstract {
             if (entry.getValue() == person)
                 return entry.getKey();
         }
-        return null;
     }
 }
