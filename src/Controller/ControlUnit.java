@@ -122,7 +122,7 @@ public class ControlUnit {
     public void movePlayer(Player player, int direction) throws BozorgExceptionBase {
         if (logic.canMove(player, direction, map)) {
             player.move(direction);
-            player.setPendingAction(Judge.TIMEINTERVAL / player.getInfo(JudgeAbstract.SPEED));
+            player.setPendingAction(Judge.TIME_INTERVAL / player.getInfo(JudgeAbstract.SPEED));
             int row = player.getInfo(JudgeAbstract.ROW), col = player.getInfo(JudgeAbstract.COL);
 
             if (map.getCell(row, col).getFan() != null) {

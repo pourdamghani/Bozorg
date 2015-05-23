@@ -26,7 +26,7 @@ public class Judge extends JudgeAbstract {
     public static int HEALTH_INCREASE_VALUE = 20;
     public static int FAN_INCREASE_VALUE = 3;
     public static int MAX_Health = 100;
-    public static int TIMEINTERVAL = 20;
+    public static int TIME_INTERVAL = 20;
     public static int Reza_Vision = 6;
     public static int Other_Player_Vision = 3;
     public static int Jafar_Speed = 5;

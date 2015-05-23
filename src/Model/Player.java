@@ -78,16 +78,16 @@ public class Player extends Person {
         switch (giftType) {
             case JudgeAbstract.SPEEDUP_CELL:
                 information.put(JudgeAbstract.SPEED, information.get(JudgeAbstract.SPEED) * 2);
-                pendingPrize += Judge.SPEEDUP_TIME * Judge.TIMEINTERVAL;
+                pendingPrize += Judge.SPEEDUP_TIME * Judge.TIME_INTERVAL;
                 break;
             case JudgeAbstract.RADAR_CELL:
-                pendingPrize += Judge.RADAR_TIME * Judge.TIMEINTERVAL;
+                pendingPrize += Judge.RADAR_TIME * Judge.TIME_INTERVAL;
                 break;
             case JudgeAbstract.STONE_CELL:
-                pendingPrize += Judge.STONE_TIME * Judge.TIMEINTERVAL;
+                pendingPrize += Judge.STONE_TIME * Judge.TIME_INTERVAL;
                 break;
             case JudgeAbstract.JUMP_CELL:
-                pendingPrize += Judge.JUMP_TIME * Judge.TIMEINTERVAL;
+                pendingPrize += Judge.JUMP_TIME * Judge.TIME_INTERVAL;
                 break;
             case JudgeAbstract.HOSPITAL_CELL:
                 information.put(JudgeAbstract.HEALTH, Math.min(Judge.MAX_Health, information.get(JudgeAbstract.HEALTH) + Judge.HEALTH_INCREASE_VALUE));
