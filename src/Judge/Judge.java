@@ -136,9 +136,8 @@ public class Judge extends JudgeAbstract {
         //TODO
         //NEVER USE IN JUDGE
     }
-    //check it please
     public float getTime(){
-        return cu.getTime();
+        return cu.getTime() / (float)TIME_INTERVAL;
     }
     public void updateInfo(GameObjectID id, String infoKey,Integer infoValue) throws BozorgExceptionBase{
         cu.UpdateInfo(IDtoPerson.get(id), infoKey, infoValue);
