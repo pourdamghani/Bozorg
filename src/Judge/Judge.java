@@ -18,6 +18,8 @@ public class Judge extends JudgeAbstract {
     private HashMap<GameObjectID, Person> IDtoPerson = new HashMap<GameObjectID, Person>();
     private ControlUnit cu = new ControlUnit();
 
+
+
     public static int SPEEDUP_TIME = 5;
     public static int RADAR_TIME = 3;
     public static int STONE_TIME = 3;
@@ -148,5 +150,7 @@ public class Judge extends JudgeAbstract {
             if (entry.getValue() == person)
                 return entry.getKey();
         }
+
+        return null;
     }
 }
