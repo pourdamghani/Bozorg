@@ -77,7 +77,7 @@ public class Judge extends JudgeAbstract {
         cu.attack((Player) IDtoPerson.get(attacker), direction);
     }
     public GameObjectID throwFan(GameObjectID player) throws BozorgExceptionBase{
-        Fan fan = cu.throwfan((Player)IDtoPerson.get(player));
+        Fan fan = cu.throwFan((Player) IDtoPerson.get(player));
         GameObjectID ID = GameObjectID.create(Fan.class);
         IDtoPerson.put(ID, fan);
         return ID;

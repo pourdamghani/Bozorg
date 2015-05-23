@@ -144,8 +144,11 @@ public class ControlUnit {
     }
 
 
-
-
+    /**
+     *
+     * @return which player exists in cell (X,Y)
+     * it is presumed that there isn't more than one player in each cell
+     */
     private Player WhichPlayer(int X, int Y) {
         for (Player player : players)
             if (player.getInfo(JudgeAbstract.ROW) == X && player.getInfo(JudgeAbstract.COL) == Y)
@@ -153,6 +156,9 @@ public class ControlUnit {
         return null;
     }
 
+    /**
+     * @return which player exists in the direction of specific player
+     */
     private Player WhichPlayer(int direction, Player player) {
         int X = player.getInfo(JudgeAbstract.ROW), Y = player.getInfo(JudgeAbstract.COL);
         switch (direction) {
@@ -182,7 +188,7 @@ public class ControlUnit {
 
 
 
-    public Fan throwfan(Player player) {
+    public Fan throwFan(Player player) {
         Fan fan = player.throwFan();
         int row = player.getInfo(JudgeAbstract.ROW), col = player.getInfo(JudgeAbstract.COL);
         map.getCell(row,col).setFan(fan);
