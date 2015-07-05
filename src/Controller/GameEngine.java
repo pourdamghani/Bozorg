@@ -34,6 +34,8 @@ public class GameEngine {
     }
 
     public int getMapCellType(int row, int col) {
+        if (getMapCellType(row, col) == JudgeAbstract.JJ_CELL && !canSeeJJ())
+            return JudgeAbstract.NONE_CELL;
         return map.getCellType(row, col);
     }
 
