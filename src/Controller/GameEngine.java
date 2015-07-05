@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class ControlUnit {
+public class GameEngine {
     private Map map;
     private ArrayList<Player> players;
     private Integer time = 0;
@@ -236,7 +236,24 @@ public class ControlUnit {
     }
 
 
+    public Player stringToPlayer(String s){
+        for(Player i: players){
+            if(s.equals("SAMAN"))
+                if(i.getInfo(JudgeAbstract.NAME) == JudgeAbstract.SAMAN)
+                    return i;
+            if(s.equals("JAFAR"))
+                if(i.getInfo(JudgeAbstract.NAME) == JudgeAbstract.JAFAR)
+                    return i;
+            if(s.equals("HASIN"))
+                if(i.getInfo(JudgeAbstract.NAME) == JudgeAbstract.HASIN)
+                    return i;
+            else
+                if(i.getInfo(JudgeAbstract.NAME) == JudgeAbstract.REZA)
+                    return i;
 
+        }
+        return null;
+    }
 
 
     public void next50milies() {

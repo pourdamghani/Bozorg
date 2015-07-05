@@ -2,7 +2,7 @@ package Judge;
 
 import Common.GameObjectID;
 import Common.exceptions.BozorgExceptionBase;
-import Controller.ControlUnit;
+import Controller.GameEngine;
 import Model.Fan;
 import Model.Person;
 import Model.Player;
@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class Judge extends JudgeAbstract {
     private HashMap<GameObjectID, Person> IDtoPerson = new HashMap<GameObjectID, Person>();
-    private ControlUnit cu = new ControlUnit();
+    private GameEngine cu = new GameEngine();
 
     private boolean run;
 
