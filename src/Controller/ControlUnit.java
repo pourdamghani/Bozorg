@@ -3,10 +3,7 @@ package Controller;
 import Common.exceptions.BozorgExceptionBase;
 import Judge.Judge;
 import Judge.JudgeAbstract;
-import Model.Fan;
-import Model.Map;
-import Model.Person;
-import Model.Player;
+import Model.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -178,7 +175,8 @@ public class ControlUnit {
 
     public void attack(Player player, int direction) throws BozorgExceptionBase{
         if(logic.canAttack(player, direction, map, players)){
-            WhichPlayer(direction, player).getAttacked(player.getInfo(JudgeAbstract.POWER));
+            Player attackedPlayer = WhichPlayer(direction, player);
+            attackedPlayer.getAttacked(player.getInfo(JudgeAbstract.POWER));
         }
         else
             throw new BozorgExceptionBase();
@@ -216,10 +214,16 @@ public class ControlUnit {
     }
 
 
-
-
+    private boolean canSeeJJ() {
+        //todo
+        return ((time / 100) % 2) == 0;
+    }
     public ArrayList<String> getVision(Player player) {
-        return player.getVision(map.getWidth(), map.getHeight());
+        ArrayList<String> canSee = player.getVision(map.getWidth(), map.getHeight());
+        if (canSeeJJ() && !canSee.contains(map.getJJCell())) {
+            canSee.add(map.getJJCell());
+        }
+        return canSee;
     }
 
     public ArrayList<Player> getPlayersInVision(Player player) {

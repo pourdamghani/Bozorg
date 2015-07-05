@@ -1,6 +1,8 @@
 package Model;
 
 
+import Judge.JudgeAbstract;
+
 public class Map {
     private int width, height;
     private Cell[][] map;
@@ -38,6 +40,16 @@ public class Map {
 
     public Cell getCell(int row, int col) {
         return map[row][col];
+    }
+
+    public String getJJCell() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (map[i][j].getCellType() == JudgeAbstract.JJ_CELL)
+                    return (i + "," + j);
+            }
+        }
+        return null;
     }
 
 }

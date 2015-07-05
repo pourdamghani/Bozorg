@@ -180,7 +180,7 @@ public class GameLogic {
             return false;
         if(player.getPrizeType() != JudgeAbstract.NONE_CELL && player.getPrizeType() != map.getCellType(X,Y))
             return false;
-        if(numberOfPlayers(X,Y,players,map.getWidth(),map.getHeight()) > 1)
+        if (numberOfPlayers(X, Y, players, map.getWidth(), map.getHeight()) > 1)
             return false;
         return true;
     }
