@@ -42,6 +42,8 @@ public class GameEngine {
             return JudgeAbstract.DARK_CELL;
         if (getMapCellType(row, col) > JudgeAbstract.START_CELL)
             return JudgeAbstract.BONUS_CELL;
+        if (getMapCellType(row, col) == JudgeAbstract.JJ_CELL && !canSeeJJ())
+            return JudgeAbstract.NONE_CELL;
         return getMapCellType(row, col);
     }
 
