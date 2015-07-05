@@ -3,6 +3,7 @@ package graphic;
 import Controller.GameEngine;
 import Judge.JudgeAbstract;
 import Model.Cell;
+import Model.Fan;
 import Model.Player;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 /**
  * Created by Iman on 7/5/2015.
@@ -70,7 +72,7 @@ class BozorgPanel extends JPanel{
 
     public int HEIGHT;
 
-    Player player;
+    String player;
 
     boolean allMapSeen = false;
 
@@ -100,28 +102,66 @@ class BozorgPanel extends JPanel{
         g2d.setColor(Color.BLUE);
         g2d.fillRect(0, 0, WIDTH, HEIGHT);
         paintMap(g2d);
+        paintPlayers(g2d);
+        paintFans(g2d);
     }
 
     private void paintMap(Graphics2D g2d){
-        g2d.setColor(Color.BLACK);
+      //  g2d.setColor(Color.BLACK);
         for(int i = 0; i < engine.getHeight(); i++)
-            for(int j = 0; j < engine.getWidth(); j++){
-                int wall = engine.getMapWallType(i,j);
+            for(int j = 0; j < engine.getWidth(); j++) {
+                if (allMapSeen || engine.getMapWallType(i, j, engine.stringToPlayer(player)) != JudgeAbstract.XXXX_WALL) {
 
-                if(wall % 4 == 2 || wall % 4 == 3)
-                    g2d.drawLine(j + CellSize / 2, i - CellSize / 2, j + CellSize / 2, i + CellSize / 2);
+                    g2d.setColor(Color.white);
+                    g2d.fillRect(j - CellSize / 2, i - CellSize / 2, CellSize, CellSize);
 
-                if(wall % 8 > 3 && wall % 8 < 8)
-                    g2d.drawLine(j - CellSize / 2, i + CellSize / 2, j + CellSize / 2, i + CellSize / 2);
-        }
+                    int wall = engine.getMapWallType(i, j);
 
+                    g2d.setColor(Color.BLACK);
+
+                    if (wall % 4 == 2 || wall % 4 == 3)
+                        g2d.drawLine(j + CellSize / 2, i - CellSize / 2, j + CellSize / 2, i + CellSize / 2);
+
+                    if (wall % 8 > 3 && wall % 8 < 8)
+                        g2d.drawLine(j - CellSize / 2, i + CellSize / 2, j + CellSize / 2, i + CellSize / 2);
+                }
+            }
+    }
+
+    private void paintPlayers(Graphics2D g2d) {
+        if (allMapSeen)
+            for (Player i : engine.getPlayers())
+                paintPlayer(g2d, i);
+        else
+            for (Player i : engine.getPlayersInVision(engine.stringToPlayer(player)))
+                paintPlayer(g2d, i);
+    }
+
+    private void paintPlayer(Graphics2D g2d, Player player){
+        g2d.setColor(player.getColor());
+        g2d.fillOval(player.getInfo(JudgeAbstract.COL), player.getInfo(JudgeAbstract.ROW), CellSize, CellSize);
+    }
+
+    private void paintFans(Graphics2D g2d){
+        if(allMapSeen)
+            for(Fan i: engine.getFans())
+                paintFan(g2d, i);
+        else
+            for(Fan i: engine.getFans(engine.stringToPlayer(player)))
+                paintFan(g2d, i);
+    }
+
+    private void paintFan(Graphics2D g2d, Fan fan){
+        g2d.setColor(fan.getColor());
+        g2d.fillRect(fan.getInfo(JudgeAbstract.COL) - CellSize / 4 , fan.getInfo(JudgeAbstract.ROW) - CellSize / 4, CellSize / 2, CellSize / 2);
     }
 
     public void setPlayer(String s){
         if(s.equals("all"))
             allMapSeen = true;
         else{
-            player = engine.stringToPlayer(s);
+            player = s;
+            allMapSeen = false;
         }
     }
 
