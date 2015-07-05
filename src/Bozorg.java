@@ -28,8 +28,8 @@ public class Bozorg {
         GameController controller = new GameController();
 
         panel.init (controller, engine);
-        //controller.init (panel, engine);
-        //controller.start ();
+        controller.init (panel, engine);
+        controller.start ();
 
         frame.pack();
         frame.setLocationRelativeTo(null);
