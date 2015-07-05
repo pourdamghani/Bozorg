@@ -104,30 +104,50 @@ class BozorgPanel extends JPanel{
         paintMap(g2d);
         paintPlayers(g2d);
         paintFans(g2d);
+//        paintGifts(g2d);
     }
 
     private void paintMap(Graphics2D g2d){
-      //  g2d.setColor(Color.BLACK);
         for(int i = 0; i < engine.getHeight(); i++)
             for(int j = 0; j < engine.getWidth(); j++) {
-                if (allMapSeen || engine.getMapWallType(i, j, engine.stringToPlayer(player)) != JudgeAbstract.XXXX_WALL) {
-
-                    g2d.setColor(Color.white);
-                    g2d.fillRect(j - CellSize / 2, i - CellSize / 2, CellSize, CellSize);
-
-                    int wall = engine.getMapWallType(i, j);
-
-                    g2d.setColor(Color.BLACK);
-
-                    if (wall % 4 == 2 || wall % 4 == 3)
-                        g2d.drawLine(j + CellSize / 2, i - CellSize / 2, j + CellSize / 2, i + CellSize / 2);
-
-                    if (wall % 8 > 3 && wall % 8 < 8)
-                        g2d.drawLine(j - CellSize / 2, i + CellSize / 2, j + CellSize / 2, i + CellSize / 2);
+                int kind;
+                if (allMapSeen)
+                    kind = engine.getMapCellType(i,j);
+                else
+                    kind =engine.getMapCellType(i, j, engine.stringToPlayer(player));
+                Color color;
+                switch (kind){
+                    case JudgeAbstract.DARK_CELL:
+                        color = Color.black;
+                        break;
+                    case JudgeAbstract.BONUS_CELL:
+                        color = Color.cyan;
+                        break;
+                    case JudgeAbstract.NONE_CELL:
+                        color = Color.white;
+                        break;
+                    case JudgeAbstract.JJ_CELL:
+                        color = Color.orange;
+                        break;
+                    default:
+                        color = Color.magenta;
                 }
+                paintCell(g2d, j - CellSize / 2, i - CellSize / 2,color);
+                paintWall(g2d,i,j);
             }
     }
-
+    private void paintWall(Graphics2D g2d, int i, int j){
+        int wall = engine.getMapWallType(i, j);
+        g2d.setColor(Color.BLACK);
+        if (wall % 4 == 2 || wall % 4 == 3)
+            g2d.drawLine(j + CellSize / 2, i - CellSize / 2, j + CellSize / 2, i + CellSize / 2);
+        if (wall % 8 > 3 && wall % 8 < 8)
+            g2d.drawLine(j - CellSize / 2, i + CellSize / 2, j + CellSize / 2, i + CellSize / 2);
+    }
+    private void paintCell(Graphics2D g2d,int x, int y, Color color){
+        g2d.setColor(color);
+        g2d.fillRect(x,y,CellSize,CellSize);
+    }
     private void paintPlayers(Graphics2D g2d) {
         if (allMapSeen)
             for (Player i : engine.getPlayers())
@@ -143,12 +163,7 @@ class BozorgPanel extends JPanel{
     }
 
     private void paintFans(Graphics2D g2d){
-        if(allMapSeen)
-            for(Fan i: engine.getFans())
-                paintFan(g2d, i);
-        else
-            for(Fan i: engine.getFans(engine.stringToPlayer(player)))
-                paintFan(g2d, i);
+        //TODO
     }
 
     private void paintFan(Graphics2D g2d, Fan fan){
@@ -156,8 +171,17 @@ class BozorgPanel extends JPanel{
         g2d.fillRect(fan.getInfo(JudgeAbstract.COL) - CellSize / 4 , fan.getInfo(JudgeAbstract.ROW) - CellSize / 4, CellSize / 2, CellSize / 2);
     }
 
+//    private void paintGifts(Graphics2D g2d){
+//        for(int i = 0; i < engine.getHeight(); i++)
+//            for(int j = 0; j < engine.getWidth(); j++)
+//                if(allMapSeen || engine.getMapCellType(i, j, engine.stringToPlayer(player)) == JudgeAbstract.BONUS_CELL){
+//                    g2d.setColor(Color.red);
+//                    g2d.fillRect(j - CellSize / 2, i - CellSize / 2, CellSize, CellSize);
+//                }
+//    }
+
     public void setPlayer(String s){
-        if(s.equals("all"))
+        if(s.equals("ALL"))
             allMapSeen = true;
         else{
             player = s;
