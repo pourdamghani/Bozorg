@@ -7,6 +7,7 @@ import Model.Fan;
 import Model.Person;
 import Model.Player;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -37,7 +38,10 @@ public class Judge extends JudgeAbstract {
     public static int Saman_Fans = 100;
     public static int Jafar_Fans = 5;
     public static int Reza_Fans = 0;
-
+    public static final Color Reza_COLOR = Color.red;
+    public static final Color Hasin_COLOR = Color.green;
+    public static final Color Jafar_COLOR = Color.blue;
+    public static final Color Saman_COLOR = Color.yellow;
 
     public ArrayList<GameObjectID> loadMap(int[][] cellsType, int[][] wallsType, int[] players) {
         ArrayList<Player> player = cu.loadMap(cellsType, wallsType, players);

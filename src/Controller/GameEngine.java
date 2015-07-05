@@ -5,6 +5,7 @@ import Judge.Judge;
 import Judge.JudgeAbstract;
 import Model.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -268,6 +269,7 @@ public class GameEngine {
 
     //Power Setups
     private void setupSaman(Player player) {
+        player.setColor(Judge.Saman_COLOR);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
         player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
@@ -279,6 +281,7 @@ public class GameEngine {
     }
 
     private void setupJafar(Player player) {
+        player.setColor(Judge.Jafar_COLOR);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.JAFAR);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Jafar_Speed);
         player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
@@ -290,6 +293,7 @@ public class GameEngine {
     }
 
     private void setupReza(Player player) {
+        player.setColor(Judge.Reza_COLOR);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
         player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
@@ -301,6 +305,7 @@ public class GameEngine {
     }
 
     private void setupHasin(Player player) {
+        player.setColor(Judge.Hasin_COLOR);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
         player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);

@@ -3,6 +3,7 @@ package Model;
 import Judge.Judge;
 import Judge.JudgeAbstract;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -12,7 +13,7 @@ public class Player extends Person {
 
     private Integer pendingAction, pendingPrize;
     private int prizeType;
-
+    private Color color;
 
 
     public void move(int direction) {
@@ -143,5 +144,11 @@ public class Player extends Person {
         return prizeType;
     }
 
-
+    public Color getColor() {
+        return color;
     }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+}
