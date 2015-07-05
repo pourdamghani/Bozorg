@@ -198,6 +198,13 @@ public class GameEngine {
         return player.getFans();
     }
 
+    public ArrayList<Fan> getFans() {
+        ArrayList<Fan> fans = new ArrayList<Fan>();
+        for (Player player : players) {
+            fans.addAll(player.getFans());
+        }
+        return fans;
+    }
 
 
 

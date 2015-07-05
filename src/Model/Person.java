@@ -1,8 +1,11 @@
 package Model;
 
+import java.awt.*;
 import java.util.HashMap;
 
 public abstract class Person {
+    private Color color;
+
     protected HashMap<String, Integer> information = new HashMap<String, Integer>();
 
     public HashMap<String, Integer> getInfo() {
@@ -17,4 +20,11 @@ public abstract class Person {
         return information.get(infoKey);
     }
 
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 }

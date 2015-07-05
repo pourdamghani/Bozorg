@@ -13,7 +13,6 @@ public class Player extends Person {
 
     private Integer pendingAction, pendingPrize;
     private int prizeType;
-    private Color color;
 
 
     public void move(int direction) {
@@ -54,6 +53,7 @@ public class Player extends Person {
     public Fan throwFan() {
         Fan fan = new Fan(information.get(JudgeAbstract.ROW), information.get(JudgeAbstract.COL), information.get(JudgeAbstract.NAME), JudgeAbstract.ALIVE);
         aliveFans.add(fan);
+        fan.setColor(this.getColor());
         information.put(JudgeAbstract.FANS, information.get(JudgeAbstract.FANS));
         return fan;
         }
@@ -144,11 +144,4 @@ public class Player extends Person {
         return prizeType;
     }
 
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
 }
