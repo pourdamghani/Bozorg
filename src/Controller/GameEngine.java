@@ -236,6 +236,9 @@ public class GameEngine {
         return canSee;
     }
 
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
 
     public Player stringToPlayer(String s){
         for(Player i: players){
