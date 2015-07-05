@@ -90,26 +90,33 @@ public class GameEngine {
     /**
      * Setting up players default abilities
      */
+    private void setupPlayer(Player player) {
+        player.updateInfo(JudgeAbstract.IS_WINNER, JudgeAbstract.NOT_FINISHED);
+        player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
+        player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
+        player.setDeadTime(0);
+        switch (player.getInfo(JudgeAbstract.NAME)) {
+            case JudgeAbstract.SAMAN:
+                setupSaman(player);
+                break;
+
+            case JudgeAbstract.JAFAR:
+                setupJafar(player);
+                break;
+
+            case JudgeAbstract.HASIN:
+                setupHasin(player);
+                break;
+
+            case JudgeAbstract.REZA:
+                setupReza(player);
+                break;
+        }
+    }
     public void setup() {
 
         for (Player player : players) {
-            switch (player.getInfo(JudgeAbstract.NAME)) {
-                case JudgeAbstract.SAMAN:
-                    setupSaman(player);
-                    break;
-
-                case JudgeAbstract.JAFAR:
-                    setupJafar(player);
-                    break;
-
-                case JudgeAbstract.HASIN:
-                    setupHasin(player);
-                    break;
-
-                case JudgeAbstract.REZA:
-                    setupReza(player);
-                    break;
-            }
+            setupPlayer(player);
         }
     }
 
@@ -237,14 +244,18 @@ public class GameEngine {
     public ArrayList<Player> getPlayersInVision(Player player) {
         ArrayList<Player> canSee = new ArrayList<Player>();
         for(Player i:players)
-            if(i != player)
-                if(logic.canSee(player,map,i.getInfo(JudgeAbstract.ROW), i.getInfo(JudgeAbstract.COL)))
+            if (logic.canSee(player, map, i.getInfo(JudgeAbstract.ROW), i.getInfo(JudgeAbstract.COL)) && i.getInfo(JudgeAbstract.IS_ALIVE) == 0)
                     canSee.add(i);
         return canSee;
     }
 
     public ArrayList<Player> getPlayers() {
-        return players;
+        ArrayList<Player> alivePlayers = new ArrayList<Player>();
+        for (Player player : players) {
+            if (player.getInfo(JudgeAbstract.IS_ALIVE) == JudgeAbstract.ALIVE)
+                alivePlayers.add(player);
+        }
+        return alivePlayers;
     }
 
     public Player stringToPlayer(String s){
@@ -268,8 +279,11 @@ public class GameEngine {
 
 
     public void next50milies() {
-        for(Player i: players)
+        for (Player i : players) {
             i.next50milis();
+            if (i.getDeadTime() == 0)
+                setupPlayer(i);
+        }
         time += 1;
     }
 
@@ -282,47 +296,35 @@ public class GameEngine {
         player.setColor(Judge.Saman_COLOR);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
-        player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
-        player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
         player.updateInfo(JudgeAbstract.FANS, Judge.Saman_Fans);
         player.updateInfo(JudgeAbstract.VISION, Judge.Other_Player_Vision);
         player.updateInfo(JudgeAbstract.POWER, Judge.Saman_Power);
-        player.updateInfo(JudgeAbstract.IS_WINNER, JudgeAbstract.NOT_FINISHED);
     }
 
     private void setupJafar(Player player) {
         player.setColor(Judge.Jafar_COLOR);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.JAFAR);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Jafar_Speed);
-        player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
-        player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
         player.updateInfo(JudgeAbstract.FANS, Judge.Jafar_Fans);
         player.updateInfo(JudgeAbstract.VISION, Judge.Other_Player_Vision);
         player.updateInfo(JudgeAbstract.POWER, Judge.Jafar_Power);
-        player.updateInfo(JudgeAbstract.IS_WINNER, JudgeAbstract.NOT_FINISHED);
     }
 
     private void setupReza(Player player) {
         player.setColor(Judge.Reza_COLOR);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
-        player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
-        player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
         player.updateInfo(JudgeAbstract.FANS, Judge.Reza_Fans);
         player.updateInfo(JudgeAbstract.VISION, Judge.Reza_Vision);
         player.updateInfo(JudgeAbstract.POWER, Judge.Reza_Power);
-        player.updateInfo(JudgeAbstract.IS_WINNER, JudgeAbstract.NOT_FINISHED);
     }
 
     private void setupHasin(Player player) {
         player.setColor(Judge.Hasin_COLOR);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
-        player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
-        player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
         player.updateInfo(JudgeAbstract.FANS, Judge.Hasin_Fans);
         player.updateInfo(JudgeAbstract.VISION, Judge.Other_Player_Vision);
         player.updateInfo(JudgeAbstract.POWER, Judge.Hasin_Power);
-        player.updateInfo(JudgeAbstract.IS_WINNER, JudgeAbstract.NOT_FINISHED);
     }
 }

@@ -11,7 +11,7 @@ public class Player extends Person {
 
     private ArrayList<Fan> aliveFans = new ArrayList<Fan>();
 
-    private Integer pendingAction, pendingPrize;
+    private Integer pendingAction, pendingPrize, deadTime;
     private int prizeType;
 
 
@@ -43,6 +43,8 @@ public class Player extends Person {
         if (newHealth < 0) {
             information.put(JudgeAbstract.IS_ALIVE, JudgeAbstract.DEAD);
             information.put(JudgeAbstract.IS_WINNER, JudgeAbstract.LOST);
+            //todo
+            deadTime = 30;
         }
     }
 
@@ -128,6 +130,8 @@ public class Player extends Person {
         }
         if (pendingAction > 0)
             pendingAction--;
+        if (deadTime > 0)
+            deadTime--;
     }
 
     public Integer getPendingAction() {
@@ -138,7 +142,13 @@ public class Player extends Person {
         this.pendingAction = pendingAction;
     }
 
+    public Integer getDeadTime() {
+        return deadTime;
+    }
 
+    public void setDeadTime(Integer deadTime) {
+        this.deadTime = deadTime;
+    }
 
     public Integer getPrizeType() {
         return prizeType;
