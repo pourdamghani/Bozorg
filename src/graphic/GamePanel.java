@@ -58,6 +58,14 @@ public class GamePanel extends JPanel {
         JOptionPane.showMessageDialog(this, "Game is over!");
     }
 
+    public void showCantMove(){
+        JOptionPane.showMessageDialog(this, "cant move!");
+    }
+
+    public String whichPlayer(){
+        return (String)comboBox.getSelectedItem();
+    }
+
 }
 
 class BozorgPanel extends JPanel{
@@ -87,7 +95,7 @@ class BozorgPanel extends JPanel{
         WIDTH = CellSize * engine.getWidth();
         HEIGHT = CellSize * engine.getHeight();
 
-   //     addKeyListener(controller);
+        addKeyListener(controller);
         setFocusable(true);
         requestFocus();
         setLayout(null);
