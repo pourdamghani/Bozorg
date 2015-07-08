@@ -16,6 +16,10 @@ public class GameEngine {
     private Integer time = 0;
     private GameLogic logic = new GameLogic();
 
+    public GameEngine() {
+        //todo
+        map = new Map(0, 0);
+    }
 
     public int getWidth() {
         return map.getWidth();

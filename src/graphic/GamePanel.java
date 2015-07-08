@@ -33,9 +33,9 @@ public class GamePanel extends JPanel {
         bozorgPanle.init(controller, engine);
         add(bozorgPanle, BorderLayout.CENTER);
 
-        String s[] = new String[5];
+        String s[] = {"SAMAN", "JAFAR", "REZA", "HASIN", "ALL"};
         s[0] = "SAMAN";s[1] =  "JAFAR";s[2] =  "REZA" ;s[3] = "HASIN";s[4] = "ALL";
-        comboBox.addItem(s);
+        comboBox = new JComboBox(s);
 
         comboBox.addItemListener(new ItemListener() {
             @Override
