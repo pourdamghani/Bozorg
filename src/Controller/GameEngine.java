@@ -82,7 +82,7 @@ public class GameEngine {
                     this.players.add(new Player());
                     Player player = this.players.get(iter);
                     player.updateInfo(JudgeAbstract.ROW, i); //Setting Row
-                    player.updateInfo(JudgeAbstract.COL, i); //Setting Col
+                    player.updateInfo(JudgeAbstract.COL, j); //Setting Col
                     player.updateInfo(JudgeAbstract.NAME, players[iter]);
                     iter++;
                 }

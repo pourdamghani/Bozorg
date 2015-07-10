@@ -26,6 +26,7 @@ public class WallGen {
         dfs(0);
     }
 
+
     boolean visited[] = new boolean[Judge.MAXSIZE * Judge.MAXSIZE];
 
     private void dfs(Integer currentCell) {
