@@ -7,6 +7,8 @@ import Model.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
@@ -26,22 +28,16 @@ public class GamePanel extends JPanel {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        bozorgPanel = new BozorgPanel();
-        bozorgPanel.init(controller, engine);
-        add(bozorgPanel, BorderLayout.CENTER);
-
         ArrayList<Player> players = engine.getPlayers();
-        String s[] = new String[players.size()];
-      //  System.out.print(players.size() + "\n");
+        String s[] = new String[players.size() + 1];
         for(int i = 0; i < players.size(); i++) {
             int name = players.get(i).getInfo(JudgeAbstract.NAME);
-//            System.out.print(name + "\n");
             switch (name) {
                 case JudgeAbstract.SAMAN:
                     s[i] = "SAMAN";
                     break;
                 case JudgeAbstract.JAFAR:
-                    s[i] = "JAFAE";
+                    s[i] = "JAFAR";
                     break;
                 case JudgeAbstract.HASIN:
                     s[i] = "HASIN";
@@ -50,9 +46,11 @@ public class GamePanel extends JPanel {
                     s[i] = "REZA";
                     break;
             }
-//            JOptionPane.showMessageDialog(this, s[i]);
         }
+        s[players.size()] = "ALL";
         comboBox = new JComboBox(s);
+
+        add(comboBox, BorderLayout.PAGE_START);
 
         comboBox.addItemListener(new ItemListener() {
             @Override
@@ -61,14 +59,10 @@ public class GamePanel extends JPanel {
             }
         });
 
-        JPanel bottons = new JPanel();
-        bottons.setLayout(new BoxLayout(bottons, BoxLayout.LINE_AXIS));
-        bottons.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
-        bottons.add(Box.createHorizontalGlue());
 
-        bottons.add(comboBox);
-
-        add(bottons, BorderLayout.PAGE_START);
+        bozorgPanel = new BozorgPanel();
+        bozorgPanel.init(controller, engine);
+        add(bozorgPanel, BorderLayout.CENTER);
     }
 
     public void showGameOverMessage() {
@@ -94,7 +88,7 @@ class BozorgPanel extends JPanel{
      *
      */
 
-    public static final int CellSize = 10;
+    public static final int CellSize = 20;
 
     public int WIDTH;
 
@@ -102,7 +96,7 @@ class BozorgPanel extends JPanel{
 
     String player;
 
-    boolean allMapSeen = false;
+    boolean allMapSeen = true;
 
     GameEngine engine;
 
@@ -131,7 +125,7 @@ class BozorgPanel extends JPanel{
         g2d.fillRect(0, 0, WIDTH, HEIGHT);
         paintMap(g2d);
         paintPlayers(g2d);
-        paintFans(g2d);
+     //   paintFans(g2d);
 //        paintGifts(g2d);
     }
 
@@ -160,19 +154,20 @@ class BozorgPanel extends JPanel{
                     default:
                         color = Color.magenta;
                 }
-                paintCell(g2d, j - CellSize / 2, i - CellSize / 2,color);
-                paintWall(g2d,i,j);
+                paintCell(g2d, j * CellSize , i * CellSize,color);
+                paintWall(g2d, i, j);
             }
     }
     private void paintWall(Graphics2D g2d, int i, int j){
         int wall = engine.getMapWallType(i, j);
         g2d.setColor(Color.BLACK);
         if (wall % 4 == 2 || wall % 4 == 3)
-            g2d.drawLine(j + CellSize / 2, i - CellSize / 2, j + CellSize / 2, i + CellSize / 2);
+            g2d.fillRect((j + 1) * CellSize , i * (CellSize), 3, CellSize);
         if (wall % 8 > 3 && wall % 8 < 8)
-            g2d.drawLine(j - CellSize / 2, i + CellSize / 2, j + CellSize / 2, i + CellSize / 2);
+            g2d.fillRect((j) * CellSize, (i + 1) * (CellSize), CellSize, 3);
     }
     private void paintCell(Graphics2D g2d,int x, int y, Color color){
+       // System.out.println(x+" "+y);
         g2d.setColor(color);
         g2d.fillRect(x,y,CellSize,CellSize);
     }
@@ -187,7 +182,7 @@ class BozorgPanel extends JPanel{
 
     private void paintPlayer(Graphics2D g2d, Player player){
         g2d.setColor(player.getColor());
-        g2d.fillOval(player.getInfo(JudgeAbstract.COL), player.getInfo(JudgeAbstract.ROW), CellSize, CellSize);
+        g2d.fillOval(player.getInfo(JudgeAbstract.COL) * CellSize, player.getInfo(JudgeAbstract.ROW) * CellSize , CellSize, CellSize);
     }
 
     private void paintFans(Graphics2D g2d){
