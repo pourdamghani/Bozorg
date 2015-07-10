@@ -216,6 +216,9 @@ class BozorgPanel extends JPanel{
             player = s;
             allMapSeen = false;
         }
+        setFocusable(true);
+        requestFocus();
+
     }
 
 }
