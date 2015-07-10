@@ -1,4 +1,5 @@
 import Controller.GameEngine;
+import Model.Generator.Gen;
 import graphic.GameController;
 import graphic.GamePanel;
 
@@ -17,20 +18,21 @@ public class Bozorg {
     }
 
     private static void createAndShowGui() {
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame frame = new JFrame("Bozorg");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         GamePanel panel = new GamePanel ();
-        frame.getContentPane().add(panel);
-
         GameEngine engine = new GameEngine ();
-
         GameController controller = new GameController();
+
+        Gen mapGen = new Gen();
+
 
         panel.init (controller, engine);
         controller.init (panel, engine);
-        controller.start ();
+        controller.start();
 
+        frame.getContentPane().add(panel);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
