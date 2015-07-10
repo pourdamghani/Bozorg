@@ -30,8 +30,9 @@ public class GamePanel extends JPanel {
 
         ArrayList<Player> players = engine.getPlayers();
         String s[] = new String[players.size() + 1];
-        for(int i = 0; i < players.size(); i++) {
-            int name = players.get(i).getInfo(JudgeAbstract.NAME);
+        s[0] = "ALL";
+        for(int i = 1; i <= players.size(); i++) {
+            int name = players.get(i - 1).getInfo(JudgeAbstract.NAME);
             switch (name) {
                 case JudgeAbstract.SAMAN:
                     s[i] = "SAMAN";
@@ -47,7 +48,6 @@ public class GamePanel extends JPanel {
                     break;
             }
         }
-        s[players.size()] = "ALL";
         comboBox = new JComboBox(s);
 
         add(comboBox, BorderLayout.PAGE_START);
@@ -123,6 +123,10 @@ class BozorgPanel extends JPanel{
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setColor(Color.BLUE);
         g2d.fillRect(0, 0, WIDTH, HEIGHT);
+
+//        setFocusable(true);
+//        requestFocus();
+
         paintMap(g2d);
         paintPlayers(g2d);
      //   paintFans(g2d);
@@ -142,7 +146,7 @@ class BozorgPanel extends JPanel{
                     case JudgeAbstract.DARK_CELL:
                         color = Color.black;
                         break;
-                    case JudgeAbstract.BONUS_CELL:
+                    case JudgeAbstract.START_CELL:
                         color = Color.cyan;
                         break;
                     case JudgeAbstract.NONE_CELL:
@@ -154,9 +158,11 @@ class BozorgPanel extends JPanel{
                     default:
                         color = Color.magenta;
                 }
-                paintCell(g2d, j * CellSize , i * CellSize,color);
-                paintWall(g2d, i, j);
+                paintCell(g2d, j * CellSize, i * CellSize, color);
             }
+        for(int i = 0; i < engine.getHeight(); i++)
+            for(int j = 0; j < engine.getWidth(); j++)
+                paintWall(g2d, i, j);
     }
     private void paintWall(Graphics2D g2d, int i, int j){
         int wall = engine.getMapWallType(i, j);
@@ -210,6 +216,9 @@ class BozorgPanel extends JPanel{
             player = s;
             allMapSeen = false;
         }
+        setFocusable(true);
+        requestFocus();
+
     }
 
 }
