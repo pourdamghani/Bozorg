@@ -57,10 +57,10 @@ public class WallGen {
     }
 
     private void genDir() {
-        directions.add(1);
-        directions.add(-1);
-        directions.add(width);
         directions.add(-width);
+        directions.add(1);
+        directions.add(width);
+        directions.add(-1);
     }
 
     private void removeWall(int current, int direction) {
