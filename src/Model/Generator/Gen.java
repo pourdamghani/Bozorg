@@ -27,25 +27,11 @@ public class Gen {
     }
 
     public int[] getPlayers() {
-        for (int i = 0; i < NUM_OF_PLAYERS; i++) {
-            players[i] = -1;
-        }
-
-        Random rand = new Random();
-        players[0] = rand.nextInt(4);
-
-        for (int i = 1; i < NUM_OF_PLAYERS; i++) {
-            players[i] = rand.nextInt(4);
-
-            for (int j = i - 1; j >= 0; j--) {
-                if (players[i] == players[j]) {
-                    i--;
-                    break;
-                }
-            }
-        }
-
         return players;
+    }
+
+    public void setPlayers(int player, int index) {
+        players[index] = player;
     }
 
     public int[][] getMap() {

@@ -5,6 +5,7 @@ import graphic.GameController;
 import graphic.GamePanel;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 /**
  * Created by PARDAZESH on 7/5/2015.
@@ -27,9 +28,10 @@ public class Bozorg {
         GameController controller = new GameController();
 
         Gen mapGen = new Gen();
+        choosePlayers(mapGen, frame);
 
-        engine.setup();
         engine.loadMap(mapGen.getMap(), mapGen.getWalls(), mapGen.getPlayers());
+        engine.setup();
 
         panel.init (controller, engine);
         controller.init (panel, engine);
@@ -40,5 +42,51 @@ public class Bozorg {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setVisible(true);
+    }
+
+    private static void choosePlayers(Gen mapGen, JFrame frame) {
+        ArrayList<String> p = new ArrayList<String>();
+        p.add("SAMAN");
+        p.add("JAFAR");
+        p.add("REZA");
+        p.add("HASIN");
+        String[] players = new String[4];
+        p.toArray(players);
+
+        String firstPlayer = (String) JOptionPane.showInputDialog(frame,
+                "Choose your player :",
+                "First Player",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                players,
+                players[0]);
+
+
+        mapGen.setPlayers(whichPlayer(firstPlayer), 0);
+
+        p.remove(firstPlayer);
+        players = new String[3];
+        p.toArray(players);
+
+        String secondPlayer = (String) JOptionPane.showInputDialog(frame,
+                "Choose your player :",
+                "Second Player",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                players,
+                players[0]);
+
+        mapGen.setPlayers(whichPlayer(secondPlayer), 1);
+    }
+
+    private static int whichPlayer(String player) {
+
+        if (player.equals("SAMAN") )
+            return 0;
+        else if (player.equals("JAFAR") )
+            return 1;
+        else if (player.equals("REZA") )
+            return 2;
+        else return 3;
     }
 }
