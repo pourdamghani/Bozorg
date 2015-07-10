@@ -35,7 +35,7 @@ public class WallGen {
         for (int i = random.nextInt(4), j = 0; j < 4; j++) {
             Integer direction = directions.get(i);
             Integer next = currentCell + direction;
-            if (valid(next) && !visited[next]) {
+            if (valid(next, currentCell) && !visited[next]) {
                 removeWall(currentCell, i);
                 removeWall(next, reverse(i));
                 dfs(next);
@@ -44,9 +44,14 @@ public class WallGen {
         }
     }
 
-    private boolean valid(int x) {
-        return (x >= 0) && (x < height * width);
-
+    private boolean valid(int next, int current) {
+        if (!(next >= 0) || !(next < height * width))
+            return false;
+        if (current % width == 0 && next == current - 1)
+            return false;
+        if (current % width == width - 1 && next == current + 1)
+            return false;
+        return true;
     }
 
     private void genAva() {
