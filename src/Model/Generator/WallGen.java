@@ -74,4 +74,12 @@ public class WallGen {
     private int reverse(int direction) {
         return (2 + direction) % 4;
     }
+
+    public int[][] getWalls() {
+        int[][] ret = new int[width][height];
+        for (int i = 0; i < width * height; i++) {
+            ret[i / width][i % width] = walls[i];
+        }
+        return ret;
+    }
 }
