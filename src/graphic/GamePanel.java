@@ -146,7 +146,7 @@ class BozorgPanel extends JPanel{
                     case JudgeAbstract.DARK_CELL:
                         color = Color.black;
                         break;
-                    case JudgeAbstract.BONUS_CELL:
+                    case JudgeAbstract.START_CELL:
                         color = Color.cyan;
                         break;
                     case JudgeAbstract.NONE_CELL:

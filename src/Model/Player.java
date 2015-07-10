@@ -11,7 +11,7 @@ public class Player extends Person {
 
     private ArrayList<Fan> aliveFans = new ArrayList<Fan>();
 
-    private Integer pendingAction, pendingPrize, deadTime;
+    private Integer pendingAction = 0, pendingPrize = 0, deadTime = 0;
     private int prizeType;
 
 
@@ -123,10 +123,15 @@ public class Player extends Person {
     public void next50milis() {
         if (pendingPrize > 0)
             pendingPrize--;
-        if (pendingPrize == 0) {
-            if (prizeType == JudgeAbstract.SPEEDUP_CELL)
-                information.put(JudgeAbstract.SPEED, information.get(JudgeAbstract.SPEED) / 2);
-            prizeType = JudgeAbstract.NONE_CELL;
+        try {
+
+            if (pendingPrize == 0) {
+                if (prizeType == JudgeAbstract.SPEEDUP_CELL)
+                    information.put(JudgeAbstract.SPEED, information.get(JudgeAbstract.SPEED) / 2);
+                prizeType = JudgeAbstract.NONE_CELL;
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
         if (pendingAction > 0)
             pendingAction--;
