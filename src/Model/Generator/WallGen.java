@@ -18,8 +18,8 @@ public class WallGen {
     ArrayList<Integer> available = new ArrayList<Integer>();
     int walls[] = new int[Judge.MAXSIZE * Judge.MAXSIZE];
     public WallGen() {
-        width = gameEngine.getWidth();
-        height = gameEngine.getHeight();
+        width = Gen.WIDTH;
+        height = Gen.HEIGHT;
         genDir();
         genAva();
         while (!available.isEmpty()) {
