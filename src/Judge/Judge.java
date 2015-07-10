@@ -38,6 +38,7 @@ public class Judge extends JudgeAbstract {
     public static int Saman_Fans = 100;
     public static int Jafar_Fans = 5;
     public static int Reza_Fans = 0;
+    public static int MAXSIZE = 500;
     public static final Color Reza_COLOR = Color.red;
     public static final Color Hasin_COLOR = Color.green;
     public static final Color Jafar_COLOR = Color.blue;
