@@ -169,7 +169,7 @@ class BozorgPanel extends JPanel{
         g2d.setColor(Color.BLACK);
         if (wall % 4 == 2 || wall % 4 == 3)
             g2d.fillRect((j + 1) * CellSize , i * (CellSize), 3, CellSize);
-        if (wall % 8 > 3 && wall % 8 < 8)
+        if (wall % 8 > 3)
             g2d.fillRect((j) * CellSize, (i + 1) * (CellSize), CellSize, 3);
     }
     private void paintCell(Graphics2D g2d,int x, int y, Color color){
@@ -188,7 +188,7 @@ class BozorgPanel extends JPanel{
 
     private void paintPlayer(Graphics2D g2d, Player player){
         g2d.setColor(player.getColor());
-        g2d.fillOval(player.getInfo(JudgeAbstract.COL) * CellSize, player.getInfo(JudgeAbstract.ROW) * CellSize , CellSize, CellSize);
+        g2d.fillOval((player.getInfo(JudgeAbstract.COL)) * CellSize, (player.getInfo(JudgeAbstract.ROW)) * CellSize , CellSize, CellSize);
     }
 
     private void paintFans(Graphics2D g2d){

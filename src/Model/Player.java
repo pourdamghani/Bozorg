@@ -34,7 +34,6 @@ public class Player extends Person {
         }
         information.put(JudgeAbstract.ROW, row);
         information.put(JudgeAbstract.COL, col);
-
         }
 
     public void getAttacked(Integer power) {
