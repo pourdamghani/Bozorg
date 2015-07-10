@@ -17,10 +17,13 @@ public class Gen {
     private int JJRow;
     private int JJCol;
     private int[] players;
+    private int[][] walls;
 
     public Gen() {
         map = new int[WIDTH][HEIGHT];
         players = new int[NUM_OF_PLAYERS];
+        WallGen wallGen = new WallGen();
+        walls = wallGen.getWalls();
     }
 
     public int[] getPlayers() {
@@ -47,6 +50,10 @@ public class Gen {
 
     public int[][] getMap() {
         return map;
+    }
+
+    public int[][] getWalls() {
+        return walls;
     }
 
     private void buildMap() {

@@ -1,5 +1,6 @@
 import Controller.GameEngine;
 import Model.Generator.Gen;
+import Model.Generator.WallGen;
 import graphic.GameController;
 import graphic.GamePanel;
 
@@ -27,6 +28,8 @@ public class Bozorg {
 
         Gen mapGen = new Gen();
 
+        engine.setup();
+        engine.loadMap(mapGen.getMap(), mapGen.getWalls(), mapGen.getPlayers());
 
         panel.init (controller, engine);
         controller.init (panel, engine);
