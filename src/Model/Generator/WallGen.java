@@ -14,7 +14,7 @@ import java.util.Set;
 public class WallGen {
     GameEngine gameEngine = new GameEngine();
     int width, height;
-    ArrayList<Integer> directions;
+    ArrayList<Integer> directions = new ArrayList<Integer>();
     ArrayList<Integer> available = new ArrayList<Integer>();
     int walls[] = new int[Judge.MAXSIZE * Judge.MAXSIZE];
     public WallGen() {
@@ -23,33 +23,48 @@ public class WallGen {
         genDir();
         genAva();
         while (!available.isEmpty()) {
-            Random random = new Random();
-            dfs(available.get(random.nextInt(available.size())));
+            dfs(0);
         }
     }
 
     ArrayList<Integer> myStack = new ArrayList<Integer>();
     boolean visited[] = new boolean[Judge.MAXSIZE * Judge.MAXSIZE];
 
-    private void dfs(int currentCell) {
-        visited[currentCell] = true;
-        myStack.add(currentCell);
-        Random random = new Random();
-        for (int i = random.nextInt(4), j = 0; j < 4; j++) {
-            int direction = directions.get(i);
-            int next = currentCell + direction;
-            if (valid(next) && !visited[next]) {
-                removeWall(currentCell, direction);
-                removeWall(next, reverse(direction));
-                dfs(next);
+    private void dfs(Integer currentCell) {
+        while (!available.isEmpty()) {
+            if (!visited[currentCell]) {
+                visited[currentCell] = true;
+                myStack.add(currentCell);
             }
-            i = (i + 1) % 4;
+            Random random = new Random();
+            boolean go = false;
+            for (int i = random.nextInt(4), j = 0; j < 4; j++) {
+                Integer direction = directions.get(i);
+                Integer next = currentCell + direction;
+                if (valid(next) && !visited[next]) {
+                    removeWall(currentCell, direction);
+                    removeWall(next, reverse(direction));
+                    currentCell = next;
+                    go = true;
+                    break;
+                }
+                i = (i + 1) % 4;
+            }
+            if (!go) {
+                available.remove(currentCell);
+                if (!myStack.isEmpty()) {
+                    currentCell = myStack.get(myStack.size() - 1);
+                    myStack.remove(currentCell);
+                } else {
+                    if (!available.isEmpty())
+                        currentCell = available.get(random.nextInt(available.size()));
+                }
+            }
         }
-        available.remove(currentCell);
     }
 
     private boolean valid(int x) {
-        return x < 0 || x >= height * width;
+        return (x >= 0) && (x < height * width);
 
     }
 
