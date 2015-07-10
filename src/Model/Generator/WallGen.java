@@ -2,6 +2,7 @@ package Model.Generator;
 
 import Controller.GameEngine;
 import Judge.Judge;
+import Model.Map;
 import sun.reflect.generics.tree.VoidDescriptor;
 
 import java.util.ArrayList;
@@ -42,8 +43,8 @@ public class WallGen {
                 Integer direction = directions.get(i);
                 Integer next = currentCell + direction;
                 if (valid(next) && !visited[next]) {
-                    removeWall(currentCell, direction);
-                    removeWall(next, reverse(direction));
+                    removeWall(currentCell, i);
+                    removeWall(next, reverse(i));
                     currentCell = next;
                     go = true;
                     break;
@@ -83,7 +84,7 @@ public class WallGen {
     }
 
     private void removeWall(int current, int direction) {
-        walls[current] = walls[current] | (15 - (int) Math.pow(2, direction));
+        walls[current] = walls[current] & (15 - (int) Math.pow(2, direction));
     }
 
     private int reverse(int direction) {
