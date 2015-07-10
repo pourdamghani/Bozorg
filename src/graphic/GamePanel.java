@@ -2,17 +2,13 @@ package graphic;
 
 import Controller.GameEngine;
 import Judge.JudgeAbstract;
-import Model.Cell;
 import Model.Fan;
 import Model.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
 
 /**
  * Created by Iman on 7/5/2015.
@@ -21,7 +17,7 @@ public class GamePanel extends JPanel {
     /**
      *
      */
-    private BozorgPanel bozorgPanle;
+    private BozorgPanel bozorgPanel;
 
     private JComboBox comboBox;
 
@@ -29,9 +25,9 @@ public class GamePanel extends JPanel {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        bozorgPanle = new BozorgPanel();
-        bozorgPanle.init(controller, engine);
-        add(bozorgPanle, BorderLayout.CENTER);
+        bozorgPanel = new BozorgPanel();
+        bozorgPanel.init(controller, engine);
+        add(bozorgPanel, BorderLayout.CENTER);
 
         String s[] = {"SAMAN", "JAFAR", "REZA", "HASIN", "ALL"};
         s[0] = "SAMAN";s[1] =  "JAFAR";s[2] =  "REZA" ;s[3] = "HASIN";s[4] = "ALL";
@@ -40,7 +36,7 @@ public class GamePanel extends JPanel {
         comboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                bozorgPanle.setPlayer((String)comboBox.getSelectedItem());
+                bozorgPanel.setPlayer((String) comboBox.getSelectedItem());
             }
         });
 
