@@ -24,6 +24,7 @@ public class Gen {
         players = new int[NUM_OF_PLAYERS];
         WallGen wallGen = new WallGen();
         walls = wallGen.getWalls();
+        buildMap();
     }
 
     public int[] getPlayers() {
