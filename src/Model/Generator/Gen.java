@@ -1,7 +1,6 @@
 package Model.Generator;
 
 import Judge.JudgeAbstract;
-import sun.java2d.jules.JulesPathBuf;
 
 import java.util.Random;
 
@@ -11,8 +10,8 @@ import java.util.Random;
 public class Gen {
     public static int NUM_OF_PLAYERS = 2;
     private static int POSSIBILITY = 4;
-    public static int width = 10;
-    public static int height = 10;
+    public static int WIDTH = 10;
+    public static int HEIGHT = 10;
 
     private int[][] map;
     private int JJRow;
@@ -20,7 +19,7 @@ public class Gen {
     private int[] players;
 
     public Gen() {
-        map = new int[width][height];
+        map = new int[WIDTH][HEIGHT];
         players = new int[NUM_OF_PLAYERS];
     }
 
@@ -51,8 +50,8 @@ public class Gen {
     }
 
     private void buildMap() {
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
                 map[i][j] = -1;
             }
         }
@@ -60,20 +59,20 @@ public class Gen {
 
         int col, row;
 
-        JJRow = rand.nextInt(width);
-        JJCol = rand.nextInt(height);
+        JJRow = rand.nextInt(WIDTH);
+        JJCol = rand.nextInt(HEIGHT);
         map[JJRow][JJCol] = JudgeAbstract.JJ_CELL;
 
         for (int i = 0; i < NUM_OF_PLAYERS; i++) {
-            row = rand.nextInt(width);
-            col = rand.nextInt(height);
+            row = rand.nextInt(WIDTH);
+            col = rand.nextInt(HEIGHT);
             if ( Distance(JJRow, JJCol, row, col) >= 6)
                 map[row][col] = JudgeAbstract.START_CELL;
             else i--;
         }
 
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
                 if (map[i][j] == -1) {
                     if (rand.nextInt(POSSIBILITY) == 0)
                         map[i][j] = rand.nextInt(7) + 4;

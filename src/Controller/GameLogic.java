@@ -106,7 +106,7 @@ public class GameLogic {
     /**
      *
      * @param width of the map
-     * @param height height of the map
+     * @param height HEIGHT of the map
      * @return number of the players existing in cell (X, Y)
      */
     private int numberOfPlayers(int X, int Y, ArrayList<Player> players, int width, int height) {
