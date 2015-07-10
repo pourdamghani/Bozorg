@@ -23,44 +23,24 @@ public class WallGen {
         height = Gen.HEIGHT;
         genDir();
         genAva();
-        while (!available.isEmpty()) {
-            dfs(0);
-        }
+        dfs(0);
     }
 
-    ArrayList<Integer> myStack = new ArrayList<Integer>();
     boolean visited[] = new boolean[Judge.MAXSIZE * Judge.MAXSIZE];
 
     private void dfs(Integer currentCell) {
-        while (!available.isEmpty()) {
-            if (!visited[currentCell]) {
-                visited[currentCell] = true;
-                myStack.add(currentCell);
+        available.remove(currentCell);
+        visited[currentCell] = true;
+        Random random = new Random();
+        for (int i = random.nextInt(4), j = 0; j < 4; j++) {
+            Integer direction = directions.get(i);
+            Integer next = currentCell + direction;
+            if (valid(next) && !visited[next]) {
+                removeWall(currentCell, i);
+                removeWall(next, reverse(i));
+                dfs(next);
             }
-            Random random = new Random();
-            boolean go = false;
-            for (int i = random.nextInt(4), j = 0; j < 4; j++) {
-                Integer direction = directions.get(i);
-                Integer next = currentCell + direction;
-                if (valid(next) && !visited[next]) {
-                    removeWall(currentCell, i);
-                    removeWall(next, reverse(i));
-                    currentCell = next;
-                    go = true;
-                    break;
-                }
-                i = (i + 1) % 4;
-            }
-            if (!go) {
-                available.remove(currentCell);
-                if (!myStack.isEmpty()) {
-                    currentCell = myStack.get(myStack.size() - 1);
-                    myStack.remove(currentCell);
-                } else {
-                    if (!available.isEmpty())
-                        currentCell = available.get(random.nextInt(available.size()));
-                }
-            }
+            i = (i + 1) % 4;
         }
     }
 
