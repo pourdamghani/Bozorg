@@ -63,6 +63,8 @@ public class GamePanel extends JPanel {
     }
 
     public String whichPlayer(){
+        if (comboBox.getSelectedItem().equals("ALL"))
+            return null;
         return (String)comboBox.getSelectedItem();
     }
 

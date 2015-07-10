@@ -17,8 +17,7 @@ public class GameEngine {
     private GameLogic logic = new GameLogic();
 
     public GameEngine() {
-        //todo
-        map = new Map(0, 0);
+
     }
 
     public int getWidth() {
