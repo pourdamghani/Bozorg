@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 /**
  * Created by Iman on 7/5/2015.
@@ -29,8 +30,28 @@ public class GamePanel extends JPanel {
         bozorgPanel.init(controller, engine);
         add(bozorgPanel, BorderLayout.CENTER);
 
-        String s[] = {"SAMAN", "JAFAR", "REZA", "HASIN", "ALL"};
-        s[0] = "SAMAN";s[1] =  "JAFAR";s[2] =  "REZA" ;s[3] = "HASIN";s[4] = "ALL";
+        ArrayList<Player> players = engine.getPlayers();
+        String s[] = new String[players.size()];
+      //  System.out.print(players.size() + "\n");
+        for(int i = 0; i < players.size(); i++) {
+            int name = players.get(i).getInfo(JudgeAbstract.NAME);
+//            System.out.print(name + "\n");
+            switch (name) {
+                case JudgeAbstract.SAMAN:
+                    s[i] = "SAMAN";
+                    break;
+                case JudgeAbstract.JAFAR:
+                    s[i] = "JAFAE";
+                    break;
+                case JudgeAbstract.HASIN:
+                    s[i] = "HASIN";
+                    break;
+                case JudgeAbstract.REZA:
+                    s[i] = "REZA";
+                    break;
+            }
+//            JOptionPane.showMessageDialog(this, s[i]);
+        }
         comboBox = new JComboBox(s);
 
         comboBox.addItemListener(new ItemListener() {
