@@ -55,7 +55,7 @@ public class Player extends Person {
     public void getAttacked(Integer power) {
         Integer newHealth = information.get(JudgeAbstract.HEALTH) - power;
         information.put(JudgeAbstract.HEALTH, newHealth);
-        if (newHealth < 0) {
+        if (newHealth <= 0) {
             information.put(JudgeAbstract.IS_ALIVE, JudgeAbstract.DEAD);
             information.put(JudgeAbstract.IS_WINNER, JudgeAbstract.LOST);
             //todo
