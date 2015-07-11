@@ -4,11 +4,15 @@ import Judge.JudgeAbstract;
 
 import java.util.Random;
 
+/**
+*   generate a random map
+*
+ */
 public class Gen {
-    public static int NUM_OF_PLAYERS = 2;
+    public final static int NUM_OF_PLAYERS = 2;
     private static int POSSIBILITY = 4;
-    public static int WIDTH = 10;
-    public static int HEIGHT = 10;
+    public final static int WIDTH = 10;
+    public final static int HEIGHT = 10;
 
     private int[][] map;
     private int JJRow;
@@ -50,10 +54,12 @@ public class Gen {
 
         int col, row;
 
+        //set the jjCel
         JJRow = rand.nextInt(WIDTH);
         JJCol = rand.nextInt(HEIGHT);
         map[JJRow][JJCol] = JudgeAbstract.JJ_CELL;
 
+        //set the Start Cell
         for (int i = 0; i < NUM_OF_PLAYERS; i++) {
             row = rand.nextInt(WIDTH);
             col = rand.nextInt(HEIGHT);
@@ -62,6 +68,7 @@ public class Gen {
             else i--;
         }
 
+        //Set the kind of cell
         for (int i = 0; i < WIDTH; i++) {
             for (int j = 0; j < HEIGHT; j++) {
                 if (map[i][j] == -1) {

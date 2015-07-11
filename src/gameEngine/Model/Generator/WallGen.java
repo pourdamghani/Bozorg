@@ -7,9 +7,9 @@ import java.util.Random;
 
 /**
  * Created by Arash on 15/07/10.
+ * generate random walls for map
  */
 public class WallGen {
-    GameEngine gameEngine = new GameEngine();
     int width, height;
     ArrayList<Integer> directions = new ArrayList<Integer>();
     ArrayList<Integer> available = new ArrayList<Integer>();
@@ -18,7 +18,7 @@ public class WallGen {
         width = Gen.WIDTH;
         height = Gen.HEIGHT;
         genDir();
-        genAva();
+        genAvailable();
         dfs(0);
     }
 
@@ -51,7 +51,7 @@ public class WallGen {
         return true;
     }
 
-    private void genAva() {
+    private void genAvailable() {
         for (int i = 0; i < width * height; i++) {
             available.add(i);
             walls[i] = 15;

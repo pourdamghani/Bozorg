@@ -7,6 +7,7 @@ import gameEngine.GameEngine;
 import gameEngine.Model.Fan;
 import gameEngine.Model.Person;
 import gameEngine.Model.Player;
+import AI.AI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -99,8 +100,8 @@ public class Judge extends JudgeAbstract {
     }
 
     public void AIByStudents(GameObjectID player) throws BozorgExceptionBase {
-        Random random = new Random();
-        movePlayer(player, random.nextInt(4));
+        AI ai = new AI(this, player);
+        ai.move();
     }
     public void AIByTAs(GameObjectID player){
     }
