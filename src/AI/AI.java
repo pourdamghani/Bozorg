@@ -5,7 +5,6 @@ import Common.exceptions.BozorgExceptionBase;
 import Judge.Judge;
 import Judge.JudgeAbstract;
 import gameEngine.Model.Generator.Gen;
-import gameEngine.Model.Player;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -15,14 +14,14 @@ public class AI {
     Judge judge;
     GameObjectID objectID;
     boolean JJCellFound;
-    Integer JJcell, current, width, height;
+    Integer JJCell, current, width, height;
     ArrayList<Integer> seen = new ArrayList<Integer>();
 
     public AI(Judge judge, GameObjectID objectID) {
         this.objectID = objectID;
         this.judge = judge;
         JJCellFound = false;
-        JJcell = null;
+        JJCell = null;
         width = Gen.WIDTH;
         height = Gen.HEIGHT;
     }
@@ -59,7 +58,7 @@ public class AI {
         for (Integer x : seen) {
             if (getCellType(x) == JudgeAbstract.JJ_CELL) {
                 JJCellFound = true;
-                JJcell = x;
+                JJCell = x;
                 return true;
             }
         }
@@ -75,7 +74,7 @@ public class AI {
         int direction;
         findCurrent();
         if (findJJCell()) {
-            direction = findDirection(JJcell, current);
+            direction = findDirection(JJCell, current);
         } else {
             Random random = new Random();
             direction = random.nextInt(4);
