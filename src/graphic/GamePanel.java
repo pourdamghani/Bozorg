@@ -238,8 +238,9 @@ class BozorgPanel extends JPanel{
     }
 
     private void paintFan(Graphics2D g2d, Fan fan){
+        g2d.drawImage(fan.getImage(), (fan.getInfo(JudgeAbstract.COL)) * CellSize, (fan.getInfo(JudgeAbstract.ROW)) * CellSize, null);
         g2d.setColor(fan.getColor());
-        g2d.fillRect(fan.getInfo(JudgeAbstract.COL) * CellSize + CellSize / 4 , fan.getInfo(JudgeAbstract.ROW) *CellSize + CellSize / 4, CellSize / 2, CellSize / 2);
+        //g2d.fillRect(fan.getInfo(JudgeAbstract.COL) * CellSize + CellSize / 4 , fan.getInfo(JudgeAbstract.ROW) *CellSize + CellSize / 4, CellSize / 2, CellSize / 2);
     }
 
 //    private void paintGifts(Graphics2D g2d){

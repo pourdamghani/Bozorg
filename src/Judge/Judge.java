@@ -46,8 +46,12 @@ public class Judge extends JudgeAbstract {
     public static final Color Saman_COLOR = Color.yellow;
     public static final Image REZA_IMAGE = new ImageIcon("src/Image/Reza.png").getImage();
     public static final Image HASIN_IMAGE = new ImageIcon("src/Image/Hasin.png").getImage();
-    public static final Image JAFAR_IMAGE = new ImageIcon("src/Image/Jafar.png").getImage();
+    public static final Image JAFAR_IMAGE = new ImageIcon("src/Image/jafar.png").getImage();
     public static final Image SAMAN_IMAGE = new ImageIcon("src/Image/Saman.png").getImage();
+    public static final Image REZA_FAN_IMAGE = new ImageIcon("src/Image/RezaFan.png").getImage();
+    public static final Image HASIN_FAN_IMAGE = new ImageIcon("src/Image/HasinFan.png").getImage();
+    public static final Image JAFAR_FAN_IMAGE = new ImageIcon("src/Image/JafarFan.png").getImage();
+    public static final Image SAMAN_FAN_IMAGE = new ImageIcon("src/Image/SamanFan.png").getImage();
 
 
     public ArrayList<GameObjectID> loadMap(int[][] cellsType, int[][] wallsType, int[] players) {

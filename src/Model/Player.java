@@ -13,6 +13,7 @@ public class Player extends Person {
 
     private Integer pendingAction = 0, pendingPrize = 0, deadTime = 0;
     private int prizeType, startRow, startCol;
+    private Image FanImage;
 
     public int getStartRow() {
         return startRow;
@@ -70,6 +71,7 @@ public class Player extends Person {
         Fan fan = new Fan(information.get(JudgeAbstract.ROW), information.get(JudgeAbstract.COL), information.get(JudgeAbstract.NAME), JudgeAbstract.ALIVE);
         aliveFans.add(fan);
         fan.setColor(this.getColor());
+        fan.setImage(this.getFanImage());
         information.put(JudgeAbstract.FANS, information.get(JudgeAbstract.FANS));
         return fan;
         }
@@ -173,4 +175,11 @@ public class Player extends Person {
         return prizeType;
     }
 
+    public Image getFanImage() {
+        return FanImage;
+    }
+
+    public void setFanImage(Image fanImage) {
+        FanImage = fanImage;
+    }
 }

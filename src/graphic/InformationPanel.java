@@ -12,10 +12,10 @@ import java.util.ArrayList;
  * Created by yashardabiran on 7/11/15.
  */
 public class InformationPanel extends JPanel{
-    ImageIcon reza = new ImageIcon("img/Reza.png");
-    ImageIcon hasin = new ImageIcon("img/Hasin.png");
-    ImageIcon jafar = new ImageIcon("img/jafar.png");
-    ImageIcon saman = new ImageIcon("img/Saman.png");
+    ImageIcon reza = new ImageIcon("src/Image/Reza.png");
+    ImageIcon hasin = new ImageIcon("src/Image/Hasin.png");
+    ImageIcon jafar = new ImageIcon("src/Image/jafar.png");
+    ImageIcon saman = new ImageIcon("src/Image/Saman.png");
 
     public InformationPanel(GameEngine engine) {
 
