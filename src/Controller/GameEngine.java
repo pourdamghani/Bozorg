@@ -279,18 +279,22 @@ public class GameEngine {
 
     public Player stringToPlayer(String s){
         for(Player i: players){
-            if(s.equals("SAMAN"))
-                if(i.getInfo(JudgeAbstract.NAME) == JudgeAbstract.SAMAN)
+            if (s.equals("SAMAN")) {
+                if (i.getInfo(JudgeAbstract.NAME) == JudgeAbstract.SAMAN)
                     return i;
-            if(s.equals("JAFAR"))
-                if(i.getInfo(JudgeAbstract.NAME) == JudgeAbstract.JAFAR)
+            }
+            if (s.equals("JAFAR")) {
+                if (i.getInfo(JudgeAbstract.NAME) == JudgeAbstract.JAFAR)
                     return i;
-            if(s.equals("HASIN"))
-                if(i.getInfo(JudgeAbstract.NAME) == JudgeAbstract.HASIN)
+            }
+            if (s.equals("HASIN")) {
+                if (i.getInfo(JudgeAbstract.NAME) == JudgeAbstract.HASIN)
                     return i;
-            else
-                if(i.getInfo(JudgeAbstract.NAME) == JudgeAbstract.REZA)
+            }
+            if (s.equals("REZA")) {
+                if (i.getInfo(JudgeAbstract.NAME) == JudgeAbstract.REZA)
                     return i;
+            }
 
         }
         return null;

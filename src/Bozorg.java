@@ -60,7 +60,8 @@ public class Bozorg {
                 null,
                 players,
                 players[0]);
-
+        if (firstPlayer == null)
+            System.exit(0);
 
         mapGen.setPlayers(whichPlayer(firstPlayer), 0);
 
@@ -75,6 +76,8 @@ public class Bozorg {
                 null,
                 players,
                 players[0]);
+        if (secondPlayer == null)
+            System.exit(0);
 
         mapGen.setPlayers(whichPlayer(secondPlayer), 1);
     }
