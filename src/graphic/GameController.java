@@ -62,6 +62,8 @@ public class GameController implements KeyListener{
             int confirm = panel.showGameOverMessage();
             if(confirm == 0)
                 engine.setup();
+            else
+                System.exit(0);
         }
     }
 
