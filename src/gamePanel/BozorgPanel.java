@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by yashardabiran on 7/11/15.
  */
-class BozorgPanel extends JPanel {
+public class BozorgPanel extends JPanel {
 
 
     /**
