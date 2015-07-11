@@ -72,7 +72,7 @@ public class GamePanel extends JPanel {
         bozorgPanel.init(controller, engine);
         add(bozorgPanel, BorderLayout.CENTER);
 
-        informationPanel = new InformationPanel();
+        informationPanel = new InformationPanel(engine);
         add(informationPanel, BorderLayout.LINE_START);
     }
 

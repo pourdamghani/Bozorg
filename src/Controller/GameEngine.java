@@ -271,6 +271,10 @@ public class GameEngine {
         return alivePlayers;
     }
 
+    public ArrayList<Player> getAllPlayers() {
+        return players;
+    }
+
     public Player stringToPlayer(String s){
         for(Player i: players){
             if(s.equals("SAMAN"))
