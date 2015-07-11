@@ -111,9 +111,11 @@ public class GameController implements KeyListener{
                 }
             } catch (BozorgExceptionBase E) {
                 panel.showCantMove();
+                ctrl = false;
             }
         }
     }
+
 
     @Override
     public void keyReleased(KeyEvent e) {

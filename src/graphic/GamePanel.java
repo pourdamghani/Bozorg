@@ -30,6 +30,7 @@ public class GamePanel extends JPanel {
 
     private JComboBox comboBox;
 
+
     public void init(final GameController controller, GameEngine engine) {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
