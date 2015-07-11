@@ -254,6 +254,10 @@ public class GameEngine {
         return canSee;
     }
 
+    public boolean canSee(Player player, int x, int y){
+        return logic.canSee(player, map, x, y);
+    }
+
     public ArrayList<Player> getPlayersInVision(Player player) {
         ArrayList<Player> canSee = new ArrayList<Player>();
         for(Player i:players)
