@@ -74,7 +74,7 @@ public class Judge extends JudgeAbstract {
         return cu.getMapCellType(row, col);
     }
     public int getMapCellType(int col, int row, GameObjectID player){
-        return cu.getMapCellType(row, col, (Player)IDtoPerson.get(player));
+        return cu.getMapCellType(row, col, (Player) IDtoPerson.get(player));
     }
     public int getMapWallType(int col, int row){
         return cu.getMapWallType(row, col);
@@ -138,8 +138,14 @@ public class Judge extends JudgeAbstract {
         return cu.getInfo(IDtoPerson.get(id));
     }
     public void next50milis(){
-        cu.next50milies();
+        try {
+            cu.next50milies();
+        }
+        catch (BozorgExceptionBase E){
+
+        }
     }
+
     public void startTimer(){
         run = true;
         while (run)

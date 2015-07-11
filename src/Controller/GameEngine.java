@@ -299,13 +299,19 @@ public class GameEngine {
     }
 
 
-    public void next50milies() {
+    public void next50milies() throws BozorgExceptionBase{
         for (Player i : players) {
             i.next50milis();
             if (i.getInfo(JudgeAbstract.IS_ALIVE) == JudgeAbstract.DEAD && i.getDeadTime() == 0)
                 setupPlayer(i);
         }
         time += 1;
+        String jj = map.getJJCell();
+        int jjCol = Integer.parseInt(jj.substring(0, jj.indexOf(","))), jjRow = Integer.parseInt(jj.substring(jj.indexOf(",") + 1));
+        for(Player i: players)
+            if(i.getInfo(JudgeAbstract.COL) == jjRow && i.getInfo(JudgeAbstract.ROW) == jjCol && canSeeJJ())
+                throw new BozorgExceptionBase();
+
     }
 
     public void UpdateInfo(Person person, String infoKey, Integer infoValue) throws BozorgExceptionBase {

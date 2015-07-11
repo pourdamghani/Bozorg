@@ -56,7 +56,13 @@ public class GameController implements KeyListener{
     }
 
     private void gameUpdate() {
-        engine.next50milies();
+        try {
+            engine.next50milies();
+        } catch (BozorgExceptionBase E) {
+            int confirm = panel.showGameOverMessage();
+            if(confirm == 0)
+                engine.setup();
+        }
     }
 
     private void gameRender() {

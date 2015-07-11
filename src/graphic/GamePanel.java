@@ -76,8 +76,10 @@ public class GamePanel extends JPanel {
         add(informationPanel, BorderLayout.LINE_START);
     }
 
-    public void showGameOverMessage() {
-        JOptionPane.showMessageDialog(this, "Game is over!");
+    public int showGameOverMessage() {
+        int n =  JOptionPane.showConfirmDialog(this, "Game is over! \n do you like to start again?");
+        System.out.print(n);
+        return n;
     }
 
     public void showCantMove(){
@@ -207,7 +209,6 @@ class BozorgPanel extends JPanel{
             g2d.fillRect((j) * CellSize, (i + 1) * (CellSize), CellSize, 3);
     }
     private void paintCell(Graphics2D g2d,int x, int y, Color color){
-       // System.out.println(x+" "+y);
         g2d.setColor(color);
         g2d.fillRect(x,y,CellSize,CellSize);
     }
