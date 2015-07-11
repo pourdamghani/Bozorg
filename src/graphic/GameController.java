@@ -13,7 +13,7 @@ import java.awt.event.KeyListener;
  */
 public class GameController implements KeyListener{
 
-    private static final int FPS = 20;
+    private static final int FPS = 100;
 
     GamePanel panel;
 

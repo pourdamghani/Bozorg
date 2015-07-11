@@ -192,6 +192,7 @@ public class GameEngine {
     public void attack(Player player, int direction) throws BozorgExceptionBase{
         if(logic.canAttack(player, direction, map, players)){
             Player attackedPlayer = WhichPlayer(direction, player);
+            System.out.println(attackedPlayer.getInfo(Judge.HEALTH));
             attackedPlayer.getAttacked(player.getInfo(JudgeAbstract.POWER));
         }
         else
@@ -289,7 +290,7 @@ public class GameEngine {
     public void next50milies() {
         for (Player i : players) {
             i.next50milis();
-            if (i.getDeadTime() == 0)
+            if (i.getInfo(JudgeAbstract.IS_ALIVE) == JudgeAbstract.DEAD && i.getDeadTime() == 0)
                 setupPlayer(i);
         }
         time += 1;
@@ -323,7 +324,7 @@ public class GameEngine {
     private void setupReza(Player player) {
         player.setColor(Judge.Reza_COLOR);
         player.setImage(Judge.REZA_IMAGE);
-        player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
+        player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.REZA);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
         player.updateInfo(JudgeAbstract.FANS, Judge.Reza_Fans);
         player.updateInfo(JudgeAbstract.VISION, Judge.Reza_Vision);
@@ -333,7 +334,7 @@ public class GameEngine {
     private void setupHasin(Player player) {
         player.setColor(Judge.Hasin_COLOR);
         player.setImage(Judge.HASIN_IMAGE);
-        player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
+        player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.HASIN);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
         player.updateInfo(JudgeAbstract.FANS, Judge.Hasin_Fans);
         player.updateInfo(JudgeAbstract.VISION, Judge.Other_Player_Vision);
