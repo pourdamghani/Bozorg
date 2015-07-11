@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class InformationPanel extends JPanel{
     ImageIcon reza = new ImageIcon("src/Image/Reza.png");
     ImageIcon hasin = new ImageIcon("src/Image/Hasin.png");
-    ImageIcon jafar = new ImageIcon("src/Image/jafar.png");
+    ImageIcon jafar = new ImageIcon("src/Image/Jafar.png");
     ImageIcon saman = new ImageIcon("src/Image/Saman.png");
 
     public InformationPanel(GameEngine engine) {
