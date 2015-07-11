@@ -195,8 +195,8 @@ public class GameEngine {
     public void attack(Player player, int direction) throws BozorgExceptionBase{
         if(logic.canAttack(player, direction, map, players)){
             Player attackedPlayer = WhichPlayer(direction, player);
-            System.out.println(attackedPlayer.getInfo(Judge.HEALTH));
-            attackedPlayer.getAttacked(player.getInfo(JudgeAbstract.POWER));
+            if (attackedPlayer != null)
+                attackedPlayer.getAttacked(player.getInfo(JudgeAbstract.POWER));
         }
         else
             throw new CantAttackException();
@@ -229,7 +229,7 @@ public class GameEngine {
 
 
     public int getGift(Player player) throws BozorgExceptionBase {
-        int giftType = 0;
+        int giftType;
         if(logic.canGetGift(player,map,players)){
             int row = player.getInfo(JudgeAbstract.ROW) , col = player.getInfo(JudgeAbstract.COL);
             giftType = map.getCellType(row, col);
@@ -242,10 +242,15 @@ public class GameEngine {
     }
 
 
+    /**
+     * shows if user's can see JJ or he's disappeared for now
+     * @return boolean showing that
+     */
     private boolean canSeeJJ() {
-        //todo
         return ((time / 100) % 2) == 0;
     }
+
+
     public ArrayList<String> getVision(Player player) {
         ArrayList<String> canSee = player.getVision(map.getWidth(), map.getHeight());
         if (canSeeJJ() && !canSee.contains(map.getJJCell())) {
@@ -279,6 +284,7 @@ public class GameEngine {
         return players;
     }
 
+
     public Player stringToPlayer(String s){
         for(Player i: players){
             if (s.equals("SAMAN")) {
@@ -303,7 +309,7 @@ public class GameEngine {
     }
 
 
-    public void next50milies() throws GameEndException{
+    public void next50milis() throws GameEndException{
         for (Player i : players) {
             i.next50milis();
             if (i.getInfo(JudgeAbstract.IS_ALIVE) == JudgeAbstract.DEAD && i.getDeadTime() == 0)

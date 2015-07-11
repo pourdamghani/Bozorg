@@ -136,7 +136,7 @@ public class Judge extends JudgeAbstract {
     }
     public void next50milis(){
         try {
-            cu.next50milies();
+            cu.next50milis();
         }
         catch (GameEndException E){
 
