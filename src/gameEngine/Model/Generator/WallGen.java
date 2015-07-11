@@ -1,13 +1,11 @@
 package gameEngine.Model.Generator;
 
-import gameEngine.GameEngine;
 import Judge.Judge;
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Created by Arash on 15/07/10.
- * generate random walls for map
+ * Generates random walls for map
  */
 public class WallGen {
     int width, height;
