@@ -316,6 +316,7 @@ public class GameEngine {
     private void setupSaman(Player player) {
         player.setColor(Judge.Saman_COLOR);
         player.setImage(Judge.SAMAN_IMAGE);
+        player.setFanImage(Judge.SAMAN_FAN_IMAGE);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
         player.updateInfo(JudgeAbstract.FANS, Judge.Saman_Fans);
@@ -326,6 +327,7 @@ public class GameEngine {
     private void setupJafar(Player player) {
         player.setColor(Judge.Jafar_COLOR);
         player.setImage(Judge.JAFAR_IMAGE);
+        player.setFanImage(Judge.JAFAR_FAN_IMAGE);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.JAFAR);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Jafar_Speed);
         player.updateInfo(JudgeAbstract.FANS, Judge.Jafar_Fans);
@@ -336,6 +338,7 @@ public class GameEngine {
     private void setupReza(Player player) {
         player.setColor(Judge.Reza_COLOR);
         player.setImage(Judge.REZA_IMAGE);
+        player.setFanImage(Judge.REZA_FAN_IMAGE);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.REZA);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
         player.updateInfo(JudgeAbstract.FANS, Judge.Reza_Fans);
@@ -346,6 +349,7 @@ public class GameEngine {
     private void setupHasin(Player player) {
         player.setColor(Judge.Hasin_COLOR);
         player.setImage(Judge.HASIN_IMAGE);
+        player.setFanImage(Judge.HASIN_FAN_IMAGE);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.HASIN);
         player.updateInfo(JudgeAbstract.SPEED, Judge.Other_Player_Speed);
         player.updateInfo(JudgeAbstract.FANS, Judge.Hasin_Fans);
