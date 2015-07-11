@@ -20,7 +20,7 @@ public class Judge extends JudgeAbstract {
     private boolean run;
 
     public static int SPEEDUP_TIME = 5;
-    public static int RADAR_TIME = 3;
+    public static int RADAR_TIME = 5;
     public static int STONE_TIME = 3;
     public static int JUMP_TIME = 2;
     public static int HEALTH_INCREASE_VALUE = 20;

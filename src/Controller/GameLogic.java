@@ -165,7 +165,8 @@ public class GameLogic {
         if(fan != null)
             if(player.getFans().contains(fan))
                 return true;
-
+        if(player.getPrizeType() == JudgeAbstract.RADAR_CELL)
+            return true;
         int playerX = player.getInfo(JudgeAbstract.ROW), playerY = player.getInfo(JudgeAbstract.COL);
         if (X - playerX < player.getInfo(JudgeAbstract.VISION) && X - playerX > -1 * player.getInfo(JudgeAbstract.VISION))
             if (Y - playerY < player.getInfo(JudgeAbstract.VISION) && Y - playerY > -1 * player.getInfo(JudgeAbstract.VISION))
