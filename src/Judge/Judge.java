@@ -2,6 +2,7 @@ package Judge;
 
 import Common.GameObjectID;
 import Common.exceptions.BozorgExceptionBase;
+import Common.exceptions.GameEndException;
 import Controller.GameEngine;
 import Model.Fan;
 import Model.Person;
@@ -141,7 +142,7 @@ public class Judge extends JudgeAbstract {
         try {
             cu.next50milies();
         }
-        catch (BozorgExceptionBase E){
+        catch (GameEndException E){
 
         }
     }

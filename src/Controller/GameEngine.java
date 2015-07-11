@@ -1,9 +1,6 @@
 package Controller;
 
-import Common.exceptions.BozorgExceptionBase;
-import Common.exceptions.CantGetGiftException;
-import Common.exceptions.CantMoveException;
-import Common.exceptions.CantAttackException;
+import Common.exceptions.*;
 import Judge.Judge;
 import Judge.JudgeAbstract;
 import Model.*;
@@ -300,7 +297,7 @@ public class GameEngine {
     }
 
 
-    public void next50milies() throws BozorgExceptionBase{
+    public void next50milies() throws GameEndException{
         for (Player i : players) {
             i.next50milis();
             if (i.getInfo(JudgeAbstract.IS_ALIVE) == JudgeAbstract.DEAD && i.getDeadTime() == 0)
@@ -311,7 +308,7 @@ public class GameEngine {
         int jjCol = Integer.parseInt(jj.substring(0, jj.indexOf(","))), jjRow = Integer.parseInt(jj.substring(jj.indexOf(",") + 1));
         for(Player i: players)
             if(i.getInfo(JudgeAbstract.COL) == jjRow && i.getInfo(JudgeAbstract.ROW) == jjCol && canSeeJJ())
-                throw new BozorgExceptionBase();
+                throw new GameEndException();
 
     }
 

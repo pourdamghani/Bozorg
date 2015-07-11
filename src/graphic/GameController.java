@@ -1,9 +1,6 @@
 package graphic;
 
-import Common.exceptions.BozorgExceptionBase;
-import Common.exceptions.CantGetGiftException;
-import Common.exceptions.CantMoveException;
-import Common.exceptions.CantAttackException;
+import Common.exceptions.*;
 import Controller.GameEngine;
 import Judge.JudgeAbstract;
 import Model.Player;
@@ -61,7 +58,7 @@ public class GameController implements KeyListener{
     private void gameUpdate() {
         try {
             engine.next50milies();
-        } catch (BozorgExceptionBase E) {
+        } catch (GameEndException E) {
             int confirm = panel.showGameOverMessage();
             if(confirm == 0)
                 engine.setup();
