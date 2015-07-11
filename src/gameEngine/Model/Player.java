@@ -69,9 +69,8 @@ public class Player extends Person {
     public Fan throwFan() {
         Fan fan = new Fan(information.get(JudgeAbstract.ROW), information.get(JudgeAbstract.COL), information.get(JudgeAbstract.NAME), JudgeAbstract.ALIVE);
         aliveFans.add(fan);
-        fan.setColor(this.getColor());
         fan.setImage(this.getFanImage());
-        information.put(JudgeAbstract.FANS, information.get(JudgeAbstract.FANS));
+        information.put(JudgeAbstract.FANS, information.get(JudgeAbstract.FANS)-1);
         return fan;
         }
 

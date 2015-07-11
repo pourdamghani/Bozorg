@@ -204,13 +204,15 @@ public class GameEngine {
     }
 
 
-
-
-    public Fan throwFan(Player player) {
-        Fan fan = player.throwFan();
-        int row = player.getInfo(JudgeAbstract.ROW), col = player.getInfo(JudgeAbstract.COL);
-        map.getCell(row,col).setFan(fan);
-        return fan;
+    public Fan throwFan(Player player) throws CantThrowFanException {
+        if (logic.canThrowFan(player)) {
+            Fan fan = player.throwFan();
+            int row = player.getInfo(JudgeAbstract.ROW), col = player.getInfo(JudgeAbstract.COL);
+            map.getCell(row, col).setFan(fan);
+            return fan;
+        }
+        else
+            throw new CantThrowFanException();
     }
 
     public ArrayList<Fan> getFans(Player player) {
@@ -322,7 +324,6 @@ public class GameEngine {
 
     //Power Setups
     private void setupSaman(Player player) {
-        player.setColor(Judge.Saman_COLOR);
         player.setImage(Judge.SAMAN_IMAGE);
         player.setFanImage(Judge.SAMAN_FAN_IMAGE);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.SAMAN);
@@ -333,7 +334,6 @@ public class GameEngine {
     }
 
     private void setupJafar(Player player) {
-        player.setColor(Judge.Jafar_COLOR);
         player.setImage(Judge.JAFAR_IMAGE);
         player.setFanImage(Judge.JAFAR_FAN_IMAGE);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.JAFAR);
@@ -344,7 +344,6 @@ public class GameEngine {
     }
 
     private void setupReza(Player player) {
-        player.setColor(Judge.Reza_COLOR);
         player.setImage(Judge.REZA_IMAGE);
         player.setFanImage(Judge.REZA_FAN_IMAGE);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.REZA);
@@ -355,7 +354,6 @@ public class GameEngine {
     }
 
     private void setupHasin(Player player) {
-        player.setColor(Judge.Hasin_COLOR);
         player.setImage(Judge.HASIN_IMAGE);
         player.setFanImage(Judge.HASIN_FAN_IMAGE);
         player.updateInfo(JudgeAbstract.NAME, JudgeAbstract.HASIN);

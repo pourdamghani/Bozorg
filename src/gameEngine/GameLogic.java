@@ -185,4 +185,10 @@ public class GameLogic {
             return false;
         return true;
     }
+
+    public boolean canThrowFan(Player player){
+        if(player.getInfo(JudgeAbstract.FANS) > 0)
+            return true;
+        return false;
+    }
 }

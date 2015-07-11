@@ -186,6 +186,8 @@ public class GameController implements KeyListener{
                     panel.showCant("GetGift");
                 else if (E.getClass().equals(CantAttackException.class))
                     panel.showCant("Attack");
+                else if (E.getClass().equals(CantThrowFanException.class))
+                    panel.showCant("Throw Fan");
                 ctrl = false;
                 shift = false;
             }
