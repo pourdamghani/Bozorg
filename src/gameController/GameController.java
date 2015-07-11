@@ -56,7 +56,7 @@ public class GameController implements KeyListener{
 
     private void gameUpdate() {
         try {
-            engine.next50milies();
+            engine.next50milis();
         } catch (GameEndException E) {
             int confirm = panel.showGameOverMessage();
             if(confirm == 0)
