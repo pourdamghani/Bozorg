@@ -72,7 +72,6 @@ public class Player extends Person {
         fan.setColor(this.getColor());
         fan.setImage(this.getFanImage());
         information.put(JudgeAbstract.FANS, information.get(JudgeAbstract.FANS) - 1);
-     //   System.out.println(information.get(JudgeAbstract.FANS));
         return fan;
         }
 
