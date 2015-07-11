@@ -1,6 +1,9 @@
 package graphic;
 
 import Common.exceptions.BozorgExceptionBase;
+import Common.exceptions.CantGetGiftException;
+import Common.exceptions.CantMoveException;
+import Common.exceptions.CantAttackException;
 import Controller.GameEngine;
 import Judge.JudgeAbstract;
 import Model.Player;
@@ -181,7 +184,12 @@ public class GameController implements KeyListener{
                         break;
                 }
             } catch (BozorgExceptionBase E) {
-                panel.showCantMove();
+                if (E.getClass().equals(CantMoveException.class))
+                    panel.showCant("Move");
+                else if (E.getClass().equals(CantGetGiftException.class))
+                    panel.showCant("GetGift");
+                else if (E.getClass().equals(CantAttackException.class))
+                    panel.showCant("Attack");
                 ctrl = false;
                 shift = false;
             }

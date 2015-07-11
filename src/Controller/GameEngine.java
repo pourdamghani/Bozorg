@@ -1,11 +1,13 @@
 package Controller;
 
 import Common.exceptions.BozorgExceptionBase;
+import Common.exceptions.CantGetGiftException;
+import Common.exceptions.CantMoveException;
+import Common.exceptions.CantAttackException;
 import Judge.Judge;
 import Judge.JudgeAbstract;
 import Model.*;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -157,7 +159,7 @@ public class GameEngine {
 
             }
         } else
-            throw new BozorgExceptionBase();
+            throw new CantMoveException();
     }
 
 
@@ -200,7 +202,7 @@ public class GameEngine {
             attackedPlayer.getAttacked(player.getInfo(JudgeAbstract.POWER));
         }
         else
-            throw new BozorgExceptionBase();
+            throw new CantAttackException();
 
     }
 
@@ -236,7 +238,7 @@ public class GameEngine {
             map.getCell(row,col).setCellType(JudgeAbstract.NONE_CELL);
         }
         else
-            throw new BozorgExceptionBase();
+            throw new CantGetGiftException();
         return giftType;
     }
 

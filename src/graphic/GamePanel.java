@@ -93,8 +93,8 @@ public class GamePanel extends JPanel {
         return n;
     }
 
-    public void showCantMove(){
-        JOptionPane.showMessageDialog(this, "cant move!");
+    public void showCant(String s) {
+        JOptionPane.showMessageDialog(this, "You cant " + s + "!", "Watch Out", JOptionPane.ERROR_MESSAGE);
     }
 
     public String whichPlayer(){
