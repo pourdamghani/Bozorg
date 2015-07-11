@@ -93,7 +93,7 @@ public class GameLogic {
             return false;
         if (player.getInfo(JudgeAbstract.IS_ALIVE) != JudgeAbstract.ALIVE)
             return false;
-        if (player.getPendingAction() != 0)//havnt got any action
+        if (player.getPendingAction() != 0) //havnt got any action
             return false;
         if (!isNoWall(player, direction, map))
             return false;
@@ -132,19 +132,19 @@ public class GameLogic {
         int height = map.getHeight();
         switch (direction) {
             case JudgeAbstract.UP:
-                if (numberOfPlayers(X, Y + 1, players, width, height) == 0)
-                    return false;
-                break;
-            case JudgeAbstract.DOWN:
-                if (numberOfPlayers(X, Y - 1, players, width, height) == 0)
-                    return false;
-                break;
-            case JudgeAbstract.LEFT:
                 if (numberOfPlayers(X - 1, Y, players, width, height) == 0)
                     return false;
                 break;
-            case JudgeAbstract.RIGHT:
+            case JudgeAbstract.DOWN:
                 if (numberOfPlayers(X + 1, Y, players, width, height) == 0)
+                    return false;
+                break;
+            case JudgeAbstract.LEFT:
+                if (numberOfPlayers(X, Y - 1, players, width, height) == 0)
+                    return false;
+                break;
+            case JudgeAbstract.RIGHT:
+                if (numberOfPlayers(X, Y + 1, players, width, height) == 0)
                     return false;
                 break;
             case JudgeAbstract.NONE:

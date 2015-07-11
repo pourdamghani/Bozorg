@@ -176,13 +176,13 @@ public class GameEngine {
         int X = player.getInfo(JudgeAbstract.ROW), Y = player.getInfo(JudgeAbstract.COL);
         switch (direction) {
             case JudgeAbstract.UP:
-                return WhichPlayer(X, Y + 1);
-            case JudgeAbstract.DOWN:
-                return WhichPlayer(X, Y - 1);
-            case JudgeAbstract.LEFT:
                 return WhichPlayer(X - 1, Y);
-            case JudgeAbstract.RIGHT:
+            case JudgeAbstract.DOWN:
                 return WhichPlayer(X + 1, Y);
+            case JudgeAbstract.LEFT:
+                return WhichPlayer(X, Y - 1);
+            case JudgeAbstract.RIGHT:
+                return WhichPlayer(X, Y + 1);
             case JudgeAbstract.NONE:
                 return WhichPlayer(X, Y);
         }
