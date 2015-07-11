@@ -92,7 +92,19 @@ public class GamePanel extends JPanel {
 
     public void paintAttack() {
         try {
-            InputStream in = new FileInputStream("fight.wav");
+            InputStream in = new FileInputStream("src/Sound/fight.wav");
+            AudioStream audioStream = new AudioStream(in);
+            AudioPlayer.player.start(audioStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void paintMove() {
+        try {
+            InputStream in = new FileInputStream("src/Sound/walk.wav");
             AudioStream audioStream = new AudioStream(in);
             AudioPlayer.player.start(audioStream);
         } catch (FileNotFoundException e) {
@@ -151,7 +163,7 @@ class BozorgPanel extends JPanel{
 
         paintMap(g2d);
         paintPlayers(g2d);
-     //   paintFans(g2d);
+        paintFans(g2d);
 //        paintGifts(g2d);
     }
 
@@ -215,12 +227,19 @@ class BozorgPanel extends JPanel{
     }
 
     private void paintFans(Graphics2D g2d){
-        //TODO
+        if(!allMapSeen)
+            for(Fan fan: engine.getFans(engine.stringToPlayer(player)))
+                paintFan(g2d, fan);
+        for(Fan fan: engine.getFans())
+            if(allMapSeen)
+                paintFan(g2d, fan);
+            else if(engine.canSee(engine.stringToPlayer(player), fan.getInfo(JudgeAbstract.ROW), fan.getInfo(JudgeAbstract.COL)))
+                paintFan(g2d,fan);
     }
 
     private void paintFan(Graphics2D g2d, Fan fan){
         g2d.setColor(fan.getColor());
-        g2d.fillRect(fan.getInfo(JudgeAbstract.COL) - CellSize / 4 , fan.getInfo(JudgeAbstract.ROW) - CellSize / 4, CellSize / 2, CellSize / 2);
+        g2d.fillRect(fan.getInfo(JudgeAbstract.COL) * CellSize + CellSize / 4 , fan.getInfo(JudgeAbstract.ROW) *CellSize + CellSize / 4, CellSize / 2, CellSize / 2);
     }
 
 //    private void paintGifts(Graphics2D g2d){
