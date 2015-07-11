@@ -18,11 +18,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
-    /**
-     *
-     */
+
     private BozorgPanel bozorgPanel;
-    private InformationPanel informationPanel;
 
     private JComboBox comboBox;
 
@@ -68,7 +65,7 @@ public class GamePanel extends JPanel {
         bozorgPanel.init(controller, engine);
         add(bozorgPanel, BorderLayout.CENTER);
 
-        informationPanel = new InformationPanel(engine);
+        InformationPanel informationPanel = new InformationPanel(engine);
         add(informationPanel, BorderLayout.LINE_START);
     }
 
@@ -82,9 +79,11 @@ public class GamePanel extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         int n = JOptionPane.showConfirmDialog(this, "Victory! \n Would you like to start again?");
         if (n > 0)
             System.exit(0);
+
         return n;
     }
 
@@ -98,7 +97,7 @@ public class GamePanel extends JPanel {
         return (String)comboBox.getSelectedItem();
     }
 
-    public void paintAttack() {
+    public void attackSound() {
         try {
             InputStream in = new FileInputStream("src/Sound/fight.wav");
             AudioStream audioStream = new AudioStream(in);
@@ -110,7 +109,7 @@ public class GamePanel extends JPanel {
         }
     }
 
-    public void paintMove() {
+    public void moveSound() {
         try {
             InputStream in = new FileInputStream("src/Sound/walk.wav");
             AudioStream audioStream = new AudioStream(in);
@@ -125,17 +124,17 @@ public class GamePanel extends JPanel {
     public void showGift(int gift) {
         String Message = "Nothing here";
         if (gift == JudgeAbstract.SPEEDUP_CELL)
-            Message = "You have Nitro for 5 sec,Speed Up!";
+            Message = "You have Nitro for 5 sec, Speed Up!";
         if (gift == JudgeAbstract.HOSPITAL_CELL)
-            Message = "First Aid Kit!,health increases";
+            Message = "First Aid Kit! Health increases";
         if (gift == JudgeAbstract.FAN_CELL)
-            Message = "Every body loves You!, 3 extra fans";
+            Message = "Every body loves You! 3 extra fans";
         if (gift == JudgeAbstract.JUMP_CELL)
-            Message = "Magical shoes!, You Can Jump over the walls for 2 sec";
+            Message = "Magical shoes! You Can Jump over the walls for 2 sec";
         if (gift == JudgeAbstract.STONE_CELL)
-            Message = "Your Stoned, Can't play for 3 sec";
+            Message = "You're Stoned! Can't play for 3 sec";
         if (gift == JudgeAbstract.RADAR_CELL)
-            Message = "Sun rises, You can See EveryWhere for 3 sec";
+            Message = "Sun rises! You can See EveryWhere for 3 sec";
         JOptionPane.showMessageDialog(this, Message, "Gift", JOptionPane.INFORMATION_MESSAGE);
     }
 }

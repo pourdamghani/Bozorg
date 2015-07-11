@@ -85,38 +85,38 @@ public class GameController implements KeyListener{
                     case KeyEvent.VK_LEFT:
                         if (ctrl) {
                             engine.attack(firstPlayer, JudgeAbstract.LEFT);
-                            panel.paintAttack();
+                            panel.attackSound();
                         } else {
                             engine.movePlayer(firstPlayer, JudgeAbstract.LEFT);
-                            panel.paintMove();
+                            panel.moveSound();
 
                         }
                         break;
                     case KeyEvent.VK_RIGHT:
                         if (ctrl) {
                             engine.attack(firstPlayer, JudgeAbstract.RIGHT);
-                            panel.paintAttack();
+                            panel.attackSound();
                         } else {
                             engine.movePlayer(firstPlayer, JudgeAbstract.RIGHT);
-                            panel.paintMove();
+                            panel.moveSound();
                         }
                         break;
                     case KeyEvent.VK_DOWN:
                         if (ctrl) {
                             engine.attack(firstPlayer, JudgeAbstract.DOWN);
-                            panel.paintAttack();
+                            panel.attackSound();
                         } else {
                             engine.movePlayer(firstPlayer, JudgeAbstract.DOWN);
-                            panel.paintMove();
+                            panel.moveSound();
                         }
                         break;
                     case KeyEvent.VK_UP:
                         if (ctrl) {
                             engine.attack(firstPlayer, JudgeAbstract.UP);
-                            panel.paintAttack();
+                            panel.attackSound();
                         } else {
                             engine.movePlayer(firstPlayer, JudgeAbstract.UP);
-                            panel.paintMove();
+                            panel.moveSound();
                         }
                         break;
                     case KeyEvent.VK_ENTER:
@@ -134,38 +134,38 @@ public class GameController implements KeyListener{
                     case KeyEvent.VK_A:
                         if (shift) {
                             engine.attack(secondPlayer, JudgeAbstract.LEFT);
-                            panel.paintAttack();
+                            panel.attackSound();
                         } else {
                             engine.movePlayer(secondPlayer, JudgeAbstract.LEFT);
-                            panel.paintMove();
+                            panel.moveSound();
 
                         }
                         break;
                     case KeyEvent.VK_D:
                         if (shift) {
                             engine.attack(secondPlayer, JudgeAbstract.RIGHT);
-                            panel.paintAttack();
+                            panel.attackSound();
                         } else {
                             engine.movePlayer(secondPlayer, JudgeAbstract.RIGHT);
-                            panel.paintMove();
+                            panel.moveSound();
                         }
                         break;
                     case KeyEvent.VK_S:
                         if (shift) {
                             engine.attack(secondPlayer, JudgeAbstract.DOWN);
-                            panel.paintAttack();
+                            panel.attackSound();
                         } else {
                             engine.movePlayer(secondPlayer, JudgeAbstract.DOWN);
-                            panel.paintMove();
+                            panel.moveSound();
                         }
                         break;
                     case KeyEvent.VK_W:
                         if (shift) {
                             engine.attack(secondPlayer, JudgeAbstract.UP);
-                            panel.paintAttack();
+                            panel.attackSound();
                         } else {
                             engine.movePlayer(secondPlayer, JudgeAbstract.UP);
-                            panel.paintMove();
+                            panel.moveSound();
                         }
                         break;
                     case KeyEvent.VK_F:
