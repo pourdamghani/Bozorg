@@ -20,6 +20,7 @@ public class InformationPanel extends JPanel{
     public InformationPanel(GameEngine engine) {
 
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        this.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         JLabel rezaLabel = new JLabel("Reza", reza, SwingConstants.LEFT);
         JLabel hasinLabel = new JLabel("Hasin", hasin, SwingConstants.LEFT);
