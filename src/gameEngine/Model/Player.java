@@ -67,10 +67,11 @@ public class Player extends Person {
 
 
     public Fan throwFan() {
-        Fan fan = new Fan(information.get(JudgeAbstract.ROW), information.get(JudgeAbstract.COL), information.get(JudgeAbstract.NAME), JudgeAbstract.ALIVE);
+        Fan fan = new Fan(information.get(JudgeAbstract.ROW), information.get(JudgeAbstract.COL),
+                information.get(JudgeAbstract.NAME), JudgeAbstract.ALIVE);
         aliveFans.add(fan);
         fan.setImage(this.getFanImage());
-        information.put(JudgeAbstract.FANS, information.get(JudgeAbstract.FANS)-1);
+        information.put(JudgeAbstract.FANS, information.get(JudgeAbstract.FANS) - 1);
         return fan;
         }
 
@@ -81,11 +82,6 @@ public class Player extends Person {
     public ArrayList<Fan> getFans() {
         return aliveFans;
     }
-
-
-
-
-
 
 
     public void getGift(int giftType) {
