@@ -15,7 +15,7 @@ public class InformationPanel extends JPanel{
     ImageIcon saman = new ImageIcon("src/Image/Saman.png");
 
     GameEngine engine;
-    JLabel firstLabel, secondLabel;
+    JLabel firstHealthLabel, secondHealthLabel,firstFanLabel,secondFanLabel;
     ArrayList<Player> players;
 
     public InformationPanel(GameEngine engine) {
@@ -45,9 +45,10 @@ public class InformationPanel extends JPanel{
                 break;
         }
 
-        firstLabel = new JLabel("Health : " + players.get(0).getInfo(JudgeAbstract.HEALTH));
-        this.add(firstLabel);
-
+        firstHealthLabel = new JLabel("Health : " + players.get(0).getInfo(JudgeAbstract.HEALTH));
+        this.add(firstHealthLabel);
+        firstFanLabel = new JLabel("Fans : " + players.get(0).getInfo(JudgeAbstract.FANS));
+        this.add(firstFanLabel);
         switch (players.get(1).getInfo(JudgeAbstract.NAME)) {
             case JudgeAbstract.SAMAN:
                 this.add(samanLabel);
@@ -63,15 +64,19 @@ public class InformationPanel extends JPanel{
                 break;
         }
 
-        secondLabel = new JLabel("Health : " + players.get(1).getInfo(JudgeAbstract.HEALTH));
-        this.add(secondLabel);
+        secondHealthLabel = new JLabel("Health : " + players.get(1).getInfo(JudgeAbstract.HEALTH));
+        this.add(secondHealthLabel);
+        secondFanLabel = new JLabel("Fans :" + players.get(1).getInfo(JudgeAbstract.FANS));
+        this.add(secondFanLabel);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        firstLabel.setText("Health : " + players.get(0).getInfo(JudgeAbstract.HEALTH));
-        secondLabel.setText("Health : " + players.get(1).getInfo(JudgeAbstract.HEALTH));
+        firstHealthLabel.setText("Health : " + players.get(0).getInfo(JudgeAbstract.HEALTH));
+        secondHealthLabel.setText("Health : " + players.get(1).getInfo(JudgeAbstract.HEALTH));
+        firstFanLabel.setText("Fans :" + players.get(0).getInfo(JudgeAbstract.FANS));
+        secondFanLabel.setText("Fans :" + players.get(1).getInfo(JudgeAbstract.FANS));
     }
 }

@@ -41,10 +41,6 @@ public class Judge extends JudgeAbstract {
     public static int Jafar_Fans = 5;
     public static int Reza_Fans = 0;
     public static int MAXSIZE = 500;
-    public static final Color Reza_COLOR = Color.red;
-    public static final Color Hasin_COLOR = Color.green;
-    public static final Color Jafar_COLOR = Color.blue;
-    public static final Color Saman_COLOR = Color.yellow;
     public static final Image REZA_IMAGE = new ImageIcon("src/Image/Reza.png").getImage();
     public static final Image HASIN_IMAGE = new ImageIcon("src/Image/Hasin.png").getImage();
     public static final Image JAFAR_IMAGE = new ImageIcon("src/Image/jafar.png").getImage();
