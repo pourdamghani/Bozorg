@@ -206,7 +206,9 @@ public class GameEngine {
 
 
 
-    public Fan throwFan(Player player) {
+    public Fan throwFan(Player player) throws CantThrowFanException{
+        if(!logic.canThrowFan(player))
+            throw new CantThrowFanException();
         Fan fan = player.throwFan();
         int row = player.getInfo(JudgeAbstract.ROW), col = player.getInfo(JudgeAbstract.COL);
         map.getCell(row,col).setFan(fan);
