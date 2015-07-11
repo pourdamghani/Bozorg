@@ -7,6 +7,7 @@ import Model.Fan;
 import Model.Person;
 import Model.Player;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +44,11 @@ public class Judge extends JudgeAbstract {
     public static final Color Hasin_COLOR = Color.green;
     public static final Color Jafar_COLOR = Color.blue;
     public static final Color Saman_COLOR = Color.yellow;
+    public static final Image REZA_IMAGE = new ImageIcon("Reza.png").getImage();
+    public static final Image HASIN_IMAGE = new ImageIcon("Hasin.png").getImage();
+    public static final Image JAFAR_IMAGE = new ImageIcon("Jafar.png").getImage();
+    public static final Image SAMAN_IMAGE = new ImageIcon("Saman.png").getImage();
+
 
     public ArrayList<GameObjectID> loadMap(int[][] cellsType, int[][] wallsType, int[] players) {
         ArrayList<Player> player = cu.loadMap(cellsType, wallsType, players);

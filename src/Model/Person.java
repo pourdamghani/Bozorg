@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 public abstract class Person {
     private Color color;
+    private Image image;
 
     protected HashMap<String, Integer> information = new HashMap<String, Integer>();
 
@@ -26,5 +27,13 @@ public abstract class Person {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }

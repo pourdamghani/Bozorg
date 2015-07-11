@@ -187,8 +187,9 @@ class BozorgPanel extends JPanel{
     }
 
     private void paintPlayer(Graphics2D g2d, Player player){
-        g2d.setColor(player.getColor());
-        g2d.fillOval((player.getInfo(JudgeAbstract.COL)) * CellSize, (player.getInfo(JudgeAbstract.ROW)) * CellSize , CellSize, CellSize);
+        g2d.drawImage(player.getImage(), (player.getInfo(JudgeAbstract.COL)) * CellSize, (player.getInfo(JudgeAbstract.ROW)) * CellSize, null);
+        //g2d.setColor(player.getColor());
+        //g2d.fillOval((player.getInfo(JudgeAbstract.COL)) * CellSize, (player.getInfo(JudgeAbstract.ROW)) * CellSize , CellSize, CellSize);
     }
 
     private void paintFans(Graphics2D g2d){
