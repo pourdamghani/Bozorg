@@ -16,10 +16,9 @@ public class GameController implements KeyListener{
     private static final int FPS = 20;
 
     GamePanel panel;
-
     GameEngine engine;
 
-    Thread gameloop;
+    Thread gameLoop;
 
     boolean running = false;
     boolean ctrl;
@@ -31,7 +30,7 @@ public class GameController implements KeyListener{
     }
 
     public void start() {
-        gameloop = new Thread (new Runnable() {
+        gameLoop = new Thread (new Runnable() {
             @Override
             public void run() {
                 running = true;
@@ -44,14 +43,13 @@ public class GameController implements KeyListener{
                     try {
                         Thread.sleep(1000 / FPS);
                     } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 }
             }
         });
 
-        gameloop.start();
+        gameLoop.start();
     }
 
     private void gameUpdate() {
