@@ -96,17 +96,20 @@ public class AI {
 
     boolean mark[] = new boolean[50 * 50];
     int dir[] = new int[50 * 50];
+    int parent[] = new int[50 * 50];
 
     private int findDirection(Integer destiny, Integer source) {
         for (boolean b : mark) {
             b = false;
         }
         dfs(source);
-        return reverse(dir[destiny]);
+        return reverse(destiny, source);
     }
 
-    private int reverse(int x) {
-        return (x + 2) % 4;
+    private int reverse(Integer x, Integer source) {
+        if (parent[x] == source)
+            return (dir[x] + 2) % 4;
+        return reverse(parent[x], source);
     }
 
 
@@ -114,6 +117,7 @@ public class AI {
         mark[x] = true;
         for (Integer i : seen) {
             if (near(i, x)) {
+                parent[i] = x;
                 dir[i] = getDirection(i, x);
                 dfs(i);
             }
