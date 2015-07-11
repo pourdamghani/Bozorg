@@ -195,8 +195,8 @@ public class GameEngine {
     public void attack(Player player, int direction) throws BozorgExceptionBase{
         if(logic.canAttack(player, direction, map, players)){
             Player attackedPlayer = WhichPlayer(direction, player);
-            System.out.println(attackedPlayer.getInfo(Judge.HEALTH));
-            attackedPlayer.getAttacked(player.getInfo(JudgeAbstract.POWER));
+            if (attackedPlayer != null)
+                attackedPlayer.getAttacked(player.getInfo(JudgeAbstract.POWER));
         }
         else
             throw new CantAttackException();
@@ -229,7 +229,7 @@ public class GameEngine {
 
 
     public int getGift(Player player) throws BozorgExceptionBase {
-        int giftType = 0;
+        int giftType;
         if(logic.canGetGift(player,map,players)){
             int row = player.getInfo(JudgeAbstract.ROW) , col = player.getInfo(JudgeAbstract.COL);
             giftType = map.getCellType(row, col);
