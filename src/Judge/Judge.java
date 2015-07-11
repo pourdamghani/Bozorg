@@ -13,7 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 public class Judge extends JudgeAbstract {
     private HashMap<GameObjectID, Person> IDtoPerson = new HashMap<GameObjectID, Person>();
@@ -65,36 +64,46 @@ public class Judge extends JudgeAbstract {
     public int getMapWidth(){
         return cu.getWidth();
     }
+
     public int getMapHeight(){
         return cu.getHeight();
     }
+
     public int getMapCellType(int col, int row){
         return cu.getMapCellType(row, col);
     }
+
     public int getMapCellType(int col, int row, GameObjectID player){
         return cu.getMapCellType(row, col, (Player) IDtoPerson.get(player));
     }
+
     public int getMapWallType(int col, int row){
         return cu.getMapWallType(row, col);
     }
+
     public int getMapWallType(int col, int row, GameObjectID player){
         return cu.getMapWallType(row, col, (Player) IDtoPerson.get(player));
     }
+
     public void setup(){
         cu.setup();
     }
+
     public void movePlayer(GameObjectID player, int direction) throws BozorgExceptionBase {
         cu.movePlayer((Player) IDtoPerson.get(player), direction);
     }
+
     public void attack(GameObjectID attacker, int direction) throws BozorgExceptionBase{
         cu.attack((Player) IDtoPerson.get(attacker), direction);
     }
+
     public GameObjectID throwFan(GameObjectID player) throws BozorgExceptionBase{
         Fan fan = cu.throwFan((Player) IDtoPerson.get(player));
         GameObjectID ID = GameObjectID.create(Fan.class);
         IDtoPerson.put(ID, fan);
         return ID;
     }
+
     public void getGift(GameObjectID player) throws BozorgExceptionBase{
         cu.getGift((Player) IDtoPerson.get(player));
     }
@@ -103,8 +112,10 @@ public class Judge extends JudgeAbstract {
         AI ai = new AI(this, player);
         ai.move();
     }
+
     public void AIByTAs(GameObjectID player){
     }
+
     public ArrayList<GameObjectID> getEveryThing() {
         ArrayList<GameObjectID> IDs = new ArrayList<GameObjectID>();
         for (HashMap.Entry<GameObjectID, Person> entry : IDtoPerson.entrySet()) {
@@ -117,6 +128,7 @@ public class Judge extends JudgeAbstract {
     public ArrayList<String> getVision(GameObjectID player) throws BozorgExceptionBase{
         return cu.getVision((Player) IDtoPerson.get(player));
     }
+
     public ArrayList<GameObjectID> getPlayersInVision ( GameObjectID player){
         ArrayList<Player> players = cu.getPlayersInVision((Player) IDtoPerson.get(player));
         ArrayList<GameObjectID> IDs = new ArrayList<GameObjectID>();
@@ -124,6 +136,7 @@ public class Judge extends JudgeAbstract {
             IDs.add(personToID(i));
         return IDs;
     }
+
     public ArrayList<GameObjectID> getFans(GameObjectID player) throws BozorgExceptionBase{
         ArrayList<Fan> fans = cu.getFans((Player) IDtoPerson.get(player));
         ArrayList<GameObjectID> IDs = new ArrayList<GameObjectID>();
@@ -131,9 +144,11 @@ public class Judge extends JudgeAbstract {
             IDs.add(personToID(i));
         return IDs;
     }
+
     public HashMap<String, Integer> getInfo(GameObjectID id) throws BozorgExceptionBase{
         return cu.getInfo(IDtoPerson.get(id));
     }
+
     public void next50milis(){
         try {
             cu.next50milis();
