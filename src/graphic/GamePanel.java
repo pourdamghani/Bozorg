@@ -27,6 +27,7 @@ public class GamePanel extends JPanel {
      *
      */
     private BozorgPanel bozorgPanel;
+    private InformationPanel informationPanel;
 
     private JComboBox comboBox;
 
@@ -70,6 +71,9 @@ public class GamePanel extends JPanel {
         bozorgPanel = new BozorgPanel();
         bozorgPanel.init(controller, engine);
         add(bozorgPanel, BorderLayout.CENTER);
+
+        informationPanel = new InformationPanel();
+        add(informationPanel, BorderLayout.LINE_START);
     }
 
     public void showGameOverMessage() {
