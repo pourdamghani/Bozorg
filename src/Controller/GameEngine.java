@@ -227,18 +227,17 @@ public class GameEngine {
     }
 
 
-
-
-    public void getGift(Player player) throws BozorgExceptionBase {
+    public int getGift(Player player) throws BozorgExceptionBase {
+        int giftType = 0;
         if(logic.canGetGift(player,map,players)){
             int row = player.getInfo(JudgeAbstract.ROW) , col = player.getInfo(JudgeAbstract.COL);
-            int giftType = map.getCellType(row,col);
+            giftType = map.getCellType(row, col);
             player.getGift(giftType);
             map.getCell(row,col).setCellType(JudgeAbstract.NONE_CELL);
         }
         else
             throw new BozorgExceptionBase();
-
+        return giftType;
     }
 
 

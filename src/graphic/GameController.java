@@ -122,7 +122,7 @@ public class GameController implements KeyListener{
                         }
                         break;
                     case KeyEvent.VK_ENTER:
-                        engine.getGift(firstPlayer);
+                        panel.showGift(engine.getGift(firstPlayer));
                         break;
                     case KeyEvent.VK_SPACE:
                         engine.throwFan(firstPlayer);
@@ -171,7 +171,7 @@ public class GameController implements KeyListener{
                         }
                         break;
                     case KeyEvent.VK_F:
-                        engine.getGift(secondPlayer);
+                        panel.showGift(engine.getGift(secondPlayer));
                         break;
                     case KeyEvent.VK_ALT:
                         engine.throwFan(secondPlayer);

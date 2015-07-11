@@ -88,8 +88,8 @@ public class GamePanel extends JPanel {
             e.printStackTrace();
         }
         int n = JOptionPane.showConfirmDialog(this, "Victory! \n Would you like to start again?");
-
-        System.out.print(n);
+        if (n > 0)
+            System.exit(0);
         return n;
     }
 
@@ -125,6 +125,23 @@ public class GamePanel extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void showGift(int gift) {
+        String Message = "Nothing here";
+        if (gift == JudgeAbstract.SPEEDUP_CELL)
+            Message = "You have Nitro for 5 sec,Speed Up!";
+        if (gift == JudgeAbstract.HOSPITAL_CELL)
+            Message = "First Aid Kit!,health increases";
+        if (gift == JudgeAbstract.FAN_CELL)
+            Message = "Every body loves You!, 3 extra fans";
+        if (gift == JudgeAbstract.JUMP_CELL)
+            Message = "Magical shoes!, You Can Jump over the walls for 2 sec";
+        if (gift == JudgeAbstract.STONE_CELL)
+            Message = "Your Stoned, Can't play for 3 sec";
+        if (gift == JudgeAbstract.RADAR_CELL)
+            Message = "Sun rises, You can See EveryWhere for 3 sec";
+        JOptionPane.showMessageDialog(this, Message, "Gift", JOptionPane.INFORMATION_MESSAGE);
     }
 }
 
@@ -248,7 +265,7 @@ class BozorgPanel extends JPanel{
     }
 
     private void paintPlayer(Graphics2D g2d, Player player){
-        g2d.drawImage(player.getImage(), (player.getInfo(JudgeAbstract.COL)) * CellSize, (player.getInfo(JudgeAbstract.ROW)) * CellSize, null);
+        g2d.drawImage(player.getImage(), (player.getInfo(JudgeAbstract.COL)) * CellSize, (player.getInfo(JudgeAbstract.ROW)) * CellSize, this);
         //g2d.setColor(player.getColor());
         //g2d.fillOval((player.getInfo(JudgeAbstract.COL)) * CellSize, (player.getInfo(JudgeAbstract.ROW)) * CellSize , CellSize, CellSize);
     }
@@ -273,7 +290,7 @@ class BozorgPanel extends JPanel{
     }
 
     private void paintFan(Graphics2D g2d, Fan fan){
-        g2d.drawImage(fan.getImage(), (fan.getInfo(JudgeAbstract.COL)) * CellSize, (fan.getInfo(JudgeAbstract.ROW)) * CellSize, null);
+        g2d.drawImage(fan.getImage(), (fan.getInfo(JudgeAbstract.COL)) * CellSize, (fan.getInfo(JudgeAbstract.ROW)) * CellSize, this);
         g2d.setColor(fan.getColor());
         //g2d.fillRect(fan.getInfo(JudgeAbstract.COL) * CellSize + CellSize / 4 , fan.getInfo(JudgeAbstract.ROW) *CellSize + CellSize / 4, CellSize / 2, CellSize / 2);
     }
