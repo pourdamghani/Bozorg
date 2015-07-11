@@ -1,8 +1,8 @@
-package graphic;
+package gamePanel;
 
-import Controller.GameEngine;
+import gameEngine.GameEngine;
 import Judge.JudgeAbstract;
-import Model.Player;
+import gameEngine.Model.Player;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;

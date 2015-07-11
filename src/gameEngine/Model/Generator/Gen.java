@@ -1,4 +1,4 @@
-package Model.Generator;
+package gameEngine.Model.Generator;
 
 import Judge.JudgeAbstract;
 

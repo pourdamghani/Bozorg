@@ -1,4 +1,4 @@
-package Model;
+package gameEngine.Model;
 
 import java.awt.*;
 import java.util.HashMap;

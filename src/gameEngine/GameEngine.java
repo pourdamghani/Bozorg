@@ -1,9 +1,9 @@
-package Controller;
+package gameEngine;
 
 import Common.exceptions.*;
 import Judge.Judge;
 import Judge.JudgeAbstract;
-import Model.*;
+import gameEngine.Model.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;

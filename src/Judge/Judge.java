@@ -3,10 +3,10 @@ package Judge;
 import Common.GameObjectID;
 import Common.exceptions.BozorgExceptionBase;
 import Common.exceptions.GameEndException;
-import Controller.GameEngine;
-import Model.Fan;
-import Model.Person;
-import Model.Player;
+import gameEngine.GameEngine;
+import gameEngine.Model.Fan;
+import gameEngine.Model.Person;
+import gameEngine.Model.Player;
 
 import javax.swing.*;
 import java.awt.*;

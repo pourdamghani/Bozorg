@@ -1,6 +1,6 @@
-package Model.Generator;
+package gameEngine.Model.Generator;
 
-import Controller.GameEngine;
+import gameEngine.GameEngine;
 import Judge.Judge;
 import java.util.ArrayList;
 import java.util.Random;

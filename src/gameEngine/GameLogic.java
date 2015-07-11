@@ -1,10 +1,10 @@
-package Controller;
+package gameEngine;
 
 import Judge.JudgeAbstract;
-import Model.Cell;
-import Model.Fan;
-import Model.Map;
-import Model.Player;
+import gameEngine.Model.Cell;
+import gameEngine.Model.Fan;
+import gameEngine.Model.Map;
+import gameEngine.Model.Player;
 
 import java.util.ArrayList;
 

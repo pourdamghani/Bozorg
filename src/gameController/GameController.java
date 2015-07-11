@@ -1,9 +1,10 @@
-package graphic;
+package gameController;
 
 import Common.exceptions.*;
-import Controller.GameEngine;
+import gameEngine.GameEngine;
 import Judge.JudgeAbstract;
-import Model.Player;
+import gameEngine.Model.Player;
+import gamePanel.GamePanel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

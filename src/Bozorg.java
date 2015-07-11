@@ -1,7 +1,7 @@
-import Controller.GameEngine;
-import Model.Generator.Gen;
-import graphic.GameController;
-import graphic.GamePanel;
+import gameEngine.GameEngine;
+import gameEngine.Model.Generator.Gen;
+import gameController.GameController;
+import gamePanel.GamePanel;
 
 import javax.swing.*;
 import java.awt.*;

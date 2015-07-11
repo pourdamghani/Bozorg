@@ -1,4 +1,4 @@
-package Model;
+package gameEngine.Model;
 
 
 public class Cell {
