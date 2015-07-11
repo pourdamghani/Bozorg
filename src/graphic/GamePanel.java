@@ -77,7 +77,17 @@ public class GamePanel extends JPanel {
     }
 
     public int showGameOverMessage() {
-        int n =  JOptionPane.showConfirmDialog(this, "Game is over! \n do you like to start again?");
+        try {
+            InputStream in = new FileInputStream("src/Sound/victory.wav");
+            AudioStream audioStream = new AudioStream(in);
+            AudioPlayer.player.start(audioStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        int n = JOptionPane.showConfirmDialog(this, "Victory! \n Would you like to start again?");
+
         System.out.print(n);
         return n;
     }
