@@ -101,9 +101,6 @@ public class GameLogic {
             return false;
         return true;
     }
-    public boolean canThrowFan(Player player){
-        return true;
-    }
 
 
     /**
