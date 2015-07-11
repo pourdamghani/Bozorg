@@ -65,6 +65,7 @@ public class GameController implements KeyListener{
             else
                 System.exit(0);
         }
+
     }
 
     private void gameRender() {
