@@ -37,7 +37,7 @@ public class GamePanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         ArrayList<Player> players = engine.getPlayers();
-        String s[] = new String[players.size() + 1];
+        String s[] = new String[players.size() + 2];
         s[0] = "ALL";
         for(int i = 1; i <= players.size(); i++) {
             int name = players.get(i - 1).getInfo(JudgeAbstract.NAME);
@@ -56,6 +56,7 @@ public class GamePanel extends JPanel {
                     break;
             }
         }
+        s[players.size() + 1] = "BOTH";
         comboBox = new JComboBox(s);
 
         add(comboBox, BorderLayout.PAGE_START);
@@ -143,6 +144,8 @@ class BozorgPanel extends JPanel{
     String player;
 
     boolean allMapSeen = true;
+    boolean both;
+    ArrayList<String> vision;
 
     GameEngine engine;
 
@@ -185,6 +188,13 @@ class BozorgPanel extends JPanel{
                 int kind;
                 if (allMapSeen)
                     kind = engine.getMapCellType(i,j);
+                else if (both) {
+                    ArrayList<Player> players = engine.getPlayers();
+                    kind = engine.getMapCellType(i, j, players.get(0));
+
+                    if (kind == JudgeAbstract.DARK_CELL)
+                        kind = engine.getMapCellType(i, j, players.get(1));
+                }
                 else
                     kind =engine.getMapCellType(i, j, engine.stringToPlayer(player));
                 Color color;
@@ -226,6 +236,12 @@ class BozorgPanel extends JPanel{
         if (allMapSeen)
             for (Player i : engine.getPlayers())
                 paintPlayer(g2d, i);
+        else if (both) {
+            for (Player player : engine.getPlayers()) {
+                for (Player i : engine.getPlayersInVision(player))
+                    paintPlayer(g2d, i);
+            }
+        }
         else
             for (Player i : engine.getPlayersInVision(engine.stringToPlayer(player)))
                 paintPlayer(g2d, i);
@@ -238,12 +254,20 @@ class BozorgPanel extends JPanel{
     }
 
     private void paintFans(Graphics2D g2d){
-        if(!allMapSeen)
-            for(Fan fan: engine.getFans(engine.stringToPlayer(player)))
-                paintFan(g2d, fan);
+//        if(!allMapSeen)
+//            for(Fan fan: engine.getFans(engine.stringToPlayer(player)))
+//                paintFan(g2d, fan);
         for(Fan fan: engine.getFans())
             if(allMapSeen)
                 paintFan(g2d, fan);
+            else if (both) {
+                for (Player player: engine.getPlayers()) {
+                    if (engine.canSee(player, fan.getInfo(JudgeAbstract.ROW), fan.getInfo(JudgeAbstract.COL))) {
+                        paintFan(g2d, fan);
+                        break;
+                    }
+                }
+            }
             else if(engine.canSee(engine.stringToPlayer(player), fan.getInfo(JudgeAbstract.ROW), fan.getInfo(JudgeAbstract.COL)))
                 paintFan(g2d,fan);
     }
@@ -267,8 +291,14 @@ class BozorgPanel extends JPanel{
         if(s.equals("ALL"))
             allMapSeen = true;
         else{
-            player = s;
             allMapSeen = false;
+            if (s.equals("BOTH") ) {
+                both = true;
+            }
+            else {
+                player = s;
+                both = false;
+            }
         }
         setFocusable(true);
         requestFocus();

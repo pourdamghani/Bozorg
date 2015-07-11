@@ -171,10 +171,10 @@ public class GameController implements KeyListener{
                         }
                         break;
                     case KeyEvent.VK_F:
-                        engine.getGift(firstPlayer);
+                        engine.getGift(secondPlayer);
                         break;
                     case KeyEvent.VK_ALT:
-                        engine.throwFan(firstPlayer);
+                        engine.throwFan(secondPlayer);
                         break;
                     case KeyEvent.VK_SHIFT:
                         shift = true;
