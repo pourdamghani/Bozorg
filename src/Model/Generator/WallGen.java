@@ -2,12 +2,8 @@ package Model.Generator;
 
 import Controller.GameEngine;
 import Judge.Judge;
-import Model.Map;
-import sun.reflect.generics.tree.VoidDescriptor;
-
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Set;
 
 /**
  * Created by Arash on 15/07/10.

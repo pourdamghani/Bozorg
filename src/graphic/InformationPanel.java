@@ -1,17 +1,13 @@
 package graphic;
 
 import Controller.GameEngine;
-import Judge.Judge;
 import Judge.JudgeAbstract;
 import Model.Player;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-/**
- * Created by yashardabiran on 7/11/15.
- */
+
 public class InformationPanel extends JPanel{
     ImageIcon reza = new ImageIcon("src/Image/Reza.png");
     ImageIcon hasin = new ImageIcon("src/Image/Hasin.png");

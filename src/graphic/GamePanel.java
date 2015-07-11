@@ -9,8 +9,6 @@ import sun.audio.AudioStream;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.FileInputStream;
@@ -19,9 +17,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-/**
- * Created by Iman on 7/5/2015.
- */
 public class GamePanel extends JPanel {
     /**
      *

@@ -107,7 +107,6 @@ public class Judge extends JudgeAbstract {
         movePlayer(player, random.nextInt(4));
     }
     public void AIByTAs(GameObjectID player){
-        //TODO by TA
     }
     public ArrayList<GameObjectID> getEveryThing() {
         ArrayList<GameObjectID> IDs = new ArrayList<GameObjectID>();

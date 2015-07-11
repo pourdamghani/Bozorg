@@ -103,8 +103,8 @@ public abstract class JudgeAbstract {
     public abstract void AIByStudents(GameObjectID player) throws BozorgExceptionBase;
 
 	public void AIByTAs(GameObjectID player) {
-		// TODO
-	};
+
+    };
 
 	// get info
 	public abstract ArrayList<GameObjectID> getEveryThing(); // will never be

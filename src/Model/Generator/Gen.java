@@ -4,9 +4,6 @@ import Judge.JudgeAbstract;
 
 import java.util.Random;
 
-/**
- * Created by Arash on 15/07/10.
- */
 public class Gen {
     public static int NUM_OF_PLAYERS = 2;
     private static int POSSIBILITY = 4;
@@ -77,8 +74,6 @@ public class Gen {
     }
 
     private int Distance(int jjRow, int jjCol, int row, int col) {
-        int dis = Math.abs(jjRow - row) + Math.abs(jjCol - col);
-
-        return dis;
+        return Math.abs(jjRow - row) + Math.abs(jjCol - col);
     }
 }

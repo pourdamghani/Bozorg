@@ -1,9 +1,6 @@
 package Model;
 
 import Judge.JudgeAbstract;
-
-import java.util.HashMap;
-
 public class Fan extends Person {
 
     public Fan(Integer row, Integer col, Integer owner, Integer IS_Alive) {

@@ -1,10 +1,10 @@
 import Controller.GameEngine;
 import Model.Generator.Gen;
-import Model.Generator.WallGen;
 import graphic.GameController;
 import graphic.GamePanel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +22,8 @@ public class Bozorg {
     private static void createAndShowGui() {
         JFrame frame = new JFrame("Bozorg");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        Image iconImage = new ImageIcon("src/Image/icon.png").getImage();
+        frame.setIconImage(iconImage);
 
         GamePanel panel = new GamePanel ();
         GameEngine engine = new GameEngine ();

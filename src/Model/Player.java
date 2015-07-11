@@ -58,7 +58,6 @@ public class Player extends Person {
         if (newHealth <= 0) {
             information.put(JudgeAbstract.IS_ALIVE, JudgeAbstract.DEAD);
             information.put(JudgeAbstract.IS_WINNER, JudgeAbstract.LOST);
-            //todo
             deadTime = 600;
         }
     }

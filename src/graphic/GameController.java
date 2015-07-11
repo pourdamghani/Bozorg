@@ -9,9 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-/**
- * Created by Iman on 7/5/2015.
- */
+
 public class GameController implements KeyListener{
 
     private static final int FPS = 20;
