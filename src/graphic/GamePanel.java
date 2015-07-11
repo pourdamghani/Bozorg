@@ -4,6 +4,8 @@ import Controller.GameEngine;
 import Judge.JudgeAbstract;
 import Model.Fan;
 import Model.Player;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -79,6 +85,17 @@ public class GamePanel extends JPanel {
         return (String)comboBox.getSelectedItem();
     }
 
+    public void paintAttack() {
+        try {
+            InputStream in = new FileInputStream("fight.wav");
+            AudioStream audioStream = new AudioStream(in);
+            AudioPlayer.player.start(audioStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 class BozorgPanel extends JPanel{
@@ -221,5 +238,4 @@ class BozorgPanel extends JPanel{
         requestFocus();
 
     }
-
 }

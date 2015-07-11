@@ -68,26 +68,34 @@ public class GameController implements KeyListener{
             try {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_LEFT:
-                        if (ctrl)
+                        if (ctrl) {
                             engine.attack(player, JudgeAbstract.LEFT);
+                            panel.paintAttack();
+                        }
                         else
                             engine.movePlayer(player, JudgeAbstract.LEFT);
                         break;
                     case KeyEvent.VK_RIGHT:
-                        if (ctrl)
+                        if (ctrl) {
                             engine.attack(player, JudgeAbstract.RIGHT);
+                            panel.paintAttack();
+                        }
                         else
                             engine.movePlayer(player, JudgeAbstract.RIGHT);
                         break;
                     case KeyEvent.VK_DOWN:
-                        if (ctrl)
+                        if (ctrl) {
                             engine.attack(player, JudgeAbstract.DOWN);
+                            panel.paintAttack();
+                        }
                         else
                             engine.movePlayer(player, JudgeAbstract.DOWN);
                         break;
                     case KeyEvent.VK_UP:
-                        if (ctrl)
+                        if (ctrl) {
                             engine.attack(player, JudgeAbstract.UP);
+                            panel.paintAttack();
+                        }
                         else
                             engine.movePlayer(player, JudgeAbstract.UP);
                         break;
