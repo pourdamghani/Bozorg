@@ -13,7 +13,7 @@ import java.awt.event.KeyListener;
  */
 public class GameController implements KeyListener{
 
-    private static final int FPS = 100;
+    private static final int FPS = 20;
 
     GamePanel panel;
 
@@ -71,33 +71,38 @@ public class GameController implements KeyListener{
                         if (ctrl) {
                             engine.attack(player, JudgeAbstract.LEFT);
                             panel.paintAttack();
-                        }
-                        else
+                        } else {
                             engine.movePlayer(player, JudgeAbstract.LEFT);
+                            panel.paintMove();
+
+                        }
                         break;
                     case KeyEvent.VK_RIGHT:
                         if (ctrl) {
                             engine.attack(player, JudgeAbstract.RIGHT);
                             panel.paintAttack();
-                        }
-                        else
+                        } else {
                             engine.movePlayer(player, JudgeAbstract.RIGHT);
+                            panel.paintMove();
+                        }
                         break;
                     case KeyEvent.VK_DOWN:
                         if (ctrl) {
                             engine.attack(player, JudgeAbstract.DOWN);
                             panel.paintAttack();
-                        }
-                        else
+                        } else {
                             engine.movePlayer(player, JudgeAbstract.DOWN);
+                            panel.paintMove();
+                        }
                         break;
                     case KeyEvent.VK_UP:
                         if (ctrl) {
                             engine.attack(player, JudgeAbstract.UP);
                             panel.paintAttack();
-                        }
-                        else
+                        } else {
                             engine.movePlayer(player, JudgeAbstract.UP);
+                            panel.paintMove();
+                        }
                         break;
                     case KeyEvent.VK_ENTER:
                         engine.getGift(player);

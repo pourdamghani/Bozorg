@@ -92,7 +92,19 @@ public class GamePanel extends JPanel {
 
     public void paintAttack() {
         try {
-            InputStream in = new FileInputStream("fight.wav");
+            InputStream in = new FileInputStream("src/Sound/fight.wav");
+            AudioStream audioStream = new AudioStream(in);
+            AudioPlayer.player.start(audioStream);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void paintMove() {
+        try {
+            InputStream in = new FileInputStream("src/Sound/walk.wav");
             AudioStream audioStream = new AudioStream(in);
             AudioPlayer.player.start(audioStream);
         } catch (FileNotFoundException e) {
