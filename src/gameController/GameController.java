@@ -78,7 +78,6 @@ public class GameController implements KeyListener{
         Player secondPlayer = players.get(1);
 
         if (panel.whichPlayer() != null) {
-//            Player player = engine.stringToPlayer(panel.whichPlayer());
             try {
                 switch (e.getKeyCode()) {
 
@@ -210,8 +209,6 @@ public class GameController implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-
     }
 
 }

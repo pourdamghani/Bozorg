@@ -30,7 +30,6 @@ public class BozorgPanel extends JPanel {
 
     boolean allMapSeen = true;
     boolean both;
-    ArrayList<String> vision;
 
     GameEngine engine;
 
@@ -58,13 +57,9 @@ public class BozorgPanel extends JPanel {
         g2d.setColor(Color.BLUE);
         g2d.fillRect(0, 0, WIDTH, HEIGHT);
 
-//        setFocusable(true);
-//        requestFocus();
-
         paintMap(g2d);
         paintPlayers(g2d);
         paintFans(g2d);
-//        paintGifts(g2d);
     }
 
     private void paintMap(Graphics2D g2d){
@@ -137,9 +132,6 @@ public class BozorgPanel extends JPanel {
     }
 
     private void paintFans(Graphics2D g2d){
-//        if(!allMapSeen)
-//            for(Fan fan: engine.getFans(engine.stringToPlayer(player)))
-//                paintFan(g2d, fan);
         for(Fan fan: engine.getFans())
             if(allMapSeen)
                 paintFan(g2d, fan);
@@ -159,14 +151,6 @@ public class BozorgPanel extends JPanel {
         g2d.drawImage(fan.getImage(), (fan.getInfo(JudgeAbstract.COL)) * CellSize, (fan.getInfo(JudgeAbstract.ROW)) * CellSize, this);
     }
 
-//    private void paintGifts(Graphics2D g2d){
-//        for(int i = 0; i < engine.getHeight(); i++)
-//            for(int j = 0; j < engine.getWidth(); j++)
-//                if(allMapSeen || engine.getMapCellType(i, j, engine.stringToPlayer(player)) == JudgeAbstract.BONUS_CELL){
-//                    g2d.setColor(Color.red);
-//                    g2d.fillRect(j - CellSize / 2, i - CellSize / 2, CellSize, CellSize);
-//                }
-//    }
 
     public void setPlayer(String s){
         if(s.equals("ALL"))
