@@ -12,8 +12,23 @@ public class Player extends Person {
     private ArrayList<Fan> aliveFans = new ArrayList<Fan>();
 
     private Integer pendingAction = 0, pendingPrize = 0, deadTime = 0;
-    private int prizeType;
+    private int prizeType, startRow, startCol;
 
+    public int getStartRow() {
+        return startRow;
+    }
+
+    public void setStartRow(int startRow) {
+        this.startRow = startRow;
+    }
+
+    public int getStartCol() {
+        return startCol;
+    }
+
+    public void setStartCol(int startCol) {
+        this.startCol = startCol;
+    }
 
     public void move(int direction) {
         Integer row = information.get(JudgeAbstract.ROW);
@@ -43,7 +58,7 @@ public class Player extends Person {
             information.put(JudgeAbstract.IS_ALIVE, JudgeAbstract.DEAD);
             information.put(JudgeAbstract.IS_WINNER, JudgeAbstract.LOST);
             //todo
-            deadTime = 30;
+            deadTime = 600;
         }
     }
 

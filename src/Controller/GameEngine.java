@@ -83,6 +83,8 @@ public class GameEngine {
                     Player player = this.players.get(iter);
                     player.updateInfo(JudgeAbstract.ROW, i); //Setting Row
                     player.updateInfo(JudgeAbstract.COL, j); //Setting Col
+                    player.setStartRow(i); // setStartRow
+                    player.setStartCol(j);
                     player.updateInfo(JudgeAbstract.NAME, players[iter]);
                     iter++;
                 }
@@ -102,6 +104,8 @@ public class GameEngine {
         player.updateInfo(JudgeAbstract.IS_WINNER, JudgeAbstract.NOT_FINISHED);
         player.updateInfo(JudgeAbstract.IS_ALIVE, JudgeAbstract.ALIVE);
         player.updateInfo(JudgeAbstract.HEALTH, Judge.MAX_Health);
+        player.updateInfo(JudgeAbstract.ROW, player.getStartRow());
+        player.updateInfo(JudgeAbstract.COL, player.getStartCol());
         player.setDeadTime(0);
         switch (player.getInfo(JudgeAbstract.NAME)) {
             case JudgeAbstract.SAMAN:
