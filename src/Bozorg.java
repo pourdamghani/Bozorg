@@ -1,11 +1,14 @@
 import gameEngine.GameEngine;
 import gameEngine.Model.Generator.Gen;
 import gameController.GameController;
+import gameEngine.Model.Player;
 import gamePanel.GamePanel;
+import AI.AI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by PARDAZESH on 7/5/2015.
@@ -28,9 +31,18 @@ public class Bozorg {
         GamePanel panel = new GamePanel ();
         GameEngine engine = new GameEngine ();
         GameController controller = new GameController();
-
+        AI ai;
         Gen mapGen = new Gen();
-        choosePlayers(mapGen, frame);
+        if (!chooseMode(frame).equals("AI")) {
+            choosePlayers(mapGen, frame, null);
+        } else {
+            Random random = new Random();
+            String[] players = {"SAMAN", "REZA", "JAFAR", "HASIN"};
+            int rand = random.nextInt(4);
+            ai = new AI(engine, engine.stringToPlayer(players[rand]));
+            choosePlayers(mapGen, frame, players[rand]);
+        }
+
 
         engine.loadMap(mapGen.getMap(), mapGen.getWalls(), mapGen.getPlayers());
         engine.setup();
@@ -46,7 +58,13 @@ public class Bozorg {
         frame.setVisible(true);
     }
 
-    private static void choosePlayers(Gen mapGen, JFrame frame) {
+    private static String chooseMode(JFrame frame) {
+        String[] modes = {"Manual", "AI"};
+        String mode = (String) JOptionPane.showInputDialog(frame, "Choose mode", "mode", JOptionPane.QUESTION_MESSAGE, null, modes, modes[0]);
+        return mode;
+    }
+
+    private static void choosePlayers(Gen mapGen, JFrame frame, String AIPlayer) {
         ArrayList<String> p = new ArrayList<String>();
         p.add("SAMAN");
         p.add("JAFAR");
@@ -54,18 +72,21 @@ public class Bozorg {
         p.add("HASIN");
         String[] players = new String[4];
         p.toArray(players);
-
-        String firstPlayer = (String) JOptionPane.showInputDialog(frame,
-                "Choose your player :",
-                "First Player",
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                players,
-                players[0]);
-        if (firstPlayer == null)
-            System.exit(0);
-
-        mapGen.setPlayers(whichPlayer(firstPlayer), 0);
+        String firstPlayer;
+        if (AIPlayer == null) {
+            firstPlayer = (String) JOptionPane.showInputDialog(frame,
+                    "Choose your player :",
+                    "First Player",
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    players,
+                    players[0]);
+            if (firstPlayer == null)
+                System.exit(0);
+            mapGen.setPlayers(whichPlayer(firstPlayer), 0);
+        } else {
+            firstPlayer = AIPlayer;
+        }
 
         p.remove(firstPlayer);
         players = new String[3];
@@ -82,6 +103,7 @@ public class Bozorg {
             System.exit(0);
 
         mapGen.setPlayers(whichPlayer(secondPlayer), 1);
+
     }
 
     private static int whichPlayer(String player) {

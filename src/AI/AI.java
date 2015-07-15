@@ -2,24 +2,29 @@ package AI;
 
 import Common.GameObjectID;
 import Common.exceptions.BozorgExceptionBase;
+import Common.exceptions.CantGetGiftException;
+import Common.exceptions.CantMoveException;
 import Judge.Judge;
 import Judge.JudgeAbstract;
+import gameEngine.GameEngine;
 import gameEngine.Model.Generator.Gen;
+import gameEngine.Model.Player;
+import gamePanel.GamePanel;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 
 public class AI {
-    Judge judge;
-    GameObjectID objectID;
+    GameEngine engine;
+    Player player;
     boolean JJCellFound;
     Integer JJCell, current, width, height;
     ArrayList<Integer> seen = new ArrayList<Integer>();
 
-    public AI(Judge judge, GameObjectID objectID) {
-        this.objectID = objectID;
-        this.judge = judge;
+    public AI(GameEngine engine, Player player) {
+        this.player = player;
+        this.engine = engine;
         JJCellFound = false;
         JJCell = null;
         width = Gen.WIDTH;
@@ -42,13 +47,21 @@ public class AI {
         return Integer.parseInt(s.substring(s.indexOf(",") + 1));
     }
 
+    private int findCol(Integer x) {
+        return x % width;
+    }
+
+    private int findRow(Integer x) {
+        return x / width;
+    }
+
     private int convert(String s) {
         return findRow(s) * width + findCol(s);
     }
 
     private int getCellType(Integer s) {
-        Integer col = s % width, row = s / width;
-        return judge.getMapCellType(col, row);
+        Integer col = findCol(s), row = findRow(s);
+        return engine.getMapCellType(col, row);
 
     }
 
@@ -66,32 +79,34 @@ public class AI {
     }
 
     public void move() {
-        try {
-            setSeen(judge.getVision(objectID));
-        } catch (BozorgExceptionBase exceptionBase) {
-            exceptionBase.printStackTrace();
-        }
+        setSeen(engine.getVision(player));
         int direction;
         findCurrent();
         if (findJJCell()) {
             direction = findDirection(JJCell, current);
         } else {
+            if (getCellType(current) == JudgeAbstract.BONUS_CELL) {
+                try {
+                    engine.getGift(player);
+                } catch (CantGetGiftException exp) {
+                    AIError();
+                }
+            }
             Random random = new Random();
             direction = random.nextInt(4);
         }
         try {
-            judge.movePlayer(objectID, direction);
-        } catch (BozorgExceptionBase exceptionBase) {
-            exceptionBase.printStackTrace();
+            engine.movePlayer(player, direction);
+        } catch (CantMoveException exp) {
+            AIError();
         }
     }
 
+    private void AIError() {
+    }
+
     void findCurrent() {
-        try {
-            current = judge.getInfo(objectID).get(JudgeAbstract.ROW) * judge.getInfo(objectID).get(JudgeAbstract.COL);
-        } catch (BozorgExceptionBase exceptionBase) {
-            exceptionBase.printStackTrace();
-        }
+        current = engine.getInfo(player).get(JudgeAbstract.ROW) * engine.getInfo(player).get(JudgeAbstract.COL);
     }
 
     boolean mark[] = new boolean[50 * 50];
@@ -154,7 +169,7 @@ public class AI {
 
     private boolean noWall(int x, int y) {
         int row = x / width, col = x % width;
-        int wall = judge.getMapWallType(row, col);
+        int wall = engine.getMapWallType(row, col);
         switch (getDirection(x, y)) {
             case 0:
                 return !((1 & wall) == 1);

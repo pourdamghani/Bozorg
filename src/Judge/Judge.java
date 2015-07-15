@@ -109,8 +109,6 @@ public class Judge extends JudgeAbstract {
     }
 
     public void AIByStudents(GameObjectID player) throws BozorgExceptionBase {
-        AI ai = new AI(this, player);
-        ai.move();
     }
 
     public void AIByTAs(GameObjectID player){

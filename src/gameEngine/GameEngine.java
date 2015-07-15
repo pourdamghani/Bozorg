@@ -132,10 +132,7 @@ public class GameEngine {
     }
 
 
-
-
-
-    public void movePlayer(Player player, int direction) throws BozorgExceptionBase {
+    public void movePlayer(Player player, int direction) throws CantMoveException {
         if (logic.canMove(player, direction, map)) {
             player.move(direction);
             player.setPendingAction(Judge.TIME_INTERVAL / player.getInfo(JudgeAbstract.SPEED));
@@ -192,7 +189,7 @@ public class GameEngine {
         return null;
     }
 
-    public void attack(Player player, int direction) throws BozorgExceptionBase{
+    public void attack(Player player, int direction) throws CantAttackException {
         if(logic.canAttack(player, direction, map, players)){
             Player attackedPlayer = WhichPlayer(direction, player);
             if (attackedPlayer != null)
@@ -228,7 +225,7 @@ public class GameEngine {
     }
 
 
-    public int getGift(Player player) throws BozorgExceptionBase {
+    public int getGift(Player player) throws CantGetGiftException {
         int giftType;
         if(logic.canGetGift(player,map,players)){
             int row = player.getInfo(JudgeAbstract.ROW) , col = player.getInfo(JudgeAbstract.COL);
