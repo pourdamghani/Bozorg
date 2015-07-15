@@ -1,4 +1,5 @@
 import com.sun.org.apache.xpath.internal.SourceTree;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import gameEngine.GameEngine;
 import gameEngine.Model.Generator.Gen;
 import gameController.GameController;
@@ -32,23 +33,25 @@ public class Bozorg {
         GamePanel panel = new GamePanel ();
         GameEngine engine = new GameEngine ();
         GameController controller = new GameController();
+        Gen mapGen = new Gen();
 
         AI ai = null;
+        boolean isAI = false;
         String[] players = {"SAMAN", "REZA", "JAFAR", "HASIN"};
         Random random = new Random();
         int rand = random.nextInt(4);
-        Gen mapGen = new Gen();
         if (!chooseMode(frame).equals("AI")) {
             choosePlayers(mapGen, frame, null);
         } else {
-            System.out.println(players[rand]);
             choosePlayers(mapGen, frame, players[rand]);
+            isAI = true;
         }
 
 
         engine.loadMap(mapGen.getMap(), mapGen.getWalls(), mapGen.getPlayers());
         engine.setup();
-        ai = new AI(engine, engine.stringToPlayer(players[rand]));
+        if (isAI)
+            ai = new AI(engine, engine.stringToPlayer(players[rand]));
 
 
         panel.init (controller, engine);
@@ -63,7 +66,7 @@ public class Bozorg {
     }
 
     private static String chooseMode(JFrame frame) {
-        String[] modes = {"Manual", "AI"};
+        String[] modes = {"AI", "Manual"};
         String mode = (String) JOptionPane.showInputDialog(frame, "Choose mode", "mode", JOptionPane.QUESTION_MESSAGE, null, modes, modes[0]);
         return mode;
     }
@@ -87,11 +90,10 @@ public class Bozorg {
                     players[0]);
             if (firstPlayer == null)
                 System.exit(0);
-            mapGen.setPlayers(whichPlayer(firstPlayer), 0);
         } else {
             firstPlayer = AIPlayer;
         }
-
+        mapGen.setPlayers(whichPlayer(firstPlayer), 0);
         p.remove(firstPlayer);
         players = new String[3];
         p.toArray(players);

@@ -1,15 +1,12 @@
 package AI;
 
-import Common.GameObjectID;
-import Common.exceptions.BozorgExceptionBase;
 import Common.exceptions.CantGetGiftException;
 import Common.exceptions.CantMoveException;
-import Judge.Judge;
 import Judge.JudgeAbstract;
 import gameEngine.GameEngine;
 import gameEngine.Model.Generator.Gen;
 import gameEngine.Model.Player;
-import gamePanel.GamePanel;
+import sun.java2d.SurfaceDataProxy;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -61,7 +58,7 @@ public class AI {
 
     private int getCellType(Integer s) {
         Integer col = findCol(s), row = findRow(s);
-        return engine.getMapCellType(col, row);
+        return engine.getMapCellType(row, col);
 
     }
 
@@ -70,6 +67,7 @@ public class AI {
             return true;
         for (Integer x : seen) {
             if (getCellType(x) == JudgeAbstract.JJ_CELL) {
+                System.out.println(x);
                 JJCellFound = true;
                 JJCell = x;
                 return true;
@@ -84,6 +82,7 @@ public class AI {
         findCurrent();
         if (findJJCell()) {
             direction = findDirection(JJCell, current);
+            System.out.println(direction);
         } else {
             if (getCellType(current) == JudgeAbstract.BONUS_CELL) {
                 try {
@@ -117,11 +116,20 @@ public class AI {
         for (boolean b : mark) {
             b = false;
         }
+        for (int i = 0; i < width * height; i++) {
+            mark[i] = false;
+            parent[i] = -1;
+            dir[i] = -1;
+        }
         dfs(source);
+        //System.out.println(parent[destiny]);
+        if (parent[destiny] == -1)
+            return -1;
         return reverse(destiny, source);
     }
 
     private int reverse(Integer x, Integer source) {
+        System.out.println(x + " " + parent[x]);
         if (parent[x] == source)
             return (dir[x] + 2) % 4;
         return reverse(parent[x], source);
@@ -131,7 +139,7 @@ public class AI {
     private void dfs(int x) {
         mark[x] = true;
         for (Integer i : seen) {
-            if (near(i, x)) {
+            if (near(i, x) && !mark[i]) {
                 parent[i] = x;
                 dir[i] = getDirection(i, x);
                 dfs(i);
