@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class GameController implements KeyListener{
 
-    private static final int FPS = 20;
+    public static final int FPS = 20;
 
     GamePanel panel;
     GameEngine engine;

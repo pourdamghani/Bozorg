@@ -15,6 +15,8 @@ public class GameEngine {
     private Integer time = 0;
     private GameLogic logic = new GameLogic();
 
+    private boolean gameOver;
+
     public GameEngine() {
 
     }
@@ -364,5 +366,13 @@ public class GameEngine {
         player.updateInfo(JudgeAbstract.FANS, Judge.Hasin_Fans);
         player.updateInfo(JudgeAbstract.VISION, Judge.Other_Player_Vision);
         player.updateInfo(JudgeAbstract.POWER, Judge.Hasin_Power);
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
     }
 }

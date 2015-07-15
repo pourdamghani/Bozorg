@@ -19,12 +19,16 @@ import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
 
+    private GameEngine engine;
+
     private BozorgPanel bozorgPanel;
 
     private JComboBox comboBox;
 
 
     public void init(final GameController controller, GameEngine engine) {
+        this.engine = engine;
+
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
@@ -70,6 +74,7 @@ public class GamePanel extends JPanel {
     }
 
     public int showGameOverMessage() {
+        engine.setGameOver(true);
         try {
             InputStream in = new FileInputStream("src/Sound/victory.wav");
             AudioStream audioStream = new AudioStream(in);
@@ -79,7 +84,6 @@ public class GamePanel extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         int n = JOptionPane.showConfirmDialog(this, "Victory! \n Would you like to start again?");
         if (n > 0)
             System.exit(0);
