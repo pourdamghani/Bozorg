@@ -78,7 +78,7 @@ public class AI {
         return false;
     }
 
-    public void move() {
+    public void run() {
         setSeen(engine.getVision(player));
         int direction;
         findCurrent();

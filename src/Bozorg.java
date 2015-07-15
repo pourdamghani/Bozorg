@@ -1,3 +1,4 @@
+import com.sun.org.apache.xpath.internal.SourceTree;
 import gameEngine.GameEngine;
 import gameEngine.Model.Generator.Gen;
 import gameController.GameController;
@@ -31,24 +32,27 @@ public class Bozorg {
         GamePanel panel = new GamePanel ();
         GameEngine engine = new GameEngine ();
         GameController controller = new GameController();
-        AI ai;
+
+        AI ai = null;
+        String[] players = {"SAMAN", "REZA", "JAFAR", "HASIN"};
+        Random random = new Random();
+        int rand = random.nextInt(4);
         Gen mapGen = new Gen();
         if (!chooseMode(frame).equals("AI")) {
             choosePlayers(mapGen, frame, null);
         } else {
-            Random random = new Random();
-            String[] players = {"SAMAN", "REZA", "JAFAR", "HASIN"};
-            int rand = random.nextInt(4);
-            ai = new AI(engine, engine.stringToPlayer(players[rand]));
+            System.out.println(players[rand]);
             choosePlayers(mapGen, frame, players[rand]);
         }
 
 
         engine.loadMap(mapGen.getMap(), mapGen.getWalls(), mapGen.getPlayers());
         engine.setup();
+        ai = new AI(engine, engine.stringToPlayer(players[rand]));
+
 
         panel.init (controller, engine);
-        controller.init (panel, engine);
+        controller.init(panel, engine, ai);
         controller.start();
 
         frame.getContentPane().add(panel);
@@ -103,7 +107,6 @@ public class Bozorg {
             System.exit(0);
 
         mapGen.setPlayers(whichPlayer(secondPlayer), 1);
-
     }
 
     private static int whichPlayer(String player) {

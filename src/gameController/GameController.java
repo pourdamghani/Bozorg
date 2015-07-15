@@ -5,6 +5,7 @@ import gameEngine.GameEngine;
 import Judge.JudgeAbstract;
 import gameEngine.Model.Player;
 import gamePanel.GamePanel;
+import AI.AI;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -17,6 +18,7 @@ public class GameController implements KeyListener{
 
     GamePanel panel;
     GameEngine engine;
+    AI ai;
 
     Thread gameLoop;
 
@@ -24,9 +26,10 @@ public class GameController implements KeyListener{
     boolean ctrl;
     boolean shift;
 
-    public void init(GamePanel panel, GameEngine engine) {
+    public void init(GamePanel panel, GameEngine engine, AI ai) {
         this.panel = panel;
         this.engine = engine;
+        this.ai = ai;
     }
 
     public void start() {
@@ -38,7 +41,7 @@ public class GameController implements KeyListener{
                      {
                         gameUpdate ();
                         gameRender ();
-                    }
+                     }
 
                     try {
                         Thread.sleep(1000 / FPS);
@@ -54,6 +57,8 @@ public class GameController implements KeyListener{
 
     private void gameUpdate() {
         try {
+            if (ai != null)
+                ai.run();
             engine.next50milis();
         } catch (GameEndException E) {
             int confirm = panel.showGameOverMessage();
