@@ -1,7 +1,7 @@
 package Network;
 
 import Common.exceptions.*;
-import gameController.NetworkController;
+import gameController.NetController;
 import gameEngine.GameEngine;
 import gamePanel.GamePanel;
 
@@ -15,10 +15,10 @@ public class Client {
     private ObjectOutputStream out;
 
     private GameEngine engine;
-    private NetworkController controller;
+    private NetController controller;
     private GamePanel panel;
 
-    public void init(GameEngine engine, NetworkController controller, GamePanel panel) {
+    public void init(GameEngine engine, NetController controller, GamePanel panel) {
         this.engine = engine;
         this.controller = controller;
         this.panel = panel;
