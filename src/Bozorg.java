@@ -12,9 +12,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Created by PARDAZESH on 7/5/2015.
- */
+
 public class Bozorg {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -67,8 +65,7 @@ public class Bozorg {
 
     private static String chooseMode(JFrame frame) {
         String[] modes = {"AI", "Manual"};
-        String mode = (String) JOptionPane.showInputDialog(frame, "Choose mode", "mode", JOptionPane.QUESTION_MESSAGE, null, modes, modes[0]);
-        return mode;
+        return (String) JOptionPane.showInputDialog(frame, "Choose mode", "mode", JOptionPane.QUESTION_MESSAGE, null, modes, modes[0]);
     }
 
     private static void choosePlayers(Gen mapGen, JFrame frame, String AIPlayer) {

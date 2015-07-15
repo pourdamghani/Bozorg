@@ -6,7 +6,6 @@ import Judge.JudgeAbstract;
 import gameEngine.GameEngine;
 import gameEngine.Model.Generator.Gen;
 import gameEngine.Model.Player;
-import sun.java2d.SurfaceDataProxy;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -113,9 +112,6 @@ public class AI {
     int parent[] = new int[50 * 50];
 
     private int findDirection(Integer destiny, Integer source) {
-        for (boolean b : mark) {
-            b = false;
-        }
         for (int i = 0; i < width * height; i++) {
             mark[i] = false;
             parent[i] = -1;
