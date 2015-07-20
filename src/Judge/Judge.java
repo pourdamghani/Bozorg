@@ -40,7 +40,7 @@ public class Judge extends JudgeAbstract {
     public static int Saman_Fans = 100;
     public static int Jafar_Fans = 5;
     public static int Reza_Fans = 0;
-    public static int MAXSIZE = 500;
+    public static int MAXSIZE = 50;
     public static final Image REZA_IMAGE = new ImageIcon("src/Image/Reza.png").getImage();
     public static final Image HASIN_IMAGE = new ImageIcon("src/Image/Hasin.png").getImage();
     public static final Image JAFAR_IMAGE = new ImageIcon("src/Image/jafar.png").getImage();

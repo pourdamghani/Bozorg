@@ -2,29 +2,28 @@ package AI;
 
 import Common.exceptions.CantGetGiftException;
 import Common.exceptions.CantMoveException;
+import Judge.Judge;
 import Judge.JudgeAbstract;
 import gameEngine.GameEngine;
-import gameEngine.Model.Generator.Gen;
 import gameEngine.Model.Player;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 
 public class AI {
-    GameEngine engine;
-    Player player;
-    boolean JJCellFound;
-    Integer JJCell, current, width, height;
-    ArrayList<Integer> seen = new ArrayList<Integer>();
+    private GameEngine engine;
+    private Player player;
+    private boolean JJCellFound;
+    private Integer JJCell, current, width, height;
+    private ArrayList<Integer> seen = new ArrayList<Integer>();
 
     public AI(GameEngine engine, Player player) {
         this.player = player;
         this.engine = engine;
         JJCellFound = false;
         JJCell = null;
-        width = Gen.WIDTH;
-        height = Gen.HEIGHT;
+        width = engine.getWidth();
+        height = engine.getHeight();
     }
 
     public void setSeen(ArrayList<String> visited) {
@@ -66,7 +65,6 @@ public class AI {
             return true;
         for (Integer x : seen) {
             if (getCellType(x) == JudgeAbstract.JJ_CELL) {
-                System.out.println(x);
                 JJCellFound = true;
                 JJCell = x;
                 return true;
@@ -81,7 +79,6 @@ public class AI {
         findCurrent();
         if (findJJCell()) {
             direction = findDirection(JJCell, current);
-            System.out.println(direction);
         } else {
             if (getCellType(current) == JudgeAbstract.BONUS_CELL) {
                 try {
@@ -90,8 +87,7 @@ public class AI {
                     AIError();
                 }
             }
-            Random random = new Random();
-            direction = random.nextInt(4);
+            direction = findDirection(findFarthest(current), current);
         }
         try {
             engine.movePlayer(player, direction);
@@ -107,30 +103,20 @@ public class AI {
         current = engine.getInfo(player).get(JudgeAbstract.ROW) * engine.getInfo(player).get(JudgeAbstract.COL);
     }
 
-    boolean mark[] = new boolean[50 * 50];
-    int dir[] = new int[50 * 50];
-    int parent[] = new int[50 * 50];
 
-    private int findDirection(Integer destiny, Integer source) {
+    private boolean mark[] = new boolean[Judge.MAXSIZE * Judge.MAXSIZE];
+    private int dir[] = new int[Judge.MAXSIZE * Judge.MAXSIZE];
+    private int parent[] = new int[Judge.MAXSIZE * Judge.MAXSIZE];
+    private int distance[] = new int[Judge.MAXSIZE * Judge.MAXSIZE];
+
+    private void intiDFS() {
         for (int i = 0; i < width * height; i++) {
             mark[i] = false;
             parent[i] = -1;
             dir[i] = -1;
+            distance[i] = 0;
         }
-        dfs(source);
-        //System.out.println(parent[destiny]);
-        if (parent[destiny] == -1)
-            return -1;
-        return reverse(destiny, source);
     }
-
-    private int reverse(Integer x, Integer source) {
-        System.out.println(x + " " + parent[x]);
-        if (parent[x] == source)
-            return (dir[x] + 2) % 4;
-        return reverse(parent[x], source);
-    }
-
 
     private void dfs(int x) {
         mark[x] = true;
@@ -138,10 +124,39 @@ public class AI {
             if (near(i, x) && !mark[i]) {
                 parent[i] = x;
                 dir[i] = getDirection(i, x);
+                distance[i] = distance[x] + 1;
                 dfs(i);
             }
         }
 
+    }
+
+    private int reverse(Integer x, Integer source) {
+        if (parent[x] == source)
+            return (dir[x] + 2) % 4;
+        return reverse(parent[x], source);
+    }
+
+
+    private int findDirection(Integer destiny, Integer source) {
+        intiDFS();
+        dfs(source);
+        if (parent[destiny] == -1)
+            return -1;
+        return reverse(destiny, source);
+    }
+
+    private int findFarthest(Integer source) {
+        intiDFS();
+        dfs(source);
+        Integer farthest = source, dis = 0;
+        for (Integer i : seen) {
+            if (distance[i] > dis) {
+                farthest = i;
+                dis = distance[i];
+            }
+        }
+        return farthest;
     }
 
     private boolean near(int x, int y) {

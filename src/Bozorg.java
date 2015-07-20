@@ -1,9 +1,6 @@
-import com.sun.org.apache.xpath.internal.SourceTree;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import gameEngine.GameEngine;
 import gameEngine.Model.Generator.Gen;
 import gameController.GameController;
-import gameEngine.Model.Player;
 import gamePanel.GamePanel;
 import AI.AI;
 
@@ -64,8 +61,11 @@ public class Bozorg {
     }
 
     private static String chooseMode(JFrame frame) {
-        String[] modes = {"AI", "Manual"};
-        return (String) JOptionPane.showInputDialog(frame, "Choose mode", "mode", JOptionPane.QUESTION_MESSAGE, null, modes, modes[0]);
+        String[] modes = {"Manual", "AI"};
+        String mode = (String) JOptionPane.showInputDialog(frame, "Choose mode", "Mode", JOptionPane.QUESTION_MESSAGE, null, modes, modes[0]);
+        if (mode == null)
+            System.exit(0);
+        return mode;
     }
 
     private static void choosePlayers(Gen mapGen, JFrame frame, String AIPlayer) {
